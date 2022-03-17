@@ -29,7 +29,4 @@ Route::get('/gugus-tugas', 'GugusTugasController@index');
 Route::get('/kelompok-keahlian', 'KelompokKeahlianController@index');
 
 //proteksi pembimbing middleware
-Route::get('/pembimbing', 'PembimbingController@index');
-
-//proteksi penguji middleware
-Route::get('/penguji', 'PengujiController@index');
+Route::get('/pembimbing-penguji', 'PembimbingPengujiController@index');

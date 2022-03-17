@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Auth;
 
-class Penguji
+class PembimbingPenguji
 {
     /**
      * Handle an incoming request.
@@ -18,7 +18,7 @@ class Penguji
     {
         if (session()->has('role')) {
 
-            if (Auth::user()->role == "penguji") {
+            if (Auth::user()->role == "pembimbing-penguji") {
                 return $next($request);
             }
             else {

@@ -5,16 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 
-class PembimbingController extends Controller
+class PembimbingPengujiController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('pembimbing');
+        $this->middleware('pembimbing-penguji');
     }
 
     public function index()
     {
         $data = Auth::user();
-        return view('pembimbing.dashboard', compact('data'));
+        return view('pembimbingPenguji.dashboard', compact('data'));
     }
 }

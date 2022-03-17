@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1>Ini Dashboard Pembimbing</h1>
+        <h1>Ini Dashboard Pembimbing dan Penguji</h1>
         <h4>ID : {{$data->id}}</h4>
         <h4>Name : {{$data->name}}</h4>
         <h4>Email : {{$data->email}}</h4>
