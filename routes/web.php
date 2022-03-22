@@ -20,7 +20,8 @@ Route::get('/', function () {
 Auth::routes();
 
 //proteksi mahasiswa middleware
-Route::get('/mahasiswa', 'MahasiswaController@index');
+Route::get('/mahasiswa-dashboard', 'MahasiswaController@index');
+Route::get('/mahasiswa-data', 'MahasiswaController@data');
 
 //proteksi gugus tugas middleware
 Route::get('/gugus-tugas', 'GugusTugasController@index');

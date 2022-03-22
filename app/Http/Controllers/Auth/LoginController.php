@@ -36,7 +36,7 @@ class LoginController extends Controller
         switch ($role) {
             case 'mahasiswa':
                 session(['role' => $role]);
-                return '/mahasiswa';
+                return '/mahasiswa-dashboard';
                 break;
 
             case 'gugus-tugas':
