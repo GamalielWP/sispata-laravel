@@ -9,13 +9,13 @@
         </a>
         <hr>
         <ul id="active-list" class="nav nav-pills flex-column mb-auto">
-            <li> <a href="/mahasiswa-data" class="nav-link {{'mahasiswa-data' == request()->path() ? 'active' : 'text-white'}}"> <i class="fa fa-home"></i><span class="ms-2">Home</span> </a> </li>
-            <li> <a href="/mahasiswa-dashboard" class="nav-link {{'mahasiswa-dashboard' == request()->path() ? 'active' : 'text-white'}}"> <i class="fa fa-dashboard"></i><span class="ms-2">Dashboard</span> </a> </li>
-            <li> <a href="#" class="nav-link {{'' == request()->path() ? 'active' : 'text-white'}}"> <i class="fa fa-first-order"></i><span class="ms-2">My Orders</span> </a> </li>
-            <li> <a href="#" class="nav-link {{'' == request()->path() ? 'active' : 'text-white'}}"> <i class="fa fa-cog"></i><span class="ms-2">Settings</span> </a> </li>
-            <li> <a href="#" class="nav-link {{'' == request()->path() ? 'active' : 'text-white'}}"> <i class="fa fa-bookmark"></i><span class="ms-2">Bookmarks</span> </a> </li>
+            <li class="side-item"> <a href="/mahasiswa-dashboard" class="nav-link {{'mahasiswa-dashboard' == request()->path() ? 'active' : 'text-white'}}"> <i class="fa fa-dashboard"></i><span class="ms-2">Dashboard</span> </a> </li>
+            <li class="side-item"> <a href="#" class="nav-link {{'' == request()->path() ? 'active' : 'text-white'}}"> <i class="fa fa-file-text-o"></i> <span class="ms-2">File</span> </a> </li>
+            <li class="side-item"> <a href="#" class="nav-link {{'' == request()->path() ? 'active' : 'text-white'}}"> <i class="fa fa-user"></i><span class="ms-2">Profile</span> </a> </li>
         </ul>
-
+        
     </div>
-    @yield('menu')
+    <div class="container-md py-4">
+        @yield('menu')
+    </div>
 @endsection

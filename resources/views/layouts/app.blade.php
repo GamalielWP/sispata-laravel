@@ -29,7 +29,7 @@
     <style type="text/css">
         body { background-color: #eee }
 
-        .nav-link:hover { background-color: #525252 !important }
+        .side-item:hover { background-color: #525252 !important }
 
         .nav-link .fa { transition: all 1s }
 

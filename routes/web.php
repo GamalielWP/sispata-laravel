@@ -21,7 +21,8 @@ Auth::routes();
 
 //proteksi mahasiswa middleware
 Route::get('/mahasiswa-dashboard', 'MahasiswaController@index');
-Route::get('/mahasiswa-data', 'MahasiswaController@data');
+Route::get('/mahasiswa-file', 'MahasiswaController@file');
+Route::get('/mahasiswa-profile', 'MahasiswaController@profile');
 
 //proteksi gugus tugas middleware
 Route::get('/gugus-tugas', 'GugusTugasController@index');
