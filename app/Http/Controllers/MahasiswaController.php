@@ -18,9 +18,9 @@ class MahasiswaController extends Controller
         return view('mahasiswa.dashboard', compact('data'));
     }
 
-    public function data()
+    public function file()
     {
         $data = Auth::user();
-        return view('mahasiswa.data', compact('data'));
+        return view('mahasiswa.file', compact('data'));
     }
 }

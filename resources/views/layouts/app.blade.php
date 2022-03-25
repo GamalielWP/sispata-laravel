@@ -24,17 +24,8 @@
     
     <!-- Custom CSS -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/sidebar.css') }}" rel="stylesheet">
 
-    {{-- Style --}}
-    <style type="text/css">
-        body { background-color: #eee }
-
-        .side-item:hover { background-color: #525252 !important }
-
-        .nav-link .fa { transition: all 1s }
-
-        .nav-link:hover .fa { transform: rotate(360deg) }
-    </style>
 </head>
 
 <body>
