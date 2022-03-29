@@ -12,9 +12,9 @@ class PembimbingPengujiController extends Controller
         $this->middleware('pembimbing-penguji');
     }
 
-    public function index()
+    public function pembimbing()
     {
         $data = Auth::user();
-        return view('pembimbingPenguji.dashboard', compact('data'));
+        return view('pembimbingPenguji.pembimbing', compact('data'));
     }
 }
