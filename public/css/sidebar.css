@@ -13,3 +13,9 @@ body {
 .nav-link:hover .fa {
     transform: rotate(360deg)
 }
+
+.text-menu {
+    margin-top: 20%;
+    font-size: medium;
+    text-align: center;
+}

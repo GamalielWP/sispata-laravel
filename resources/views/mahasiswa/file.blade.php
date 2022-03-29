@@ -1,6 +1,6 @@
 @extends('mahasiswa.sidebar')
 
-@section('menu')
+@section('content')
     <div class="card">
         <div class="card-body">
             <form action="">
@@ -29,6 +29,8 @@
 
                 <label for="Berkas" class="form-label">Berkas Perdaftaran</label>
                 <input name="Berkas" class="form-control mb-3" type="file" id="formFile">
+
+                <button type="button" class="btn btn-primary">Simpan</button>
             </form>
         </div>
         
