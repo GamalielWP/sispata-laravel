@@ -30,5 +30,7 @@ Route::get('/gugus-tugas', 'GugusTugasController@index');
 //proteksi kelompok keahlian middleware
 Route::get('/kelompok-keahlian', 'KelompokKeahlianController@index');
 
-//proteksi pembimbing middleware
-Route::get('/pembimbing-penguji', 'PembimbingPengujiController@index');
+//proteksi pembimbing & penguji middleware
+Route::get('/pembimbing', 'PembimbingPengujiController@index');
+Route::get('/penguji', 'PembimbingPengujiController@penguji');
+Route::get('/pembimbing-penguji-profile', 'PembimbingPengujiController@profile');
