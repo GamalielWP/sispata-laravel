@@ -17,7 +17,10 @@
                 <input name="Phone" class="form-control mb-2" type="text" value="085791666777">
 
                 <label for="Prodi" class="form-label">Program Studi</label>
-                <input name="Prodi" class="form-control mb-2" type="text" value="S1 Rekayasa Perangkat Lunak" disabled>
+                <input name="Prodi" class="form-control mb-3" type="text" value="S1 Rekayasa Perangkat Lunak" disabled>
+
+                <img src="{{asset('img/default-user.png')}}" style="width: 10%; height: auto; float:left; padding-bottom:0.5%" alt="Foto Profil" class="mr-2">
+                <input name="FotoProfil" class="form-control mb-3" type="file">
                 
                 <hr>
 
@@ -26,10 +29,7 @@
 
                 <label for="ConfirmPass" class="form-label">Ulangi Password</label>
                 <input name="ConfirmPass" class="form-control mb-2" type="password">
-
-                <img src="{{asset('img/default-user.png')}}" style="width: 10%; height: auto; float:left; padding-bottom:0.5%" alt="Foto Profil" class="mr-2">
-                <input name="FotoProfil" class="form-control mb-3" type="file">
-
+                
                 <hr>
 
                 <label for="OldPass" class="form-label">Password Saat Ini</label>
