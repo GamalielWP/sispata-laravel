@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\User;
+use Yajra\Datatables\Datatables;
 
 class PembimbingPengujiController extends Controller
 {
@@ -12,9 +14,14 @@ class PembimbingPengujiController extends Controller
         $this->middleware('pembimbing-penguji');
     }
 
+    public function yajraIndex()
+    {
+        $mhs = User::all();
+        return Datatables::of($mhs)->addIndexColumn()->make(true);
+    }
+
     public function pembimbing()
     {
-        $data = Auth::user();
-        return view('pembimbingPenguji.pembimbing', compact('data'));
+        return view('dosen.pembimbing');
     }
 }
