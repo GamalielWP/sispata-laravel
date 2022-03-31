@@ -11,7 +11,7 @@
     <title>Sistem Pendaftaran TA 1 Fakultas Informatika</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -35,11 +35,11 @@
 <body>
     <div id="app">
         <div class="py-6">
-            <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 250px; height:1050px; float:left">
+            <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 13.15%; min-height:1150px; float:left">
 
                 <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                     <img src="{{asset('img/fif.png')}}" width="20%" height="auto">
-                    <span class="fs-7 ml-1">Sistem Pendaftaran TA 1<br>Fakultas Informatika</span>
+                    <span class="fs-7 ml-1">Sistem Pendaftaran TA 1 Fakultas Informatika</span>
                 </a>
         
                 <span class="text-menu">Menu</span>
@@ -113,23 +113,6 @@
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
     {{-- DataTables Script --}}
-    <script>
-        $(document).ready( function () {
-            $('#data-tabel').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: "{{ route('data') }}",
-                columns: [
-                    { data: 'DT_RowIndex', name: 'DT_RowIndex' },
-                    { data: 'name', name: 'nama' },
-                    { data: 'email', name: 'email' },
-                    { data: 'password', name: 'password' },
-                    { data: 'phone_number', name: 'phone_number' },
-                    { data: 'address', name: 'address' },
-                    { data: 'role', name: 'role' }
-                ]
-            });
-        } );
-    </script>
+    @yield('table')
 </body>
 </html>

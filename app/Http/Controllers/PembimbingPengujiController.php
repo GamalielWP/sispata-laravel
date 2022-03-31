@@ -16,12 +16,22 @@ class PembimbingPengujiController extends Controller
 
     public function yajraIndex()
     {
-        $mhs = User::all();
+        $mhs = User::where('role', 'mahasiswa')->get();
         return Datatables::of($mhs)->addIndexColumn()->make(true);
     }
 
     public function pembimbing()
     {
         return view('dosen.pembimbing');
+    }
+
+    public function penguji()
+    {
+        return view('dosen.penguji');
+    }
+
+    public function profile()
+    {
+        return view('dosen.profile');
     }
 }
