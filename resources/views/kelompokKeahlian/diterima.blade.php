@@ -1,4 +1,4 @@
-@extends('dosen.sidebar')
+@extends('kelompokKeahlian.sidebar')
 
 @section('content')
     <table class="table table-striped" id="data-tabel">
@@ -9,8 +9,9 @@
                 <th>Judul</th>
                 <th>Nama Mahasiswa</th>
                 <th>Prodi</th>
+                <th>Pembimbing</th>
+                <th>Penguji</th>
                 <th>Berkas</th>
-                <th>Nilai</th>
                 <th>Status</th>
             </tr>
         </thead>
@@ -21,38 +22,14 @@
                 <td>Pengembangan Perangkat Lunak Dengan Metode Prototyping</td>
                 <td>Gamaliel Widhi Pradana</td>
                 <td>S1-Rekayasa Perangkat Lunak</td>
+                <td>Nia Annisa Ferani Tanjung, S.Si., M.Sc</td>
+                <td>Nia Annisa Ferani Tanjung, S.Si., M.Sc</td>
                 <td>
                     <ul>
                         <li><a href="">18104010-proposal.pdf</a></li>
-                        <li><a href="">18104010-berita-acara.pdf</a></li>
                     </ul>
-                </td>
-                <td>
-                    <input type="number" class="form-control" value="90" min="0" max="100">
                 </td>
                 <td>Diterima</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>18104011</td>
-                <td>Perancangan UI/UX Aplikasi Android</td>
-                <td>Haidar 'Adiy Dzaky</td>
-                <td>S1-Rekayasa Perangkat Lunak</td>
-                <td>
-                    <ul>
-                        <li><a href="">18104011-proposal.pdf</a></li>
-                        <li><button type="button" class="btn btn-warning">Cetak Berita Acara</button></li>
-                    </ul>
-                </td>
-                <td>
-                    <input type="number" class="form-control" value="0" min="0" max="100">
-                </td>
-                <td>
-                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                        <button type="button" class="btn btn-success">Terima</button>
-                        <button type="button" class="btn btn-warning">Tolak</button>
-                      </div>
-                </td>
             </tr>
         </tbody>
     </table>

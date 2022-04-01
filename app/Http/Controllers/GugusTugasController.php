@@ -17,4 +17,9 @@ class GugusTugasController extends Controller
         $data = Auth::user();
         return view('gugusTugas.dashboard', compact('data'));
     }
+
+    public function akun()
+    {
+        return view('gugusTugas.akun');
+    }
 }

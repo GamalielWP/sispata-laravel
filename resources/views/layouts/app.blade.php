@@ -31,7 +31,7 @@
 <body>
     <div id="app">
         <div class="py-6">
-            <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 250px; height:1050px; float:left">
+            <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 13.15%; height: 1050px; float:left">
 
                 <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                     <img src="{{asset('img/fif.png')}}" width="20%" height="auto">

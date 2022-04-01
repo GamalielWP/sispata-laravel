@@ -41,17 +41,17 @@ class LoginController extends Controller
 
             case 'gugus-tugas':
                 session(['role' => $role]);
-                return '/gugus-tugas';
+                return '/gugus-tugas-dashboard';
                 break;
 
             case 'kelompok-keahlian':
                 session(['role' => $role]);
-                return '/kelompok-keahlian';
+                return '/kelompok-keahlian-diajukan';
                 break;
 
             case 'pembimbing-penguji':
                 session(['role' => $role]);
-                return '/pembimbing';
+                return '/dosen-pembimbing';
                 break;
         }
     }

@@ -7,11 +7,11 @@ use Auth;
 use App\User;
 use Yajra\Datatables\Datatables;
 
-class PembimbingPengujiController extends Controller
+class DosenController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('pembimbing-penguji');
+        $this->middleware('dosen');
     }
 
     public function yajraIndex()

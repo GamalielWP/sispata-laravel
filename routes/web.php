@@ -25,14 +25,17 @@ Route::get('/mahasiswa-file', 'MahasiswaController@file');
 Route::get('/mahasiswa-profile', 'MahasiswaController@profile');
 
 //proteksi gugus tugas middleware
-Route::get('/gugus-tugas', 'GugusTugasController@index');
+Route::get('/gugus-tugas-dashboard', 'GugusTugasController@index');
+Route::get('/gugus-tugas-account', 'GugusTugasController@akun');
 
 //proteksi kelompok keahlian middleware
-Route::get('/kelompok-keahlian', 'KelompokKeahlianController@index');
+Route::get('/kelompok-keahlian-diajukan', 'KelompokKeahlianController@index');
+Route::get('/kelompok-keahlian-diterima', 'KelompokKeahlianController@diterima');
+Route::get('/kelompok-keahlian-ditolak', 'KelompokKeahlianController@ditolak');
+Route::get('/kelompok-keahlian-account', 'KelompokKeahlianController@akun');
 
 //proteksi pembimbing & penguji middleware
-Route::get('/data-table', 'PembimbingPengujiController@yajraIndex')->name('data');
-Route::get('/pembimbing', 'PembimbingPengujiController@pembimbing');
-
-Route::get('/penguji', 'PembimbingPengujiController@penguji');
-Route::get('/dosen-profile', 'PembimbingPengujiController@profile');
+Route::get('/data-table', 'DosenController@yajraIndex')->name('data');
+Route::get('/dosen-pembimbing', 'DosenController@pembimbing');
+Route::get('/dosen-penguji', 'DosenController@penguji');
+Route::get('/dosen-profile', 'DosenController@profile');
