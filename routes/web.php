@@ -24,16 +24,18 @@ Route::get('/mahasiswa-dashboard', 'MahasiswaController@index');
 Route::get('/mahasiswa-file', 'MahasiswaController@file');
 Route::get('/mahasiswa-profile', 'MahasiswaController@profile');
 
-//proteksi gugus tugas middleware
+//proteksi dosen middleware
+
+//gugus tugas role
 Route::get('/gugus-tugas-dashboard', 'GugusTugasController@index');
 Route::get('/gugus-tugas-schedule', 'GugusTugasController@penjadwalan');
 Route::get('/gugus-tugas-account', 'GugusTugasController@akun');
 
-//proteksi kelompok keahlian middleware
+//kelompok keahlian role
 Route::get('/kelompok-keahlian-dashboard', 'KelompokKeahlianController@index');
 Route::get('/kelompok-keahlian-account', 'KelompokKeahlianController@akun');
 
-//proteksi pembimbing & penguji middleware
+//dosen role
 Route::get('/data-table', 'DosenController@yajraIndex')->name('data');
 Route::get('/dosen-pembimbing', 'DosenController@pembimbing');
 Route::get('/dosen-penguji', 'DosenController@penguji');
