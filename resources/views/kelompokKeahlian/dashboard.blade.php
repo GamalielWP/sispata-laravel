@@ -1,4 +1,4 @@
-@extends('kelompokKeahlian.sidebar')
+@extends('dosen.sidebar')
 
 @section('content')
     <table class="table table-striped" id="data-tabel">
@@ -18,6 +18,51 @@
         <tbody>
             <tr>
                 <td>1</td>
+                <td>18104010</td>
+                <td>Pengembangan Perangkat Lunak dengan Metode Prototyping</td>
+                <td>Gamaliel Widhi Pradana</td>
+                <td>S1-Rekayasa Perangkat Lunak</td>
+                <td>
+                    <ol>
+                        <li>
+                            <input name="Pembimbing-1" value="Nia Annisa Ferani Tanjung, S.Si., M.Sc" class="form-control mb-3" list="dosen" id="exampleDataList" placeholder="Ketik untuk mencari...">
+                            <datalist id="dosen">
+                                <option value="Nia Annisa Ferani Tanjung, S.Si., M.Sc">
+                                <option value="Dosen 2">
+                                <option value="Dosen 3">
+                            </datalist>
+                        </li>
+                        <li>
+                            <input name="Pembimbing-2" value="Nia Annisa Ferani Tanjung, S.Si., M.Sc" class="form-control mb-3" list="dosen" id="exampleDataList" placeholder="Ketik untuk mencari...">
+                            <datalist id="dosen">
+                                <option value="Nia Annisa Ferani Tanjung, S.Si., M.Sc">
+                                <option value="Dosen 2">
+                                <option value="Dosen 3">
+                            </datalist>
+                        </li>
+                    </ol>
+                </td>
+                <td>
+                    <ol>
+                        <li>
+                            <input name="Pembimbing-1" value="Nia Annisa Ferani Tanjung, S.Si., M.Sc" class="form-control mb-3" list="dosen" id="exampleDataList" placeholder="Ketik untuk mencari...">
+                            <datalist id="dosen">
+                                <option value="Nia Annisa Ferani Tanjung, S.Si., M.Sc">
+                                <option value="Dosen 2">
+                                <option value="Dosen 3">
+                            </datalist>
+                        </li>
+                    </ol>
+                </td>
+                <td>
+                    <ul>
+                        <li><a href="">18104010-proposal.pdf</a></li>
+                    </ul>
+                </td>
+                <td>Terkirim</td>
+            </tr>
+            <tr>
+                <td>2</td>
                 <td>18104011</td>
                 <td>Perancangan UI/UX Aplikasi Android</td>
                 <td>Haidar 'Adiy Dzaky</td>
@@ -61,7 +106,7 @@
                 </td>
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                        <button type="button" class="btn btn-success">Ajukan</button>
+                        <button type="button" class="btn btn-warning">Kirim</button>
                       </div>
                 </td>
             </tr>

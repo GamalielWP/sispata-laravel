@@ -22,16 +22,19 @@ class DosenController extends Controller
 
     public function pembimbing()
     {
-        return view('dosen.pembimbing');
+        $data = Auth::user();
+        return view('dosen.pembimbing', compact('data'));
     }
 
     public function penguji()
     {
-        return view('dosen.penguji');
+        $data = Auth::user();
+        return view('dosen.penguji', compact('data'));
     }
 
     public function profile()
     {
-        return view('dosen.profile');
+        $data = Auth::user();
+        return view('dosen.profile', compact('data'));
     }
 }

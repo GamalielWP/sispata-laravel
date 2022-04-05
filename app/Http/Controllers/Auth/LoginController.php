@@ -46,7 +46,12 @@ class LoginController extends Controller
 
             case 'kelompok-keahlian':
                 session(['role' => $role]);
-                return '/kelompok-keahlian-diajukan';
+                return '/kelompok-keahlian-dashboard';
+                break;
+
+            case 'kk-gg':
+                session(['role' => $role]);
+                return '/kelompok-keahlian-dashboard';
                 break;
 
             case 'pembimbing-penguji':

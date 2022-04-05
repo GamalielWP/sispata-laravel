@@ -21,7 +21,10 @@
                     <td>Gamaliel Widhi Pradana</td>
                     <td>S1-Rekayasa Perangkat Lunak</td>
                     <td>
-                        <a href="">18104010-proposal.pdf </a>
+                        <ul>
+                            <li><a href="">18104010-proposal.pdf </a></li>
+                            <li><a href="">18104010-berita-acara.pdf </a></li>
+                        </ul>
                     </td>
                     <td>
                         <input type="number" class="form-control" value="90" min="0" max="100">
@@ -34,7 +37,10 @@
                     <td>Haidar 'Adiy Dzaky</td>
                     <td>S1-Rekayasa Perangkat Lunak</td>
                     <td>
-                        <a href="">18104011-proposal.pdf </a>
+                        <ul>
+                            <li><a href="">18104011-proposal.pdf </a></li>
+                            <li><button type="button" class="btn btn-warning">Cetak Berita Acara</button></li>
+                        </ul>
                     </td>
                     <td>
                         <input type="number" class="form-control" value="0" min="0" max="100">
@@ -45,17 +51,5 @@
 @endsection
 
 @section('table')
-{{-- <script>
-    $(document).ready( function () {
-        $('#data-tabel').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: "{{ route('data') }}",
-            columns: [
-                { data: 'DT_RowIndex', name: 'DT_RowIndex' },
-                { data: 'name', name: 'nama' }
-            ]
-        });
-    } );
-</script> --}}
+
 @endsection

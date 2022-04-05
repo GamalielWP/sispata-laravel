@@ -10,8 +10,18 @@ body {
     transition: all 1s
 }
 
+.nav-link .fa-chevron-right {
+    transition: all 0.25s;
+    float: right;
+    
+}
+
 .nav-link:hover .fa {
     transform: rotate(360deg)
+}
+
+.nav-link:hover .fa-chevron-right {
+    transform: rotate(90deg) !important;
 }
 
 .text-menu {

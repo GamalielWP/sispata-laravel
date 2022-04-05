@@ -1,4 +1,4 @@
-@extends('gugusTugas.sidebar')
+@extends('dosen.sidebar')
 
 @section('content')
     <table class="table table-striped" id="data-tabel">

@@ -9,13 +9,19 @@ class GugusTugasController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('gugus-tugas');
+        $this->middleware('dosen');
     }
 
     public function index()
     {
         $data = Auth::user();
         return view('gugusTugas.dashboard', compact('data'));
+    }
+
+    public function penjadwalan()
+    {
+        $data = Auth::user();
+        return view('gugusTugas.penjadwalan', compact('data'));
     }
 
     public function akun()

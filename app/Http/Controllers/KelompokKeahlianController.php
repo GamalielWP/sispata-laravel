@@ -9,26 +9,18 @@ class KelompokKeahlianController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('kelompok-keahlian');
+        $this->middleware('dosen');
     }
 
     public function index()
     {
-        return view('kelompokKeahlian.diajukan');
-    }
-
-    public function diterima()
-    {
-        return view('kelompokKeahlian.diterima');
-    }
-
-    public function ditolak()
-    {
-        return view('kelompokKeahlian.ditolak');
+        $data = Auth::user();
+        return view('kelompokKeahlian.dashboard', compact('data'));
     }
 
     public function akun()
     {
-        return view('kelompokKeahlian.akun');
+        $data = Auth::user();
+        return view('kelompokKeahlian.akun', compact('data'));
     }
 }

@@ -16,9 +16,18 @@ class Dosen
      */
     public function handle($request, Closure $next)
     {
+
         if (session()->has('role')) {
 
-            if (Auth::user()->role == "pembimbing-penguji") {
+            $pp = Auth::user()->role == "pembimbing-penguji";
+            $kk = Auth::user()->role == "kelompok-keahlian";
+            $gg = Auth::user()->role == "gugus-tugas";
+            $kk_gg = Auth::user()->role == "kk-gg";
+
+            if ($pp || $kk) {
+                return $next($request);
+            }
+            elseif ($gg || $kk_gg) {
                 return $next($request);
             }
             else {

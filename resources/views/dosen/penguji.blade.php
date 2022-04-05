@@ -11,7 +11,6 @@
                 <th>Prodi</th>
                 <th>Berkas</th>
                 <th>Nilai</th>
-                <th>Status</th>
             </tr>
         </thead>
         <tbody>
@@ -23,14 +22,13 @@
                 <td>S1-Rekayasa Perangkat Lunak</td>
                 <td>
                     <ul>
-                        <li><a href="">18104010-proposal.pdf</a></li>
-                        <li><a href="">18104010-berita-acara.pdf</a></li>
+                        <li><a href="">18104010-proposal.pdf </a></li>
+                        <li><a href="">18104010-berita-acara.pdf </a></li>
                     </ul>
                 </td>
                 <td>
                     <input type="number" class="form-control" value="90" min="0" max="100">
                 </td>
-                <td>Diterima</td>
             </tr>
             <tr>
                 <td>2</td>
@@ -40,18 +38,12 @@
                 <td>S1-Rekayasa Perangkat Lunak</td>
                 <td>
                     <ul>
-                        <li><a href="">18104011-proposal.pdf</a></li>
-                        <li><button type="button" class="btn btn-warning">Cetak Berita Acara</button></li>
+                        <li><a href="">18104010-proposal.pdf </a></li>
+                        <li><a href="">18104010-berita-acara.pdf </a></li>
                     </ul>
                 </td>
                 <td>
                     <input type="number" class="form-control" value="0" min="0" max="100">
-                </td>
-                <td>
-                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                        <button type="button" class="btn btn-success">Terima</button>
-                        <button type="button" class="btn btn-warning">Tolak</button>
-                      </div>
                 </td>
             </tr>
         </tbody>
@@ -59,17 +51,5 @@
 @endsection
 
 @section('table')
-{{-- <script>
-    $(document).ready( function () {
-        $('#data-tabel').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: "{{ route('data') }}",
-            columns: [
-                { data: 'DT_RowIndex', name: 'DT_RowIndex' },
-                { data: 'name', name: 'nama' }
-            ]
-        });
-    } );
-</script> --}}
+
 @endsection

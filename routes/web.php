@@ -26,12 +26,11 @@ Route::get('/mahasiswa-profile', 'MahasiswaController@profile');
 
 //proteksi gugus tugas middleware
 Route::get('/gugus-tugas-dashboard', 'GugusTugasController@index');
+Route::get('/gugus-tugas-schedule', 'GugusTugasController@penjadwalan');
 Route::get('/gugus-tugas-account', 'GugusTugasController@akun');
 
 //proteksi kelompok keahlian middleware
-Route::get('/kelompok-keahlian-diajukan', 'KelompokKeahlianController@index');
-Route::get('/kelompok-keahlian-diterima', 'KelompokKeahlianController@diterima');
-Route::get('/kelompok-keahlian-ditolak', 'KelompokKeahlianController@ditolak');
+Route::get('/kelompok-keahlian-dashboard', 'KelompokKeahlianController@index');
 Route::get('/kelompok-keahlian-account', 'KelompokKeahlianController@akun');
 
 //proteksi pembimbing & penguji middleware
