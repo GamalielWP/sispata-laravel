@@ -12,39 +12,53 @@ class UserSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name' => 'Mahasiswa 2',
-            'email' => 'mahasiswa2@mahasiswa2.com',
-            'password' => Hash::make('1234'),
-            'address' => 'Purwokerto',
+            'name' => 'Mahasiswa 1',
+            'email' => 'mahasiswa1@mahasiswa1.com',
             'phone_number' => '081222',
-            'role' => 'mahasiswa'
+            'prodi' => 'S1-Rekayasa Perangkat Lunak',
+            'pfp' => 'img/default-user.png',
+            'role' => 'mahasiswa',
+            'password' => Hash::make('1234')
         ]);
 
         DB::table('users')->insert([
-            'name' => 'Gugus Tugas 2',
-            'email' => 'gugus-tugas2@gugus-tugas2.com',
-            'password' => Hash::make('1234'),
-            'address' => 'Purwokerto',
+            'name' => 'Pembimbing & Penguji 1',
+            'email' => 'pembimbing-penguji1@pembimbing-penguji1.com',
             'phone_number' => '081222',
-            'role' => 'gugus-tugas'
+            'prodi' => 'S1-Rekayasa Perangkat Lunak',
+            'pfp' => 'img/default-user.png',
+            'role' => 'pembimbing-penguji',
+            'password' => Hash::make('1234')
         ]);
 
         DB::table('users')->insert([
-            'name' => 'Kelompok Keahlian2',
-            'email' => 'kelompok-keahlian2@kelompok-keahlian2.com',
-            'password' => Hash::make('1234'),
-            'address' => 'Purwokerto',
+            'name' => 'Gugus Tugas 1',
+            'email' => 'gugus-tugas1@gugus-tugas1.com',
             'phone_number' => '081222',
-            'role' => 'kelompok-keahlian'
+            'prodi' => 'S1-Rekayasa Perangkat Lunak',
+            'pfp' => 'img/default-user.png',
+            'role' => 'gugus-tugas',
+            'password' => Hash::make('1234')
         ]);
 
         DB::table('users')->insert([
-            'name' => 'Pembimbing & Penguji 2',
-            'email' => 'pembimbing-penguji2@pembimbing-penguji2.com',
-            'password' => Hash::make('1234'),
-            'address' => 'Purwokerto',
+            'name' => 'Kelompok Keahlian 1',
+            'email' => 'kelompok-keahlian1@kelompok-keahlian1.com',
             'phone_number' => '081222',
-            'role' => 'pembimbing-penguji'
+            'prodi' => 'S1-Rekayasa Perangkat Lunak',
+            'pfp' => 'img/default-user.png',
+            'role' => 'kelompok-keahlian',
+            'password' => Hash::make('1234')
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'KK & GG 1',
+            'email' => 'kk-gg1@kk-gg1.com',
+            'phone_number' => '081222',
+            'prodi' => 'S1-Rekayasa Perangkat Lunak',
+            'pfp' => 'img/default-user.png',
+            'role' => 'kk-gg',
+            'password' => Hash::make('1234')
         ]);
     }
 }

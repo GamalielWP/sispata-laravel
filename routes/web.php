@@ -18,9 +18,11 @@ Route::get('/', 'LandingPageController@landing');
 Auth::routes();
 
 //proteksi mahasiswa middleware
-Route::get('/mahasiswa-dashboard', 'MahasiswaController@index');
+Route::get('/mahasiswa-dashboard', 'MahasiswaController@dashboard');
 Route::get('/mahasiswa-file', 'MahasiswaController@file');
-Route::get('/mahasiswa-profile', 'MahasiswaController@profile');
+Route::get('/mahasiswa-profile', 'MahasiswaController@profile')->name('profile');
+
+Route::patch('/mahasiswa-profile-updated/{id}', 'MahasiswaController@update_profile');
 
 //proteksi dosen middleware
 

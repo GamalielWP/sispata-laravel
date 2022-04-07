@@ -30,7 +30,7 @@
                 <label for="Form" class="form-label">Form Perdaftaran</label>
                 <input name="Form" class="form-control mb-3" type="file" id="formFile">
                 
-                <label for="KSM" class="form-label">KSM/KHS</label>
+                <label for="KSM" class="form-label">Kartu Studi Mahasiswa</label>
                 <input name="KSM" class="form-control mb-3" type="file" id="formFile">
                 
                 <label for="Transkrip" class="form-label">Transkrip Nilai Sementara</label>
