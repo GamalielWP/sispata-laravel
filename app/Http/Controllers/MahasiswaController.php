@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Mahasiswa;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class MahasiswaController extends Controller
 {
@@ -34,11 +35,50 @@ class MahasiswaController extends Controller
 
     public function update_profile(Request $request, $id)
     {
-        User::where('id', $id)->update([
-            'email' => $request->Email,
-            'phone_number' => $request->Phone
+        $validateData = $request->validate([
+            'Email' => 'required',
+            'Phone' => 'required|min:11'
         ]);
 
-        return redirect('/mahasiswa-profile');
+        User::where('id', $id)->update([
+            'email' => $validateData['Email'],
+            'phone_number' => $validateData['Phone']
+        ]);
+
+        return back()->withInput()->with('pesan',"Update Data Berhasil.");
+    }
+
+    public function update_pfp(Request $request, $id)
+    {
+        $user = User::where('id', $id)->first();
+
+        if ($request->hasFile('FotoProfil')) {
+
+            $extFile = $request->FotoProfil->getClientOriginalExtension();
+            $namaFile = $user->id.'-'.$user->name.'-'.time().".".$extFile;
+            $path = $request->FotoProfil->move('img\pfp',$namaFile);
+
+            User::findOrFail($id)->update([
+                'pfp' => $path
+            ]);
+
+            return redirect('/mahasiswa-profile');
+        }
+    }
+
+    public function akun(Request $request, $id)
+    {
+        $user = User::where('id', $id)->first();
+
+        if ($user) {
+            $pwd = Hash::check($validateData['OldPass'], $user->password);
+            if ($pwd) {
+
+            } else {
+                return back();
+            }
+        } else {
+            return back();
+        }
     }
 }

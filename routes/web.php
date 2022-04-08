@@ -22,7 +22,7 @@ Route::get('/mahasiswa-dashboard', 'MahasiswaController@dashboard');
 Route::get('/mahasiswa-file', 'MahasiswaController@file');
 Route::get('/mahasiswa-profile', 'MahasiswaController@profile')->name('profile');
 
-Route::patch('/mahasiswa-profile-updated/{id}', 'MahasiswaController@update_profile');
+Route::patch('/mahasiswa-profile-updated/{id}', 'MahasiswaController@update_pfp');
 
 //proteksi dosen middleware
 

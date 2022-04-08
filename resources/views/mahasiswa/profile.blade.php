@@ -3,7 +3,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="/mahasiswa-profile-updated/{{Auth::user()->id}}" method="POST">
+            <form action="/mahasiswa-profile-updated/{{Auth::user()->id}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
                 <label for="Nim" class="form-label">NIM</label>
