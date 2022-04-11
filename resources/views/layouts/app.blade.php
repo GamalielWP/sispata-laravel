@@ -101,6 +101,11 @@
         </nav>
 
         <main class="container py-4">
+            @if (session()->has('pesan'))
+                <div class="alert alert-success">
+                    <span>{{session()->get('pesan')}}</span>
+                </div>
+            @endif
             @yield('content')
         </main>
     </div>
