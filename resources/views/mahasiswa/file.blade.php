@@ -3,7 +3,9 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="">
+            <form action="/mahasiswa-file-updated/{{Auth::user()->id}}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PATCH')
                 <label for="Judul" class="form-label">Judul</label>
                 <input name="Judul" class="form-control mb-2" type="text" value="Pengembangan Perangkat Lunak dengan Metode Prototyping">
                 
@@ -42,7 +44,7 @@
                 <label for="Proposal" class="form-label">Proposal TA 1</label>
                 <input name="Proposal" class="form-control mb-3" type="file" id="formFile">
 
-                <button type="button" class="btn btn-primary">Simpan</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
             </form>
         </div>
         
