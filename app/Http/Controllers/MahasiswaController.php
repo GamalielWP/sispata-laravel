@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Mahasiswa;
 use App\User;
+use File;
 use Illuminate\Support\Facades\Hash;
 
 class MahasiswaController extends Controller
@@ -37,42 +38,50 @@ class MahasiswaController extends Controller
     {
         $validateData = $request->validate([
             'Email' => 'required',
-            'Phone' => 'required|min:11'
+            'Phone' => 'required|min:11',
+            'NewPass' => '',
+            'OldPass' => 'required'
         ]);
 
-        User::where('id', $id)->update([
-            'email' => $validateData['Email'],
-            'phone_number' => $validateData['Phone']
-        ]);
-
-        return back()->withInput()->with('pesan',"Update Data Berhasil.");
-    }
-
-    public function update_pfp(Request $request, $id)
-    {
-        $user = User::where('id', $id)->first();
-
-        if ($request->hasFile('FotoProfil')) {
-
-            $extFile = $request->FotoProfil->getClientOriginalExtension();
-            $namaFile = $user->id.'-'.$user->name.'-'.time().".".$extFile;
-            $path = $request->FotoProfil->move('img\pfp',$namaFile);
-
-            User::findOrFail($id)->update([
-                'pfp' => $path
-            ]);
-
-            return redirect('/mahasiswa-profile');
-        }
-    }
-
-    public function akun(Request $request, $id)
-    {
         $user = User::where('id', $id)->first();
 
         if ($user) {
+
             $pwd = Hash::check($validateData['OldPass'], $user->password);
             if ($pwd) {
+
+                //save identitas
+                User::where('id', $id)->update([
+                    'email' => $validateData['Email'],
+                    'phone_number' => $validateData['Phone']
+                ]);
+
+                //cek upload foto profil tidak
+                if ($request->hasFile('FotoProfil')) {
+
+                    $extFile = $request->FotoProfil->getClientOriginalExtension();
+                    $namaFile = $user->id.'-'.$user->role.".".$extFile;
+
+                    //hapus foto profil sebelumnya
+                    if (File::exists('img\pfp'.$namaFile)) {
+                        File::delete('img\pfp'.$namaFile);
+                    }
+
+                    $path = $request->FotoProfil->move('img\pfp',$namaFile);
+            
+                    //simpan foto profil baru
+                    User::findOrFail($id)->update([
+                        'pfp' => $path
+                    ]);
+
+                }
+
+                //save new password
+                if ($request->NewPass != null) {
+                    User::where('id', $id)->update([
+                        'password' => Hash::make($validateData['NewPass'])
+                    ]);
+                }
 
             } else {
                 return back();
@@ -80,5 +89,8 @@ class MahasiswaController extends Controller
         } else {
             return back();
         }
+
+        return back()->withInput()->with('pesan',"Update Data Berhasil.");
     }
+
 }
