@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Dosen;
 use Illuminate\Http\Request;
 use Auth;
 use App\Mahasiswa;
+use App\Sempro;
 use App\User;
 use File;
 use Illuminate\Support\Facades\Hash;
@@ -24,21 +26,26 @@ class MahasiswaController extends Controller
 
     public function file()
     {
-        $data = Auth::user();
-        return view('mahasiswa.file', compact('data'));
+        $dosen = Dosen::all();
+        return view('mahasiswa.file', compact('dosen'));
     }
 
     public function update_file(Request $request, $id)
     {
         $validateData = $request->validate([
-            'Form' => 'mimes:pdf',
-            'KSM' => 'mimes:pdf',
-            'Transkrip' => 'mimes:pdf',
-            'Pengesahan' => 'mimes:pdf',
-            'Proposal' => 'mimes:pdf'
+            'Form' => 'mimes:pdf|max:1000',
+            'KSM' => 'mimes:pdf|max:1000',
+            'Transkrip' => 'mimes:pdf|max:1000',
+            'Pengesahan' => 'mimes:pdf|max:1000',
+            'Proposal' => 'mimes:pdf|max:37000'
         ]);
 
         $mhs = Mahasiswa::where('user_id', Auth::user()->id)->first();
+
+        Sempro::findOrFail($id)->update([
+            'title' => $request->Judul,
+            'title' => $request->Judul,
+        ]);
 
         //form pendaftaran
         if ($request->hasFile('Form')) {
@@ -155,14 +162,14 @@ class MahasiswaController extends Controller
         if ($request->NewPass == null) {
             $validateData = $request->validate([
                 'Email' => 'required',
-                'PhoneNumber' => 'required|min:11',
+                'PhoneNumber' => 'required|numeric|min:11',
                 'ProfilePhotos' => 'image|mimes:jpg,png,jpeg',
                 'OldPassword' => 'required'
             ]);
         } else {
             $validateData = $request->validate([
                 'Email' => 'required',
-                'PhoneNumber' => 'required|min:11',
+                'PhoneNumber' => 'required|numeric|min:11',
                 'ProfilePhotos' => 'image|mimes:jpg,png,jpeg',
                 'NewPassword' => 'required',
                 'ConfirmPassword' => 'same:NewPassword',

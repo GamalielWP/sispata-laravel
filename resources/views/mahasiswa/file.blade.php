@@ -7,26 +7,22 @@
                 @csrf
                 @method('PATCH')
                 <label for="Judul" class="form-label">Judul</label>
-                <input name="Judul" class="form-control mb-2" type="text" value="Pengembangan Perangkat Lunak dengan Metode Prototyping">
+                <input name="Judul" class="form-control mb-2" type="text" value="" placeholder="Ketik judul penelitian...">
                 
                 <label for="Pembimbing-1" class="form-label">Pembimbing-1</label>
-                <input name="Pembimbing-1" class="form-control mb-3" list="dosen1" id="exampleDataList" placeholder="Ketik untuk mencari...">
+                <input name="Pembimbing-1" class="form-control mb-3" list="dosen1" id="exampleDataList" value="" placeholder="Ketik untuk mencari...">
                 <datalist id="dosen1">
-                    <option value="Dosen 1">
-                    <option value="Dosen 2">
-                    <option value="Dosen 3">
-                    <option value="Dosen 4">
-                    <option value="Dosen 5">
+                    @foreach ($dosen as $dos)
+                        <option value="{{$dos->user->id}}">{{$dos->user->name}}</option>
+                    @endforeach
                 </datalist>
 
                 <label for="Pembimbing-2" class="form-label">Pembimbing-2</label>
-                <input name="Pembimbing-2" class="form-control mb-3" list="dosen2" id="exampleDataList" placeholder="Ketik untuk mencari...">
+                <input name="Pembimbing-2" class="form-control mb-3" list="dosen2" id="exampleDataList" value="" placeholder="Ketik untuk mencari...">
                 <datalist id="dosen2">
-                    <option value="Dosen 1">
-                    <option value="Dosen 2">
-                    <option value="Dosen 3">
-                    <option value="Dosen 4">
-                    <option value="Dosen 5">
+                    @foreach ($dosen as $dos)
+                        <option hidden value="{{$dos->user->id}}">{{$dos->user->name}}</option>
+                    @endforeach
                 </datalist>
 
                 <label for="Form" class="form-label">Form Perdaftaran</label>
