@@ -18,12 +18,9 @@ class CreateSemprosTable extends Migration
             $table->bigInteger('mhs_user_id')->unsigned();
             $table->foreign('mhs_user_id')->references('user_id')->on('mahasiswas');
             $table->string('title')->nullable();
-            $table->bigInteger('adviser1_user_id')->unsigned();
-            $table->foreign('adviser1_user_id')->references('user_id')->on('dosens');
-            $table->bigInteger('adviser2_user_id')->unsigned()->nullable();
-            $table->foreign('adviser2_user_id')->references('user_id')->on('dosens');
-            $table->bigInteger('examiner_user_id')->unsigned();
-            $table->foreign('examiner_user_id')->references('user_id')->on('dosens');
+            $table->string('adviser1_code')->nullable();
+            $table->string('adviser2_code')->nullable();
+            $table->string('examiner_code')->nullable();
             $table->date('schedule')->nullable();
             $table->integer('adviser1_score')->nullable();
             $table->integer('adviser2_score')->nullable();

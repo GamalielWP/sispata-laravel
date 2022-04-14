@@ -20,14 +20,21 @@ class MahasiswaController extends Controller
 
     public function dashboard()
     {
-        $data = Auth::user();
-        return view('mahasiswa.dashboard', compact('data'));
+        $mhs = Mahasiswa::where('id', Auth::user()->id)->first();
+        $sempro = Sempro::where('mhs_user_id', Auth::user()->id)->first();
+        $dosen1 = Dosen::where('lecturer_code', $sempro->adviser1_code)->first();
+        $dosen2 = Dosen::where('lecturer_code', $sempro->adviser2_code)->first();
+        $dosen3 = Dosen::where('lecturer_code', $sempro->examiner_code)->first();
+
+        return view('mahasiswa.dashboard', compact('mhs', 'sempro', 'dosen1', 'dosen2', 'dosen3'));
     }
 
     public function file()
     {
         $dosen = Dosen::all();
-        return view('mahasiswa.file', compact('dosen'));
+        $sempro = Sempro::where('mhs_user_id', Auth::user()->id)->first();
+
+        return view('mahasiswa.file', compact('dosen', 'sempro'));
     }
 
     public function update_file(Request $request, $id)
@@ -42,9 +49,10 @@ class MahasiswaController extends Controller
 
         $mhs = Mahasiswa::where('user_id', Auth::user()->id)->first();
 
-        Sempro::findOrFail($id)->update([
+        Sempro::where('mhs_user_id', $id)->update([
             'title' => $request->Judul,
-            'title' => $request->Judul,
+            'adviser1_code' => $request->Pembimbing1,
+            'adviser2_code' => $request->Pembimbing2
         ]);
 
         //form pendaftaran
@@ -61,7 +69,7 @@ class MahasiswaController extends Controller
             $path = $validateData['Form']->move('doc\user',$namaFile);
             
             //simpan file baru
-            Mahasiswa::findOrFail($id)->update([
+            Mahasiswa::where('user_id', $id)->update([
                 'regis_form' => $path
             ]);
 
@@ -81,7 +89,7 @@ class MahasiswaController extends Controller
             $path = $validateData['KSM']->move('doc\user',$namaFile);
             
             //simpan file baru
-            Mahasiswa::findOrFail($id)->update([
+            Mahasiswa::where('user_id', $id)->update([
                 'ksm' => $path
             ]);
 
@@ -101,7 +109,7 @@ class MahasiswaController extends Controller
             $path = $validateData['Transkrip']->move('doc\user',$namaFile);
             
             //simpan file baru
-            Mahasiswa::findOrFail($id)->update([
+            Mahasiswa::where('user_id', $id)->update([
                 'temp_transcript' => $path
             ]);
 
@@ -121,7 +129,7 @@ class MahasiswaController extends Controller
             $path = $validateData['Pengesahan']->move('doc\user',$namaFile);
             
             //simpan file baru
-            Mahasiswa::findOrFail($id)->update([
+            Mahasiswa::where('user_id', $id)->update([
                 'validity_sheet' => $path
             ]);
 
@@ -141,7 +149,7 @@ class MahasiswaController extends Controller
             $path = $validateData['Proposal']->move('doc\user',$namaFile);
             
             //simpan file baru
-            Mahasiswa::findOrFail($id)->update([
+            Mahasiswa::where('user_id', $id)->update([
                 'thesis_proposal' => $path
             ]);
 

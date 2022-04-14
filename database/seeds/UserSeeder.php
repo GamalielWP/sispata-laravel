@@ -30,6 +30,24 @@ class UserSeeder extends Seeder
             'role' => 'pembimbing-penguji',
             'password' => Hash::make('1234')
         ]);
+        DB::table('users')->insert([
+            'name' => 'Pembimbing & Penguji 2',
+            'email' => 'pembimbing-penguji2@pembimbing-penguji2.com',
+            'phone_number' => '081222',
+            'prodi' => 'S1-Rekayasa Perangkat Lunak',
+            'pfp' => 'img/default-user.png',
+            'role' => 'pembimbing-penguji',
+            'password' => Hash::make('1234')
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Pembimbing & Penguji 3',
+            'email' => 'pembimbing-penguji3@pembimbing-penguji3.com',
+            'phone_number' => '081222',
+            'prodi' => 'S1-Rekayasa Perangkat Lunak',
+            'pfp' => 'img/default-user.png',
+            'role' => 'pembimbing-penguji',
+            'password' => Hash::make('1234')
+        ]);
 
         DB::table('users')->insert([
             'name' => 'Gugus Tugas 1',

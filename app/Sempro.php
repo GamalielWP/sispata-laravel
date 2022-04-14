@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Sempro extends Model
 {
     protected $fillable = [
-        'mhs_user_id', 'title', 'adviser1_user_id', 'adviser2_user_id', 'examiner_user_id', 'schedule', 'adviser1_score', 'adviser2_score', 'examiner_score', 'news_doc', 'status'
+        'mhs_user_id', 'title', 'adviser1_code', 'adviser2_code', 'examiner_code', 'schedule', 'adviser1_score', 'adviser2_score', 'examiner_score', 'news_doc', 'status'
     ];
 
     public function mahasiswa()
@@ -19,4 +19,5 @@ class Sempro extends Model
     {
         return $this->belongsTo('App\Dosen');
     }
+
 }

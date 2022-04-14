@@ -7,21 +7,21 @@
                 @csrf
                 @method('PATCH')
                 <label for="Judul" class="form-label">Judul</label>
-                <input name="Judul" class="form-control mb-2" type="text" value="" placeholder="Ketik judul penelitian...">
+                <input name="Judul" class="form-control mb-2" type="text" value="{{$sempro->title !=null ? $sempro->title : ''}}" placeholder="Ketik judul penelitian...">
                 
-                <label for="Pembimbing-1" class="form-label">Pembimbing-1</label>
-                <input name="Pembimbing-1" class="form-control mb-3" list="dosen1" id="exampleDataList" value="" placeholder="Ketik untuk mencari...">
+                <label for="Pembimbing1" class="form-label">Pembimbing-1</label>
+                <input name="Pembimbing1" class="form-control mb-3" list="dosen1" id="exampleDataList" value="{{$sempro->adviser1_code !=null ? $sempro->adviser1_code : ''}}" placeholder="Ketik untuk mencari...">
                 <datalist id="dosen1">
                     @foreach ($dosen as $dos)
-                        <option value="{{$dos->user->id}}">{{$dos->user->name}}</option>
+                        <option value="{{$dos->lecturer_code}}">
                     @endforeach
                 </datalist>
 
-                <label for="Pembimbing-2" class="form-label">Pembimbing-2</label>
-                <input name="Pembimbing-2" class="form-control mb-3" list="dosen2" id="exampleDataList" value="" placeholder="Ketik untuk mencari...">
+                <label for="Pembimbing2" class="form-label">Pembimbing-2</label>
+                <input name="Pembimbing2" class="form-control mb-3" list="dosen2" id="exampleDataList" value="{{$sempro->adviser2_code !=null ? $sempro->adviser2_code : ''}}" placeholder="Ketik untuk mencari...">
                 <datalist id="dosen2">
                     @foreach ($dosen as $dos)
-                        <option hidden value="{{$dos->user->id}}">{{$dos->user->name}}</option>
+                        <option value="{{$dos->lecturer_code}}">
                     @endforeach
                 </datalist>
 

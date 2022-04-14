@@ -1,25 +1,23 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\User;
+use Illuminate\Database\Seeder;
 
-class MahasiswaSeeder extends Seeder
+class SemproSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    
     public function run()
     {
         $data = User::where('role', 'mahasiswa')->get();
 
         foreach ($data as $dt) {
-            DB::table('mahasiswas')->insert([
-                'user_id' => $dt->id,
-                'nim' => '18104010'
+            DB::table('sempros')->insert([
+                'mhs_user_id' => $dt->id
         ]);
-    }
+        }
     }
 }
