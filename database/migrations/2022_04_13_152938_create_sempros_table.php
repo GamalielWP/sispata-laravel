@@ -26,7 +26,7 @@ class CreateSemprosTable extends Migration
             $table->integer('adviser2_score')->nullable();
             $table->integer('examiner_score')->nullable();
             $table->string('news_doc')->nullable();
-            $table->string('status')->nullable();
+            $table->string('track')->nullable();
             $table->timestamps();
         });
     }

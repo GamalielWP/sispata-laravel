@@ -106,6 +106,11 @@
                     <span>{{session()->get('pesan')}}</span>
                 </div>
             @endif
+            @if (session()->has('error'))
+                <div class="alert alert-danger">
+                    <span>{{session()->get('error')}}</span>
+                </div>
+            @endif
             @yield('content')
         </main>
     </div>

@@ -49,8 +49,8 @@
 
                 <div class="form-group">
                     <label for="NewPassword" class="form-label">Password Baru</label>
-                    <input name="NewPass" class="form-control @error('NewPass') is-invalid @enderror mb-2" type="password" placeholder="Password Baru">
-                    @error('NewPass')
+                    <input name="NewPassword" class="form-control @error('NewPassword') is-invalid @enderror mb-2" type="password" placeholder="Password Baru">
+                    @error('NewPassword')
                         <span class="text-danger">{{$message}}</span>
                     @enderror
                 </div>

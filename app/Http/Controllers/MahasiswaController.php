@@ -40,6 +40,7 @@ class MahasiswaController extends Controller
     public function update_file(Request $request, $id)
     {
         $validateData = $request->validate([
+            'Judul' => 'min:20',
             'Form' => 'mimes:pdf|max:1000',
             'KSM' => 'mimes:pdf|max:1000',
             'Transkrip' => 'mimes:pdf|max:1000',
@@ -51,9 +52,25 @@ class MahasiswaController extends Controller
 
         Sempro::where('mhs_user_id', $id)->update([
             'title' => $request->Judul,
-            'adviser1_code' => $request->Pembimbing1,
-            'adviser2_code' => $request->Pembimbing2
+            'track' => "gugus-tugas"
         ]);
+
+        if (Dosen::where('lecturer_code', $request->Pembimbing1)->first()) {
+            if (Dosen::where('lecturer_code', $request->Pembimbing2)->first()) {
+
+                Sempro::where('mhs_user_id', $id)->update([
+                    'adviser1_code' => $request->Pembimbing1,
+                    'adviser2_code' => $request->Pembimbing2
+                ]);
+
+            } else {
+                return back()->with('error',"Data gagal diubah.");
+            }
+            
+        } else {
+            return back()->with('error',"Data gagal diubah.");
+        }
+        
 
         //form pendaftaran
         if ($request->hasFile('Form')) {
@@ -167,17 +184,17 @@ class MahasiswaController extends Controller
 
     public function update_profile(Request $request, $id)
     {
-        if ($request->NewPass == null) {
+        if ($request->NewPassword == null) {
             $validateData = $request->validate([
                 'Email' => 'required',
-                'PhoneNumber' => 'required|numeric|min:11',
+                'PhoneNumber' => 'numeric',
                 'ProfilePhotos' => 'image|mimes:jpg,png,jpeg',
                 'OldPassword' => 'required'
             ]);
         } else {
             $validateData = $request->validate([
                 'Email' => 'required',
-                'PhoneNumber' => 'required|numeric|min:11',
+                'PhoneNumber' => 'numeric',
                 'ProfilePhotos' => 'image|mimes:jpg,png,jpeg',
                 'NewPassword' => 'required',
                 'ConfirmPassword' => 'same:NewPassword',
@@ -219,17 +236,17 @@ class MahasiswaController extends Controller
                 }
 
                 //save new password
-                if ($request->NewPass != null) {
+                if ($request->NewPassword != null) {
                     User::where('id', $id)->update([
                         'password' => Hash::make($validateData['NewPassword'])
                     ]);
                 }
 
             } else {
-                return back();
+                return back()->with('error',"Data gagal diubah.");
             }
         } else {
-            return back();
+            return back()->with('error',"Data gagal diubah.");
         }
 
         return back()->with('pesan',"Data berhasil diubah.");
