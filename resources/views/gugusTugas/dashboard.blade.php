@@ -10,11 +10,11 @@
                 <th>Nama Mahasiswa</th>
                 <th>Kelompok Keahlian</th>
                 <th>Berkas</th>
-                <th>Status</th>
+                <th>Track</th>
             </tr>
         </thead>
         <tbody>
-                <tr>
+                {{-- <tr>
                     <td>1</td>
                     <td>18104010</td>
                     <td>Pengembangan Perangkat Lunak Dengan Metode Prototyping</td>
@@ -63,23 +63,23 @@
                     <td>
                         <button type="button" class="btn btn-warning">Kirim</button>
                     </td>
-                </tr>
+                </tr> --}}
         </tbody>
     </table>
 @endsection
 
 @section('table')
-{{-- <script>
+<script>
     $(document).ready( function () {
         $('#data-tabel').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('data') }}",
+            ajax: "{{ route('dataGG') }}",
             columns: [
                 { data: 'DT_RowIndex', name: 'DT_RowIndex' },
                 { data: 'name', name: 'nama' }
             ]
         });
     } );
-</script> --}}
+</script>
 @endsection

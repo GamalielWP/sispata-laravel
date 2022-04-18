@@ -12,6 +12,12 @@ class GugusTugasController extends Controller
         $this->middleware('dosen');
     }
 
+    public function yajraIndex()
+    {
+        $mhs = User::where('role', 'mahasiswa')->where('prodi', Auth::user()->prodi)->where('track', 'gugus-tugas')->get();
+        return Datatables::of($mhs)->addIndexColumn()->make(true);
+    }
+
     public function index()
     {
         $data = Auth::user();
@@ -24,8 +30,4 @@ class GugusTugasController extends Controller
         return view('gugusTugas.penjadwalan', compact('data'));
     }
 
-    public function akun()
-    {
-        return view('gugusTugas.akun');
-    }
 }

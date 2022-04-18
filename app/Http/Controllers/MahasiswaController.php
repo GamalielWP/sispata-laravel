@@ -64,11 +64,11 @@ class MahasiswaController extends Controller
                 ]);
 
             } else {
-                return back()->with('error',"Data gagal diubah.");
+                return back()->with('error', "Data gagal diubah.");
             }
             
         } else {
-            return back()->with('error',"Data gagal diubah.");
+            return back()->with('error', "Data gagal diubah.");
         }
         
 
@@ -243,13 +243,13 @@ class MahasiswaController extends Controller
                 }
 
             } else {
-                return back()->with('error',"Data gagal diubah.");
+                return back()->with('error', "Data gagal diubah.");
             }
         } else {
-            return back()->with('error',"Data gagal diubah.");
+            return back()->with('error', "Data gagal diubah.");
         }
 
-        return back()->with('pesan',"Data berhasil diubah.");
+        return back()->with('pesan', "Data berhasil diubah.");
     }
 
 }
