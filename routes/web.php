@@ -28,7 +28,7 @@ Route::patch('/mahasiswa-file-updated/{id}', 'MahasiswaController@update_file');
 //proteksi dosen middleware
 
 //gugus tugas role
-Route::get('/gugus-tugas-data-table', 'DosenController@yajraIndex')->name('dataGG');
+Route::get('/gugus-tugas-data-table', 'GugusTugasController@yajraIndex')->name('dataGG');
 Route::get('/gugus-tugas-dashboard', 'GugusTugasController@index');
 Route::get('/gugus-tugas-schedule', 'GugusTugasController@penjadwalan');
 

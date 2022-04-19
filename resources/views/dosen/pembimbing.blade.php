@@ -14,7 +14,7 @@
             </tr>
         </thead>
         <tbody>
-                <tr>
+                {{-- <tr>
                     <td>1</td>
                     <td>18104010</td>
                     <td>Pengembangan Perangkat Lunak Dengan Metode Prototyping</td>
@@ -45,11 +45,22 @@
                     <td>
                         <input type="number" class="form-control" value="0" min="0" max="100">
                     </td>
-                </tr>
+                </tr> --}}
         </tbody>
     </table>
 @endsection
 
 @section('table')
-
+<script>
+$(document).ready( function () {
+    $('#data-tabel').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "{{ route('dataDosen') }}",
+        columns: [
+            { data: 'DT_RowIndex', name: 'DT_RowIndex' }
+        ]
+    });
+} );
+</script>
 @endsection

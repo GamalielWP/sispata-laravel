@@ -77,6 +77,8 @@
             ajax: "{{ route('dataGG') }}",
             columns: [
                 { data: 'DT_RowIndex', name: 'DT_RowIndex' },
+                { data: 'nim', name: 'nim' },
+                { data: 'title', name: 'judul' },
                 { data: 'name', name: 'nama' }
             ]
         });

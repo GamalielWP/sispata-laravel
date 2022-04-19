@@ -20,6 +20,7 @@ class DosenController extends Controller
     public function yajraIndex()
     {
         $mhs = User::where('role', 'mahasiswa')->get();
+        
         return Datatables::of($mhs)->addIndexColumn()->make(true);
     }
 
