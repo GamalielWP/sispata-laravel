@@ -18,7 +18,7 @@ class MahasiswaSeeder extends Seeder
         foreach ($data as $dt) {
             DB::table('mahasiswas')->insert([
                 'user_id' => $dt->id,
-                'nim' => '18104010'
+                'nim' => mt_rand(18104010,18104013)
         ]);
     }
     }

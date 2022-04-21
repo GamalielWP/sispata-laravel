@@ -1,5 +1,9 @@
 @extends('dosen.sidebar')
 
+@section('role')
+    <h3 class="mb-3">Gugus Tugas {{Auth::user()->prodi}}</h3>
+@endsection
+
 @section('content')
     <table class="table table-striped" id="data-tabel">
         <thead>
@@ -8,7 +12,7 @@
                 <th>NIM</th>
                 <th>Judul</th>
                 <th>Nama Mahasiswa</th>
-                <th>Kelompok Keahlian</th>
+                <th>Bidang Keahlian</th>
                 <th>Berkas</th>
                 <th>Track</th>
             </tr>
@@ -76,7 +80,7 @@
             serverSide: true,
             ajax: "{{ route('dataGG') }}",
             columns: [
-                { data: 'DT_RowIndex', name: 'DT_RowIndex' },
+                { data: 'number', name: 'number' },
                 { data: 'nim', name: 'nim' },
                 { data: 'title', name: 'judul' },
                 { data: 'name', name: 'nama' }

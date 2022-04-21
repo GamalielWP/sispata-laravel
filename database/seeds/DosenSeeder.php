@@ -12,7 +12,7 @@ class DosenSeeder extends Seeder
      */
     public function run()
     {
-        $data = User::where('role', 'pembimbing-penguji')->get();
+        $data = User::where('role', '!=', 'mahasiswa')->get();
 
         foreach ($data as $dt) {
             DB::table('dosens')->insert([

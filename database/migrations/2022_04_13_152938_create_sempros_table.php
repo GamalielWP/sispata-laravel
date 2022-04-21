@@ -18,6 +18,8 @@ class CreateSemprosTable extends Migration
             $table->bigInteger('mhs_user_id')->unsigned();
             $table->foreign('mhs_user_id')->references('user_id')->on('mahasiswas');
             $table->string('title')->nullable();
+            $table->bigInteger('scope_id')->unsigned()->nullable();
+            $table->foreign('scope_id')->references('id')->on('bidang_keahlians');
             $table->string('adviser1_code')->nullable();
             $table->string('adviser2_code')->nullable();
             $table->string('examiner_code')->nullable();

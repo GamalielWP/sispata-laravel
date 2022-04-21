@@ -19,28 +19,43 @@ class GugusTugasController extends Controller
 
     public function yajraIndex()
     {
-        $mhs = Mahasiswa::all();
+        $user = User::where('role', 'mahasiswa')->where('prodi', Auth::user()->prodi)->get();
 
-        return Datatables::of($mhs)->addIndexColumn()
-        ->editColumn('nim', function($mhs){
-            if ($mhs->user->prodi == Auth::user()->prodi) {
+        return Datatables::of($user)
+        ->addColumn('number', function($user){
+            $mhs = Mahasiswa::where('user_id', $user->id)->first();
+            
+            if ($mhs) {
+                $i = 0;
+                $i++;
+                return $i;
+            }
+        })
+        ->editColumn('nim', function($user){
+            $mhs = Mahasiswa::where('user_id', $user->id)->first();
+
+            if ($mhs) {
                 $mhs->nim;
                 return $mhs->nim;
             }
         })
-        ->addColumn('title', function($mhs){
-            if ($mhs->user->prodi == Auth::user()->prodi) {
+        ->addColumn('title', function($user){
+            $mhs = Mahasiswa::where('user_id', $user->id)->first();
+            
+            if ($mhs) {
                 $sempro = Sempro::where('mhs_user_id', $mhs->user_id)->first();
                 return $sempro->title;
-            } 
+            }
         })
-        ->addColumn('name', function($mhs){
-            if ($mhs->user->prodi == Auth::user()->prodi) {
-                $mhs->user->name;
-                return $mhs->user->name;
-            } 
+        ->addColumn('name', function($user){
+            $mhs = Mahasiswa::where('user_id', $user->id)->first();
+            
+            if ($mhs) {
+                $user->name;
+                return $user->name;
+            }
         })
-        ->rawColumns(['nim', 'title', 'name'])
+        ->rawColumns(['number', 'nim', 'title', 'name'])
         ->make(true);
     }
 
