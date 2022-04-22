@@ -72,6 +72,34 @@
     </table>
 @endsection
 
+@section('modal')
+    <div class="modal fade" id="scopeModal" tabindex="-1" aria-labelledby="scopeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Pilih Bidang Keahlian</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="modalForm" method="POST">
+                    @csrf
+                    @method('PATCH')
+                    <div class="modal-body">
+                        <select class="form-select" aria-label="Scope select">
+                            @foreach ($bidang as $bd)
+                                <option name="Bidang" value="{{$bd->id}}">{{$bd->scope}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-success">Kirim</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endsection
+
 @section('table')
 <script>
     $(document).ready( function () {
@@ -83,9 +111,28 @@
                 { data: 'number', name: 'number' },
                 { data: 'nim', name: 'nim' },
                 { data: 'title', name: 'judul' },
-                { data: 'name', name: 'nama' }
+                { data: 'name', name: 'nama' },
+                { data: 'scope', name: 'bidang' },
+                { data: 'file', name: 'berkas' },
+                { data: 'track', name: 'alur' }
             ]
         });
+        
+        var exampleModal = document.getElementById('scopeModal')
+        exampleModal.addEventListener('show.bs.modal', function (event) {
+        // Button that triggered the modal
+        var button = event.relatedTarget
+        // Extract info from data-bs-* attributes
+        var data = button.getAttribute('data-bs-user')
+        // If necessary, you could initiate an AJAX request here
+        // and then do the updating in a callback.
+        //
+        // Update the modal's content.
+        var modalBodyInput = exampleModal.querySelector('#formModal')
+
+        modalBodyInput.action = '/gugus-tugas-do-scope/{{' + data + '}}'
+        modalBodyInput.method = 'PATCH'
+        })
     } );
 </script>
 @endsection

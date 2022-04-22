@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\BidangKeahlian;
 use App\Dosen;
 use App\Mahasiswa;
 use App\Sempro;
@@ -55,14 +56,60 @@ class GugusTugasController extends Controller
                 return $user->name;
             }
         })
-        ->rawColumns(['number', 'nim', 'title', 'name'])
+        ->addColumn('scope', function($user){
+            $sempro = Sempro::where('mhs_user_id', $user->id)->first();
+
+            if ($sempro->scope_id != null) {
+
+                $sempro->keahlian->scope;
+                return $sempro->keahlian->scope;
+
+            } else {
+                $btn = '
+                    <a href="" class="edit btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#scopeModal" data-bs-user="'.$user->id.'">Pilih</a>
+                ';
+                return $btn;
+            }
+        })
+        ->addColumn('file', function($user){
+            $mhs = Mahasiswa::where('user_id', $user->id)->first();
+            
+            $file = '
+                <ul>
+                    <li><a href="'.$mhs->regis_form.'">18104010-form-pendaftaran.pdf</a></li>
+                    <li><a href="'.$mhs->validity_sheet.'">18104010-form-lembar-pengesahan.pdf</a></li>
+                    <li><a href="'.$mhs->ksm.'">18104010-KSM.pdf</a></li>
+                    <li><a href="'.$mhs->temp_transcript.'">18104010-transkrip-nilai-sementara.pdf</a></li>
+                    <li><a href="'.$mhs->thesis_proposal.'">18104010-proposal.pdf</a></li>
+                </ul>
+            ';
+
+            return $file;
+        })
+        ->addColumn('track', function($user){
+            $mhs = Sempro::where('mhs_user_id', $user->id)->first();
+            $mhs->track;
+
+            return $mhs->track;
+        })
+        ->rawColumns(['number', 'nim', 'title', 'name', 'scope', 'file', 'track'])
         ->make(true);
+    }
+
+    public function pilihBidang(Request $request, $id)
+    {
+        Sempro::where('mhs_user_id', $id)->update([
+            'scope_id' => $request->Bidang
+        ]);
+
+        return back();
     }
 
     public function index()
     {
         $data = Auth::user();
-        return view('gugusTugas.dashboard', compact('data'));
+        $bidang = BidangKeahlian::all();
+        return view('gugusTugas.dashboard', compact('data', 'bidang'));
     }
 
     public function penjadwalan()
