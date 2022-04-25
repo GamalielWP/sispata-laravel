@@ -61,8 +61,10 @@ class GugusTugasController extends Controller
 
             if ($sempro->scope_id != null) {
 
-                $sempro->keahlian->scope;
-                return $sempro->keahlian->scope;
+                $keahlian = BidangKeahlian::where('id', $sempro->scope_id)->first();
+                $keahlian->scope;
+                
+                return $keahlian->scope;
 
             } else {
                 $btn = '
@@ -99,16 +101,17 @@ class GugusTugasController extends Controller
     public function pilihBidang(Request $request, $id)
     {
         Sempro::where('mhs_user_id', $id)->update([
-            'scope_id' => $request->Bidang
+            'scope_id' => $request->bidang
         ]);
 
-        return back();
+        return response()->json([ 'success' => true ]);
     }
 
     public function index()
     {
         $data = Auth::user();
         $bidang = BidangKeahlian::all();
+
         return view('gugusTugas.dashboard', compact('data', 'bidang'));
     }
 

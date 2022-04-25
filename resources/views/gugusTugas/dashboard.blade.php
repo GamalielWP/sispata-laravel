@@ -80,19 +80,17 @@
                     <h5 class="modal-title" id="exampleModalLabel">Pilih Bidang Keahlian</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="modalForm" method="POST">
-                    @csrf
-                    @method('PATCH')
+                <form id="modalForm">
                     <div class="modal-body">
                         <select class="form-select" aria-label="Scope select">
                             @foreach ($bidang as $bd)
-                                <option name="Bidang" value="{{$bd->id}}">{{$bd->scope}}</option>
+                                <option id="bidang" name="bidang" value="{{$bd->id}}">{{$bd->scope}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-success">Kirim</button>
+                        <button type="submit" id="submit" class="btn btn-success">Kirim</button>
                     </div>
                 </form>
             </div>
@@ -117,22 +115,38 @@
                 { data: 'track', name: 'alur' }
             ]
         });
-        
+
+        $.ajaxSetup({
+        headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         var exampleModal = document.getElementById('scopeModal')
         exampleModal.addEventListener('show.bs.modal', function (event) {
-        // Button that triggered the modal
-        var button = event.relatedTarget
-        // Extract info from data-bs-* attributes
-        var data = button.getAttribute('data-bs-user')
-        // If necessary, you could initiate an AJAX request here
-        // and then do the updating in a callback.
-        //
-        // Update the modal's content.
-        var modalBodyInput = exampleModal.querySelector('#formModal')
-
-        modalBodyInput.action = '/gugus-tugas-do-scope/{{' + data + '}}'
-        modalBodyInput.method = 'PATCH'
-        })
+            // Button that triggered the modal
+            var button = event.relatedTarget
+            // Extract info from data-bs-* attributes
+            var id = button.getAttribute('data-bs-user')
+            var bidang = $("#bidang").val()
+        
+            $.ajax({
+                url: '/gugus-tugas-do-scope/' + id,
+                type: "PATCH",
+                data: {
+                    id: id,
+                    bidang: bidang,
+                },
+                dataType: 'json',
+                success: function (data) {
+                    
+                    $('#modalForm').trigger("reset");
+                    $('#scopeModal').modal('hide');
+                    
+                }
+            });
+        });
     } );
+        
 </script>
 @endsection
