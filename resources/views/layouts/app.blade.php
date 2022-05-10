@@ -113,7 +113,6 @@
                 </div>
             @endif
             @yield('content')
-            @yield('modal')
         </main>
     </div>
     {{-- Bundle --}}

@@ -10,6 +10,7 @@ use App\Sempro;
 use App\User;
 use File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Carbon;
 
 class MahasiswaController extends Controller
 {
@@ -26,7 +27,9 @@ class MahasiswaController extends Controller
         $dosen2 = Dosen::where('lecturer_code', $sempro->adviser2_code)->first();
         $dosen3 = Dosen::where('lecturer_code', $sempro->examiner_code)->first();
 
-        return view('mahasiswa.dashboard', compact('mhs', 'sempro', 'dosen1', 'dosen2', 'dosen3'));
+        $jadwal = Carbon::parse($sempro->schedule)->translatedFormat('l, d F Y');
+
+        return view('mahasiswa.dashboard', compact('mhs', 'sempro', 'dosen1', 'dosen2', 'dosen3', 'jadwal'));
     }
 
     public function file()
@@ -51,8 +54,7 @@ class MahasiswaController extends Controller
         $mhs = Mahasiswa::where('user_id', Auth::user()->id)->first();
 
         Sempro::where('mhs_user_id', $id)->update([
-            'title' => $request->Judul,
-            'track' => "gugus-tugas"
+            'title' => $request->Judul
         ]);
 
         if (Dosen::where('lecturer_code', $request->Pembimbing1)->first()) {
@@ -168,6 +170,10 @@ class MahasiswaController extends Controller
             //simpan file baru
             Mahasiswa::where('user_id', $id)->update([
                 'thesis_proposal' => $path
+            ]);
+
+            Sempro::where('mhs_user_id', $id)->update([
+                'track' => "Sedang diproses GUGUS TUGAS"
             ]);
 
         }

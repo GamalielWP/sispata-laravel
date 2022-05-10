@@ -56,55 +56,70 @@ class GugusTugasController extends Controller
                 return $user->name;
             }
         })
-        ->addColumn('scope', function($user){
-            $sempro = Sempro::where('mhs_user_id', $user->id)->first();
-
-            if ($sempro->scope_id != null) {
-
-                $keahlian = BidangKeahlian::where('id', $sempro->scope_id)->first();
-                $keahlian->scope;
-                
-                return $keahlian->scope;
-
-            } else {
-                $btn = '
-                    <a href="" class="edit btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#scopeModal" data-bs-user="'.$user->id.'">Pilih</a>
-                ';
-                return $btn;
-            }
+        ->addColumn('detail', function($user){
+            $btn = '
+                <a href="/gugus-tugas-edit/'.$user->id.'" class="fa fa-pencil btn-success btn-sm"></a>
+            ';
+            return $btn;
         })
         ->addColumn('file', function($user){
             $mhs = Mahasiswa::where('user_id', $user->id)->first();
-            
-            $file = '
-                <ul>
-                    <li><a href="'.$mhs->regis_form.'">18104010-form-pendaftaran.pdf</a></li>
-                    <li><a href="'.$mhs->validity_sheet.'">18104010-form-lembar-pengesahan.pdf</a></li>
-                    <li><a href="'.$mhs->ksm.'">18104010-KSM.pdf</a></li>
-                    <li><a href="'.$mhs->temp_transcript.'">18104010-transkrip-nilai-sementara.pdf</a></li>
-                    <li><a href="'.$mhs->thesis_proposal.'">18104010-proposal.pdf</a></li>
-                </ul>
-            ';
 
-            return $file;
+            if ($mhs->thesis_proposal != null) {
+                $file = '
+                    <ul>
+                        <li><a href="'.$mhs->regis_form.'">18104010-form-pendaftaran.pdf</a></li>
+                        <li><a href="'.$mhs->validity_sheet.'">18104010-form-lembar-pengesahan.pdf</a></li>
+                        <li><a href="'.$mhs->ksm.'">18104010-KSM.pdf</a></li>
+                        <li><a href="'.$mhs->temp_transcript.'">18104010-transkrip-nilai-sementara.pdf</a></li>
+                        <li><a href="'.$mhs->thesis_proposal.'">18104010-proposal.pdf</a></li>
+                    </ul>
+                ';
+
+                return $file;
+            }   
         })
         ->addColumn('track', function($user){
             $mhs = Sempro::where('mhs_user_id', $user->id)->first();
-            $mhs->track;
 
-            return $mhs->track;
+            if ($mhs->track != null) {
+
+                $mhs->track;
+                return $mhs->track;
+
+            } else {
+
+                $note = "Belum mendaftar";
+                return $note;
+
+            }
         })
-        ->rawColumns(['number', 'nim', 'title', 'name', 'scope', 'file', 'track'])
+        ->rawColumns(['number', 'nim', 'title', 'name', 'detail', 'file', 'track'])
         ->make(true);
     }
 
-    public function pilihBidang(Request $request, $id)
+    public function edit($id)
+    {
+        $data = Auth::user();
+        $mhs = Mahasiswa::where('user_id', $id)->first();
+        $sempro = Sempro::where('mhs_user_id', $id)->first();
+        $bidang = BidangKeahlian::all();
+
+        $dosen1 = Dosen::where('lecturer_code', $sempro->adviser1_code)->first();
+        $dosen2 = Dosen::where('lecturer_code', $sempro->adviser2_code)->first();
+        $dosen3 = Dosen::where('lecturer_code', $sempro->examiner_code)->first();
+
+        return view('gugusTugas.edit', compact('data', 'mhs', 'sempro', 'bidang', 'dosen1', 'dosen2', 'dosen3'));
+    }
+
+    public function update(Request $request, $id)
     {
         Sempro::where('mhs_user_id', $id)->update([
-            'scope_id' => $request->bidang
+            'scope_id' => $request->Bidang,
+            'schedule' => $request->Schedule
         ]);
 
-        return response()->json([ 'success' => true ]);
+        return back();
     }
 
     public function index()

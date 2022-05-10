@@ -11,12 +11,6 @@ class Sempro extends Model
         'mhs_user_id', 'title', 'scope_id', 'adviser1_code', 'adviser2_code', 'examiner_code', 'schedule', 'adviser1_score', 'adviser2_score', 'examiner_score', 'news_doc', 'track'
     ];
 
-    public function getScheduleAttribute()
-    {
-        return Carbon::parse($this->attributes['schedule'])
-            ->translatedFormat('l, d F Y');
-    }
-
     public function mahasiswa()
     {
         return $this->belongsTo('App\Mahasiswa');

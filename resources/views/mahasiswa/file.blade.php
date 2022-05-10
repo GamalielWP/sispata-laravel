@@ -27,12 +27,13 @@
 
                 <div class="form-group">
                     <label for="Pembimbing2" class="form-label">Pembimbing-2</label>
-                    <input name="Pembimbing2" class="form-control mb-3" list="dosen2" id="exampleDataList" value="{{$sempro->adviser2_code !=null ? $sempro->adviser2_code : ''}}" placeholder="Ketik untuk mencari...">
+                    <input name="Pembimbing2" class="form-control" list="dosen2" id="exampleDataList" value="{{$sempro->adviser2_code !=null ? $sempro->adviser2_code : ''}}" placeholder="Ketik untuk mencari...">
                     <datalist id="dosen2">
                         @foreach ($dosen as $dos)
                             <option value="{{$dos->lecturer_code}}">
                         @endforeach
                     </datalist>
+                    <span class="mb-3" style="color: red">* isi dengan kode dosen Pembimbing 1 jika anda hanya memilih satu pembimbing saja.</span>
                 </div>
 
                 <div class="form-group">

@@ -33,7 +33,7 @@
                     <td>Nia Annisa Ferani Tanjung, S.Si., M.Sc</td>
                     <td>Nia Annisa Ferani Tanjung, S.Si., M.Sc</td>
                     <td>
-                        <input type="date"  class="form-control mb-3" name="Tanggal" value="">
+                        <input type="date" class="form-control mb-3" name="Tanggal" value="">
                     </td>
                 </tr>
         </tbody>

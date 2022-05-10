@@ -14,7 +14,7 @@
                 <i class="fa fa-phone mr-3" aria-hidden="true"> {{$mhs->user->phone_number}}</i>
                 <i class="fa fa-graduation-cap" aria-hidden="true"> {{$mhs->user->prodi}}</i>
               </p>
-              <h6 class="card-subtitle mb-2 text-muted">Diseminarkan pada <b>{{$sempro->schedule}}</b> </h6>
+              <h6 class="card-subtitle mb-2 text-muted">Diseminarkan pada <b>{{$jadwal}}</b> </h6>
             </div>
           </div>
     </div>
@@ -40,13 +40,13 @@
     </div>
   @endif
     
-  @if ($sempro->adviser1_code != null)
+  @if ($sempro->adviser2_code != null)
     <div class="col">
       <div class="card">
         <div class="card-body">
           <img src="{{asset($dosen2->user->pfp)}}" style="width: 10%; height: auto; float:left" alt="Foto Profil" class="mr-2">
           <h5 class="card-title">{{$dosen2->user->name}}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Pembimbing 1</h6>
+          <h6 class="card-subtitle mb-2 text-muted">Pembimbing 2</h6>
           <p class="card-text">
             <i class="fa fa-envelope-o mr-3" aria-hidden="true"> {{$dosen2->user->email}}</i>
             <i class="fa fa-phone mr-3" aria-hidden="true"> {{$dosen2->user->phone_number}}</i>
