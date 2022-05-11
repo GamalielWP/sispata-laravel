@@ -116,10 +116,11 @@ class GugusTugasController extends Controller
     {
         Sempro::where('mhs_user_id', $id)->update([
             'scope_id' => $request->Bidang,
-            'schedule' => $request->Schedule
+            'schedule' => $request->Schedule,
+            'track' => "Sedang diproses KELOMPOK KEAHLIAN"
         ]);
 
-        return back();
+        return redirect('/gugus-tugas-dashboard');
     }
 
     public function index()

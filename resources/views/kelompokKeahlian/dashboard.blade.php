@@ -1,5 +1,9 @@
 @extends('dosen.sidebar')
 
+@section('role')
+    <h3 class="mb-3">Kelompok Keahlian {{$keahlian->scope}}</h3>
+@endsection
+
 @section('content')
     <table class="table table-striped" id="data-tabel">
         <thead>
@@ -16,7 +20,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
+            {{-- <tr>
                 <td>1</td>
                 <td>18104010</td>
                 <td>Pengembangan Perangkat Lunak dengan Metode Prototyping</td>
@@ -109,23 +113,26 @@
                         <button type="button" class="btn btn-warning">Kirim</button>
                       </div>
                 </td>
-            </tr>
+            </tr> --}}
         </tbody>
     </table>
 @endsection
 
 @section('table')
-{{-- <script>
+<script>
     $(document).ready( function () {
         $('#data-tabel').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('data') }}",
+            ajax: "{{ route('dataKK') }}",
             columns: [
-                { data: 'DT_RowIndex', name: 'DT_RowIndex' },
-                { data: 'name', name: 'nama' }
+                { data: 'number', name: 'number' },
+                { data: 'nim', name: 'nim' },
+                { data: 'title', name: 'judul' },
+                { data: 'name', name: 'nama' },
+                { data: 'prodi', name: 'prodi' },
             ]
         });
     } );
-</script> --}}
+</script>
 @endsection

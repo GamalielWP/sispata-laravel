@@ -63,7 +63,7 @@
 
             <div class="form-group">
                 <label for="Schedule" class="form-label">Jadwal Seminar Proposal</label>
-                <input name="Schedule" type="date" class="form-control mb-3" value="{{$sempro->schedule !=null ? $sempro->schedule : ''}}">
+                <input name="Schedule" type="date" class="form-control mb-3" value="{{$sempro->schedule !=null ? $sempro->schedule : ''}}" {{$sempro->examiner_code == null ? 'disabled' : ''}}>
             </div>
 
             <button type="submit" class="btn btn-success">Simpan</button>

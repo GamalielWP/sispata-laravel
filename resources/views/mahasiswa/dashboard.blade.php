@@ -8,7 +8,7 @@
             <div class="card-body">
               <img src="{{asset($mhs->user->pfp)}}" style="width: 10%; height: auto; float:left; padding-bottom:0.5%" alt="Foto Profil" class="mr-2">
               <h5 class="card-title">{{$sempro->title}}</h5>
-              <h6 class="card-subtitle mb-2 text-muted">{{$mhs->nim}} - {{$mhs->user->name}}</h6>
+              <h6 class="card-subtitle mb-2 text-muted">{{$mhs->nim}} - {{$mhs->user->name}} <b style="color: {{$mhs->thesis_proposal != null ? 'green' : 'red'}}">&nbsp;&nbsp;{{$mhs->thesis_proposal != null ? 'Terdaftar' : 'Belum Terdaftar'}}</b></h6>
               <p class="card-text">
                 <i class="fa fa-envelope-o mr-3" aria-hidden="true"> {{$mhs->user->email}}</i>
                 <i class="fa fa-phone mr-3" aria-hidden="true"> {{$mhs->user->phone_number}}</i>
