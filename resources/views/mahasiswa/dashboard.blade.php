@@ -14,7 +14,7 @@
                 <i class="fa fa-phone mr-3" aria-hidden="true"> {{$mhs->user->phone_number}}</i>
                 <i class="fa fa-graduation-cap" aria-hidden="true"> {{$mhs->user->prodi}}</i>
               </p>
-              <h6 class="card-subtitle mb-2 text-muted">Diseminarkan pada <b>{{$jadwal}}</b> </h6>
+              <h6 class="card-subtitle mb-2 text-muted">Diseminarkan pada <b>{{$sempro->schedule ? $jadwal : 'Belum ditentukan'}}</b> </h6>
             </div>
           </div>
     </div>
@@ -40,7 +40,7 @@
     </div>
   @endif
     
-  @if ($sempro->adviser2_code != null)
+  @if ($sempro->adviser2_code != null && $sempro->adviser2_code != $sempro->adviser1_code)
     <div class="col">
       <div class="card">
         <div class="card-body">

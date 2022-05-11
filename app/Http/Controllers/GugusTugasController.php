@@ -130,10 +130,4 @@ class GugusTugasController extends Controller
         return view('gugusTugas.dashboard', compact('data', 'bidang'));
     }
 
-    public function penjadwalan()
-    {
-        $data = Auth::user();
-        return view('gugusTugas.penjadwalan', compact('data'));
-    }
-
 }

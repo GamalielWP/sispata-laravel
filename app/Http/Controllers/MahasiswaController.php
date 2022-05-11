@@ -57,7 +57,7 @@ class MahasiswaController extends Controller
             'title' => $request->Judul
         ]);
 
-        if (Dosen::where('lecturer_code', $request->Pembimbing1)->first()) {
+        if ($request->Pembimbing1 != null && Dosen::where('lecturer_code', $request->Pembimbing1)->first()) {
             if (Dosen::where('lecturer_code', $request->Pembimbing2)->first()) {
 
                 Sempro::where('mhs_user_id', $id)->update([

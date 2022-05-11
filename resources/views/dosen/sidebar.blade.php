@@ -34,9 +34,8 @@
             Gugus Tugas
             <i class="fa fa-chevron-right" aria-hidden="true"></i>
         </a>
-        <div class="collapse {{'gugus-tugas-dashboard' == request()->path() || 'gugus-tugas-schedule' == request()->path() ? 'show' : ''}}" id="collapse2">
+        <div class="collapse {{'gugus-tugas-dashboard' == request()->path() ? 'show' : ''}}" id="collapse2">
             <li class="side-item ml-4"> <a href="/gugus-tugas-dashboard" class="nav-link {{'gugus-tugas-dashboard' == request()->path() ? 'active' : 'text-white'}}"> <i class="fa fa-dashboard"></i><span class="ms-2">Dashboard</span> </a> </li>
-            <li class="side-item ml-4"> <a href="/gugus-tugas-schedule" class="nav-link {{'gugus-tugas-schedule' == request()->path() ? 'active' : 'text-white'}}"> <i class="fa fa-calendar-o"></i><span class="ms-2">Penjadwalan</span> </a> </li>
         </div>
 
         <li class="side-item"> <a href="/dosen-profile" class="nav-link {{'dosen-profile' == request()->path() ? 'active' : 'text-white'}}"> <i class="fa fa-user"></i><span class="ms-2">Profile</span> </a> </li>
@@ -99,9 +98,8 @@
             Gugus Tugas
             <i class="fa fa-chevron-right" aria-hidden="true"></i>
         </a>
-        <div class="collapse {{'gugus-tugas-dashboard' == request()->path() || 'gugus-tugas-schedule' == request()->path() ? 'show' : ''}}" id="collapse2">
+        <div class="collapse {{'gugus-tugas-dashboard' == request()->path() ? 'show' : ''}}" id="collapse2">
             <li class="side-item ml-4"> <a href="/gugus-tugas-dashboard" class="nav-link {{'gugus-tugas-dashboard' == request()->path() ? 'active' : 'text-white'}}"> <i class="fa fa-dashboard"></i><span class="ms-2">Dashboard</span> </a> </li>
-            <li class="side-item ml-4"> <a href="/gugus-tugas-schedule" class="nav-link {{'gugus-tugas-schedule' == request()->path() ? 'active' : 'text-white'}}"> <i class="fa fa-calendar-o"></i><span class="ms-2">Penjadwalan</span> </a> </li>
         </div>
 
         {{-- Kelompok Keahlian Menu --}}

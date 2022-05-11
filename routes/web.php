@@ -32,7 +32,6 @@ Route::get('/gugus-tugas-data-table', 'GugusTugasController@yajraIndex')->name('
 Route::get('/gugus-tugas-dashboard', 'GugusTugasController@index');
 Route::get('/gugus-tugas-edit/{id}', 'GugusTugasController@edit');
 Route::patch('/gugus-tugas-update/{id}', 'GugusTugasController@update');
-Route::get('/gugus-tugas-schedule', 'GugusTugasController@penjadwalan');
 
 //kelompok keahlian role
 Route::get('/kelompok-keahlian-dashboard', 'KelompokKeahlianController@index');
