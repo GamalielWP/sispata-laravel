@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\BidangKeahlian;
+use App\Dosen;
 use App\KetuaKK;
 use App\Mahasiswa;
 use App\Sempro;
@@ -21,15 +22,10 @@ class KelompokKeahlianController extends Controller
     public function yajraIndex()
     {
         $kk = KetuaKK::where('user_id', Auth::user()->id)->first();
-        $sempro = Sempro::where('scope_id', $kk->scope_id)->where('track', "Sedang diproses KELOMPOK KEAHLIAN");
+        $sempro = Sempro::where('scope_id', $kk->scope_id)->where('track', "Sedang diproses KELOMPOK KEAHLIAN")->orWhere('track', "Sedang diproses PENGUJI");
 
         return DataTables::of($sempro)
-        ->addColumn('number', function(){ 
-            $i = 0;
-            $i++;
-            return $i; 
-        })
-        ->editColumn('nim', function($sempro){
+        ->addColumn('nim', function($sempro){
             $mhs = Mahasiswa::where('user_id', $sempro->mhs_user_id)->first();
             
             $mhs->nim;
@@ -47,46 +43,79 @@ class KelompokKeahlianController extends Controller
             $user->prodi;
             return $user->prodi;
         })
-        ->addColumn('detail', function($user){
-            $btn = '
-                <a href="/gugus-tugas-edit/'.$user->id.'" class="fa fa-pencil btn-success btn-sm"></a>
-            ';
-            return $btn;
+        ->editColumn('examiner_code', function($sempro){
+            if ($sempro->examiner_code != null) {
+                $dosen = Dosen::where('lecturer_code', $sempro->examiner_code)->first();
+                $user = User::where('id', $dosen->user_id)->first();
+
+                $user->name;
+                return $user->name;
+            } else {
+                $note = "Belum ditentukan";
+                return $note;
+            }  
         })
-        ->addColumn('file', function($user){
-            $mhs = Mahasiswa::where('user_id', $user->id)->first();
+        ->addColumn('file', function($sempro){
+            $mhs = Mahasiswa::where('user_id', $sempro->mhs_user_id)->first();
 
             if ($mhs->thesis_proposal != null) {
                 $file = '
                     <ul>
-                        <li><a href="'.$mhs->regis_form.'">18104010-form-pendaftaran.pdf</a></li>
-                        <li><a href="'.$mhs->validity_sheet.'">18104010-form-lembar-pengesahan.pdf</a></li>
-                        <li><a href="'.$mhs->ksm.'">18104010-KSM.pdf</a></li>
-                        <li><a href="'.$mhs->temp_transcript.'">18104010-transkrip-nilai-sementara.pdf</a></li>
-                        <li><a href="'.$mhs->thesis_proposal.'">18104010-proposal.pdf</a></li>
+                        <li><a href="'.$mhs->thesis_proposal.'">'.$mhs->nim.'-proposal.pdf</a></li>
                     </ul>
                 ';
 
                 return $file;
             }   
         })
-        ->addColumn('track', function($user){
-            $mhs = Sempro::where('mhs_user_id', $user->id)->first();
-
-            if ($mhs->track != null) {
-
-                $mhs->track;
-                return $mhs->track;
-
-            } else {
-
-                $note = "Belum mendaftar";
-                return $note;
-
-            }
+        ->addColumn('detail', function($user){
+            $btn = '
+                <a href="/kelompok-keahlian-edit/'.$user->id.'" class="fa fa-pencil btn-success btn-sm"></a>
+            ';
+            return $btn;
         })
-        ->rawColumns(['number', 'nim', 'title', 'name', 'prodi', 'detail', 'file', 'track'])
+        ->rawColumns(['nim', 'title', 'name', 'prodi', 'examiner_code', 'file', 'detail'])
         ->make(true);
+    }
+
+    public function edit($id)
+    {
+        $data = Auth::user();
+        $mhs = Mahasiswa::where('user_id', $id)->first();
+        $sempro = Sempro::where('mhs_user_id', $id)->first();
+        $dosen = Dosen::all();
+
+        return view('kelompokKeahlian.edit', compact('data', 'mhs', 'sempro', 'dosen'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        if ($request->Pembimbing1 != null &&
+            Dosen::where('lecturer_code', $request->Pembimbing1)->first() &&
+            Dosen::where('lecturer_code', $request->Pembimbing2)->first() &&
+            Dosen::where('lecturer_code', $request->Penguji)->first()
+        ) {
+            $sempro = Sempro::where('mhs_user_id', $id)->first();
+
+            if ($sempro->adviser2_code == $sempro->adviser1_code) {
+                Sempro::where('mhs_user_id', $id)->update([
+                    'adviser1_code' => $request->Pembimbing1,
+                    'examiner_code' => $request->Penguji,
+                    'track' => "Sedang diproses PENGUJI"
+                ]);
+            } else {
+                Sempro::where('mhs_user_id', $id)->update([
+                    'adviser1_code' => $request->Pembimbing1,
+                    'adviser2_code' => $request->Pembimbing2,
+                    'examiner_code' => $request->Penguji,
+                    'track' => "Sedang diproses PENGUJI"
+                ]);
+            }
+
+            return redirect('/kelompok-keahlian-dashboard');
+        } else {
+            return back()->with('error', "Data gagal diubah.");
+        }
     }
 
     public function index()

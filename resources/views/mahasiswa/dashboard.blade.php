@@ -67,7 +67,7 @@
         <div class="card-body">
           <img src="{{asset($dosen3->user->pfp)}}" style="width: 10%; height: auto; float:left" alt="Foto Profil" class="mr-2">
           <h5 class="card-title">{{$dosen3->user->name}}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Pembimbing 1</h6>
+          <h6 class="card-subtitle mb-2 text-muted">Penguji</h6>
           <p class="card-text">
             <i class="fa fa-envelope-o mr-3" aria-hidden="true"> {{$dosen3->user->email}}</i>
             <i class="fa fa-phone mr-3" aria-hidden="true"> {{$dosen3->user->phone_number}}</i>

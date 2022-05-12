@@ -23,38 +23,17 @@ class GugusTugasController extends Controller
         $user = User::where('role', 'mahasiswa')->where('prodi', Auth::user()->prodi)->get();
 
         return Datatables::of($user)
-        ->addColumn('number', function($user){
-            $mhs = Mahasiswa::where('user_id', $user->id)->first();
-            
-            if ($mhs) {
-                $i = 0;
-                $i++;
-                return $i;
-            }
-        })
         ->editColumn('nim', function($user){
             $mhs = Mahasiswa::where('user_id', $user->id)->first();
 
-            if ($mhs) {
-                $mhs->nim;
-                return $mhs->nim;
-            }
+            $mhs->nim;
+            return $mhs->nim; 
         })
         ->addColumn('title', function($user){
             $mhs = Mahasiswa::where('user_id', $user->id)->first();
             
-            if ($mhs) {
-                $sempro = Sempro::where('mhs_user_id', $mhs->user_id)->first();
-                return $sempro->title;
-            }
-        })
-        ->addColumn('name', function($user){
-            $mhs = Mahasiswa::where('user_id', $user->id)->first();
-            
-            if ($mhs) {
-                $user->name;
-                return $user->name;
-            }
+            $sempro = Sempro::where('mhs_user_id', $mhs->user_id)->first();
+            return $sempro->title;
         })
         ->addColumn('detail', function($user){
             $btn = '
@@ -68,18 +47,18 @@ class GugusTugasController extends Controller
             if ($mhs->thesis_proposal != null) {
                 $file = '
                     <ul>
-                        <li><a href="'.$mhs->regis_form.'">18104010-form-pendaftaran.pdf</a></li>
-                        <li><a href="'.$mhs->validity_sheet.'">18104010-form-lembar-pengesahan.pdf</a></li>
-                        <li><a href="'.$mhs->ksm.'">18104010-KSM.pdf</a></li>
-                        <li><a href="'.$mhs->temp_transcript.'">18104010-transkrip-nilai-sementara.pdf</a></li>
-                        <li><a href="'.$mhs->thesis_proposal.'">18104010-proposal.pdf</a></li>
+                        <li><a href="'.$mhs->regis_form.'">'.$mhs->nim.'-form-pendaftaran.pdf</a></li>
+                        <li><a href="'.$mhs->validity_sheet.'">'.$mhs->nim.'-form-lembar-pengesahan.pdf</a></li>
+                        <li><a href="'.$mhs->ksm.'">'.$mhs->nim.'-KSM.pdf</a></li>
+                        <li><a href="'.$mhs->temp_transcript.'">'.$mhs->nim.'-transkrip-nilai-sementara.pdf</a></li>
+                        <li><a href="'.$mhs->thesis_proposal.'">'.$mhs->nim.'-proposal.pdf</a></li>
                     </ul>
                 ';
 
                 return $file;
-            }   
+            }
         })
-        ->addColumn('track', function($user){
+        ->addColumn('status', function($user){
             $mhs = Sempro::where('mhs_user_id', $user->id)->first();
 
             if ($mhs->track != null) {
@@ -94,7 +73,7 @@ class GugusTugasController extends Controller
 
             }
         })
-        ->rawColumns(['number', 'nim', 'title', 'name', 'detail', 'file', 'track'])
+        ->rawColumns(['nim', 'title', 'detail', 'file', 'status'])
         ->make(true);
     }
 
@@ -114,11 +93,18 @@ class GugusTugasController extends Controller
 
     public function update(Request $request, $id)
     {
-        Sempro::where('mhs_user_id', $id)->update([
-            'scope_id' => $request->Bidang,
-            'schedule' => $request->Schedule,
-            'track' => "Sedang diproses KELOMPOK KEAHLIAN"
-        ]);
+        $sempro = Sempro::where('mhs_user_id', $id)->first();
+
+        if ($sempro->track == "Sedang diproses PENGUJI") {
+            Sempro::where('mhs_user_id', $id)->update([
+                'schedule' => $request->Schedule
+            ]);
+        } else {
+            Sempro::where('mhs_user_id', $id)->update([
+                'scope_id' => $request->Bidang,
+                'track' => "Sedang diproses KELOMPOK KEAHLIAN"
+            ]);
+        }
 
         return redirect('/gugus-tugas-dashboard');
     }
@@ -126,9 +112,7 @@ class GugusTugasController extends Controller
     public function index()
     {
         $data = Auth::user();
-        $bidang = BidangKeahlian::all();
-
-        return view('gugusTugas.dashboard', compact('data', 'bidang'));
+        return view('gugusTugas.dashboard', compact('data'));
     }
 
 }

@@ -28,14 +28,16 @@ Route::patch('/mahasiswa-file-updated/{id}', 'MahasiswaController@update_file');
 //proteksi dosen middleware
 
 //gugus tugas role
-Route::get('/gugus-tugas-data-table', 'GugusTugasController@yajraIndex')->name('dataGG');
 Route::get('/gugus-tugas-dashboard', 'GugusTugasController@index');
+Route::get('/gugus-tugas-data-table', 'GugusTugasController@yajraIndex')->name('dataGG');
 Route::get('/gugus-tugas-edit/{id}', 'GugusTugasController@edit');
 Route::patch('/gugus-tugas-update/{id}', 'GugusTugasController@update');
 
 //kelompok keahlian role
 Route::get('/kelompok-keahlian-dashboard', 'KelompokKeahlianController@index');
 Route::get('/kelompok-keahlian-data-table', 'KelompokKeahlianController@yajraIndex')->name('dataKK');
+Route::get('/kelompok-keahlian-edit/{id}', 'KelompokKeahlianController@edit');
+Route::patch('/kelompok-keahlian-update/{id}', 'KelompokKeahlianController@update');
 Route::get('/kelompok-keahlian-account', 'KelompokKeahlianController@akun');
 
 //dosen role
