@@ -15,6 +15,31 @@
                 <i class="fa fa-graduation-cap" aria-hidden="true"> {{$mhs->user->prodi}}</i>
               </p>
               <h6 class="card-subtitle mb-2 text-muted">Diseminarkan pada <b>{{$sempro->schedule ? $jadwal : 'Belum ditentukan'}}</b> </h6>
+              <br><hr>
+              <div class="row">
+                <div class="col">
+                  <h6><b>Nilai Pembimbing 1</b></h6>
+                  <span><b>{{$sempro->adviser1_score != null ? $sempro->adviser1_score : 'Belum dinilai'}}</b></span>
+                </div>
+                @if ($sempro->adviser2_score != null)
+                  <div class="col">
+                    <h6><b>Nilai Pembimbing 2</b></h6>
+                    <span><b>{{$sempro->adviser2_score != null ? $sempro->adviser2_score : 'Belum dinilai'}}</b></span>
+                  </div>
+                @endif
+                <div class="col">
+                  <h6><b>Nilai Penguji</b></h6>
+                  <span><b>{{$sempro->examiner_score != null ? $sempro->examiner_score : 'Belum dinilai'}}</b></span>
+                </div>
+                <div class="col">
+                  <h6><b>Nilai Rata-rata</b></h6>
+                  @if ($sempro->adviser2_score == null)
+                    <span><b>{{($sempro->adviser1_score + $sempro->examiner_score)/2}}</b></span>
+                  @else
+                    <span><b>{{($sempro->adviser1_score + $sempro->adviser2_score + $sempro->examiner_score)/3}}</b></span>
+                  @endif
+                </div>
+              </div>
             </div>
           </div>
     </div>

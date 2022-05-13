@@ -36,8 +36,9 @@ class MahasiswaController extends Controller
     {
         $dosen = Dosen::all();
         $sempro = Sempro::where('mhs_user_id', Auth::user()->id)->first();
+        $mhs = Mahasiswa::where('user_id', Auth::user()->id)->first();
 
-        return view('mahasiswa.file', compact('dosen', 'sempro'));
+        return view('mahasiswa.file', compact('dosen', 'sempro', 'mhs'));
     }
 
     public function update_file(Request $request, $id)
