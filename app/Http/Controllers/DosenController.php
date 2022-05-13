@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Auth;
 use App\User;
 use App\Dosen;
+use App\Mahasiswa;
+use App\Sempro;
 use File;
 use Illuminate\Support\Facades\Hash;
 use Yajra\Datatables\Datatables;
@@ -19,9 +21,170 @@ class DosenController extends Controller
 
     public function yajraIndex()
     {
-        $mhs = User::where('role', 'mahasiswa')->get();
+        $dosen = Dosen::where('user_id', Auth::user()->id)->first();
+        $sempro = Sempro::where('adviser1_code', $dosen->lecturer_code);
         
-        return Datatables::of($mhs)->addIndexColumn()->make(true);
+        return Datatables::of($sempro)
+        ->addColumn('nim', function($sempro){
+            $mhs = Mahasiswa::where('user_id', $sempro->mhs_user_id)->first();
+            
+            $mhs->nim;
+            return $mhs->nim;  
+        })
+        ->addColumn('name', function($sempro){
+            $user = User::where('id', $sempro->mhs_user_id)->first();
+            
+            $user->name;
+            return $user->name;
+        })
+        ->addColumn('prodi', function($sempro){
+            $user = User::where('id', $sempro->mhs_user_id)->first();
+            
+            $user->prodi;
+            return $user->prodi;
+        })
+        ->addColumn('file', function($sempro){
+            $mhs = Mahasiswa::where('user_id', $sempro->mhs_user_id)->first();
+
+            if ($mhs->thesis_proposal != null) {
+                $file = '
+                    <ul>
+                        <li><a href="'.$mhs->thesis_proposal.'">'.$mhs->nim.'-proposal.pdf</a></li>
+                    </ul>
+                ';
+
+                return $file;
+            }   
+        })
+        ->editColumn('score', function($sempro){
+            if ($sempro->adviser1_score != null) {
+                $sempro->adviser1_score;
+                return $sempro->adviser1_score;
+            } else {
+                $score = 0;
+                return $score;
+            }
+        })
+        ->addColumn('detail', function($user){
+            $btn = '
+                <a href="/dosen-pembimbing-1-edit/'.$user->id.'" class="fa fa-pencil btn-success btn-sm"></a>
+            ';
+            return $btn;
+        })
+        ->rawColumns(['nim', 'name', 'prodi', 'file', 'detail'])
+        ->make(true);
+    }
+
+    public function yajraIndex2()
+    {
+        $dosen = Dosen::where('user_id', Auth::user()->id)->first();
+        $sempro = Sempro::where('adviser1_code', '!=', $dosen->lecturer_code)->where('adviser2_code', $dosen->lecturer_code);
+        
+        return Datatables::of($sempro)
+        ->addColumn('nim', function($sempro){
+            $mhs = Mahasiswa::where('user_id', $sempro->mhs_user_id)->first();
+            
+            $mhs->nim;
+            return $mhs->nim;  
+        })
+        ->addColumn('name', function($sempro){
+            $user = User::where('id', $sempro->mhs_user_id)->first();
+            
+            $user->name;
+            return $user->name;
+        })
+        ->addColumn('prodi', function($sempro){
+            $user = User::where('id', $sempro->mhs_user_id)->first();
+            
+            $user->prodi;
+            return $user->prodi;
+        })
+        ->addColumn('file', function($sempro){
+            $mhs = Mahasiswa::where('user_id', $sempro->mhs_user_id)->first();
+
+            if ($mhs->thesis_proposal != null) {
+                $file = '
+                    <ul>
+                        <li><a href="'.$mhs->thesis_proposal.'">'.$mhs->nim.'-proposal.pdf</a></li>
+                    </ul>
+                ';
+
+                return $file;
+            }   
+        })
+        ->editColumn('score', function($sempro){
+            if ($sempro->adviser2_score != null) {
+                $sempro->adviser2_score;
+                return $sempro->adviser2_score;
+            } else {
+                $score = 0;
+                return $score;
+            }
+        })
+        ->addColumn('detail', function($user){
+            $btn = '
+                <a href="/dosen-pembimbing-2-edit/'.$user->id.'" class="fa fa-pencil btn-success btn-sm"></a>
+            ';
+            return $btn;
+        })
+        ->rawColumns(['nim', 'name', 'prodi', 'file', 'detail'])
+        ->make(true);
+    }
+
+    public function yajraIndexPenguji()
+    {
+        $dosen = Dosen::where('user_id', Auth::user()->id)->first();
+        $sempro = Sempro::where('examiner_code', $dosen->lecturer_code);
+        
+        return Datatables::of($sempro)
+        ->addColumn('nim', function($sempro){
+            $mhs = Mahasiswa::where('user_id', $sempro->mhs_user_id)->first();
+            
+            $mhs->nim;
+            return $mhs->nim;  
+        })
+        ->addColumn('name', function($sempro){
+            $user = User::where('id', $sempro->mhs_user_id)->first();
+            
+            $user->name;
+            return $user->name;
+        })
+        ->addColumn('prodi', function($sempro){
+            $user = User::where('id', $sempro->mhs_user_id)->first();
+            
+            $user->prodi;
+            return $user->prodi;
+        })
+        ->addColumn('file', function($sempro){
+            $mhs = Mahasiswa::where('user_id', $sempro->mhs_user_id)->first();
+
+            if ($mhs->thesis_proposal != null) {
+                $file = '
+                    <ul>
+                        <li><a href="'.$mhs->thesis_proposal.'">'.$mhs->nim.'-proposal.pdf</a></li>
+                    </ul>
+                ';
+
+                return $file;
+            }   
+        })
+        ->editColumn('score', function($sempro){
+            if ($sempro->examiner_score != null) {
+                $sempro->examiner_score;
+                return $sempro->examiner_score;
+            } else {
+                $score = 0;
+                return $score;
+            }
+        })
+        ->addColumn('detail', function($user){
+            $btn = '
+                <a href="/dosen-penguji-edit/'.$user->id.'" class="fa fa-pencil btn-success btn-sm"></a>
+            ';
+            return $btn;
+        })
+        ->rawColumns(['nim', 'name', 'prodi', 'file', 'detail'])
+        ->make(true);
     }
 
     public function pembimbing()
@@ -120,5 +283,69 @@ class DosenController extends Controller
         }
 
         return back()->with('pesan', "Data berhasil diubah.");
+    }
+
+    public function editPembimbing1($id)
+    {
+        $data = Auth::user();
+        $mhs = Mahasiswa::where('user_id', $id)->first();
+        $sempro = Sempro::where('mhs_user_id', $id)->first();
+
+        $dosen1 = Dosen::where('lecturer_code', $sempro->adviser1_code)->first();
+        $dosen2 = Dosen::where('lecturer_code', $sempro->adviser2_code)->first();
+        $dosen3 = Dosen::where('lecturer_code', $sempro->examiner_code)->first();
+
+        return view('dosen.edit-pembimbing-1', compact('data', 'mhs', 'sempro', 'dosen1', 'dosen2', 'dosen3'));
+    }
+    public function editPembimbing2($id)
+    {
+        $data = Auth::user();
+        $mhs = Mahasiswa::where('user_id', $id)->first();
+        $sempro = Sempro::where('mhs_user_id', $id)->first();
+
+        $dosen1 = Dosen::where('lecturer_code', $sempro->adviser1_code)->first();
+        $dosen2 = Dosen::where('lecturer_code', $sempro->adviser2_code)->first();
+        $dosen3 = Dosen::where('lecturer_code', $sempro->examiner_code)->first();
+
+        return view('dosen.edit-pembimbing-2', compact('data', 'mhs', 'sempro', 'dosen1', 'dosen2', 'dosen3'));
+    }
+    public function editPenguji($id)
+    {
+        $data = Auth::user();
+        $mhs = Mahasiswa::where('user_id', $id)->first();
+        $sempro = Sempro::where('mhs_user_id', $id)->first();
+
+        $dosen1 = Dosen::where('lecturer_code', $sempro->adviser1_code)->first();
+        $dosen2 = Dosen::where('lecturer_code', $sempro->adviser2_code)->first();
+        $dosen3 = Dosen::where('lecturer_code', $sempro->examiner_code)->first();
+
+        return view('dosen.edit-penguji', compact('data', 'mhs', 'sempro', 'dosen1', 'dosen2', 'dosen3'));
+    }
+
+    public function updatePembimbing1(Request $request, $id)
+    {
+        Sempro::where('mhs_user_id', $id)->update([
+            'adviser1_score' => $request->Nilai
+        ]);
+
+        return redirect('/dosen-pembimbing');
+    }
+
+    public function updatePembimbing2(Request $request, $id)
+    {
+        Sempro::where('mhs_user_id', $id)->update([
+            'adviser2_score' => $request->Nilai
+        ]);
+
+        return redirect('/dosen-pembimbing');
+    }
+
+    public function updatePenguji(Request $request, $id)
+    {
+        Sempro::where('mhs_user_id', $id)->update([
+            'examiner_score' => $request->Nilai
+        ]);
+
+        return redirect('/dosen-penguji');
     }
 }

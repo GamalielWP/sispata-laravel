@@ -74,7 +74,7 @@ class KelompokKeahlianController extends Controller
             ';
             return $btn;
         })
-        ->rawColumns(['nim', 'title', 'name', 'prodi', 'examiner_code', 'file', 'detail'])
+        ->rawColumns(['nim', 'name', 'prodi', 'examiner_code', 'file', 'detail'])
         ->make(true);
     }
 

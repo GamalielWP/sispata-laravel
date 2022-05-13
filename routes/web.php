@@ -41,9 +41,18 @@ Route::patch('/kelompok-keahlian-update/{id}', 'KelompokKeahlianController@updat
 Route::get('/kelompok-keahlian-account', 'KelompokKeahlianController@akun');
 
 //dosen role
-Route::get('/dosen-data-table', 'DosenController@yajraIndex')->name('dataDosen');
 Route::get('/dosen-pembimbing', 'DosenController@pembimbing');
-Route::get('/dosen-penguji', 'DosenController@penguji');
-Route::get('/dosen-profile', 'DosenController@profile');
+Route::get('/dosen-data-table-1', 'DosenController@yajraIndex')->name('dataDosen');
+Route::get('/dosen-data-table-2', 'DosenController@yajraIndex2')->name('dataDosen2');
+Route::get('/dosen-pembimbing-1-edit/{id}', 'DosenController@editPembimbing1');
+Route::get('/dosen-pembimbing-2-edit/{id}', 'DosenController@editPembimbing2');
+Route::patch('/dosen-pembimbing-1-update/{id}', 'DosenController@updatePembimbing1');
+Route::patch('/dosen-pembimbing-2-update/{id}', 'DosenController@updatePembimbing2');
 
+Route::get('/dosen-penguji', 'DosenController@penguji');
+Route::get('/dosen-data-table-3', 'DosenController@yajraIndexPenguji')->name('dataDosen3');
+Route::get('/dosen-penguji-edit/{id}', 'DosenController@editPenguji');
+Route::patch('/dosen-penguji-update/{id}', 'DosenController@updatePenguji');
+
+Route::get('/dosen-profile', 'DosenController@profile');
 Route::patch('/dosen-profile-updated/{id}', 'DosenController@update_profile');
