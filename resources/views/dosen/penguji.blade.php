@@ -56,7 +56,7 @@ $(document).ready( function () {
     $('#data-tabel').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('dataDosen3') }}",
+        ajax: "{{ route('dataDosenPenguji') }}",
         columns: [
             { data: 'nim', name: 'nim' },
             { data: 'title', name: 'judul' },

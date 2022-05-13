@@ -49,7 +49,7 @@ $(document).ready( function () {
     $('#data-tabel').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('dataDosen') }}",
+        ajax: "{{ route('dataDosenPembimbing1') }}",
         columns: [
             { data: 'nim', name: 'nim' },
             { data: 'title', name: 'judul' },
@@ -65,7 +65,7 @@ $(document).ready( function () {
     $('#data-tabel2').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('dataDosen2') }}",
+        ajax: "{{ route('dataDosenPembimbing2') }}",
         columns: [
             { data: 'nim', name: 'nim' },
             { data: 'title', name: 'judul' },

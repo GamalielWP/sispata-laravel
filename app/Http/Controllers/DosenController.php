@@ -9,6 +9,7 @@ use App\Dosen;
 use App\Mahasiswa;
 use App\Sempro;
 use File;
+use PDF;
 use Illuminate\Support\Facades\Hash;
 use Yajra\Datatables\Datatables;
 
@@ -19,7 +20,7 @@ class DosenController extends Controller
         $this->middleware('dosen');
     }
 
-    public function yajraIndex()
+    public function yajraIndexPembimbing1()
     {
         $dosen = Dosen::where('user_id', Auth::user()->id)->first();
         $sempro = Sempro::where('adviser1_code', $dosen->lecturer_code);
@@ -75,7 +76,7 @@ class DosenController extends Controller
         ->make(true);
     }
 
-    public function yajraIndex2()
+    public function yajraIndexPembimbing2()
     {
         $dosen = Dosen::where('user_id', Auth::user()->id)->first();
         $sempro = Sempro::where('adviser1_code', '!=', $dosen->lecturer_code)->where('adviser2_code', $dosen->lecturer_code);
@@ -259,7 +260,7 @@ class DosenController extends Controller
                         File::delete('img\pfp'.$namaFile);
                     }
 
-                    $path = $validateData['ProfilePhotos']->move('img\pfp',$namaFile);
+                    $path = $validateData['ProfilePhotos']->move('img\pfp', $namaFile);
             
                     //simpan foto profil baru
                     User::findOrFail($id)->update([
@@ -329,6 +330,20 @@ class DosenController extends Controller
         ]);
 
         return redirect('/dosen-pembimbing');
+    }
+
+    public function cetak($id)
+    {
+        $mhs = Mahasiswa::where('user_id', $id)->first();
+        $file = $mhs->user_id.'-'.$mhs->nim.'-Berita-Acara'.'.pdf';
+        $pdf = PDF::loadView('mahasiswa.berita-acara', compact('mhs'));
+
+        //hapus file sebelumnya
+        if (File::exists('doc\user'.$file)) {
+            File::delete('doc\user'.$file);
+        }
+
+        return $pdf->save('doc/user/'.$file)->stream($file);
     }
 
     public function updatePembimbing2(Request $request, $id)

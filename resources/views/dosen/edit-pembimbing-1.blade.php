@@ -62,6 +62,12 @@
                 <input name="Nilai" class="form-control mb-3" type="number" min="0" max="100" value="{{$sempro->adviser1_score !=null ? $sempro->adviser1_score : '0'}}">
             </div>
 
+            <div class="form-group">
+                <label for="BeritaAcara" class="form-label">Berita Acara</label>
+                <br>
+                <a href="/dosen-pembimbing-1-print/{{$mhs->user_id}}" class="btn btn-warning">Cetak</a>
+            </div>
+
             <button type="submit" class="btn btn-success">Simpan</button>
             <a href="/dosen-pembimbing" class="btn btn-primary">Kembali</a>
         </form>
