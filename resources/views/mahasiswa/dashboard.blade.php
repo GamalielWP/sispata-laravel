@@ -21,7 +21,7 @@
                   <h6><b>Nilai Pembimbing 1</b></h6>
                   <span><b>{{$sempro->adviser1_score != null ? $sempro->adviser1_score : 'Belum dinilai'}}</b></span>
                 </div>
-                @if ($sempro->adviser2_score != null)
+                @if ($sempro->adviser2_code != null)
                   <div class="col">
                     <h6><b>Nilai Pembimbing 2</b></h6>
                     <span><b>{{$sempro->adviser2_score != null ? $sempro->adviser2_score : 'Belum dinilai'}}</b></span>
