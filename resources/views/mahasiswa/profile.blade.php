@@ -7,6 +7,14 @@
                 @csrf
                 @method('PATCH')
                 <div class="form-group">
+                    <img src="{{asset($mhs->user->pfp)}}" style="width: 10%; height: auto; padding-bottom:0.5%" alt="Foto Profil" class="mr-2">
+                    <input name="ProfilePhotos" class="form-control @error('ProfilePhotos') is-invalid @enderror mb-3" type="file">
+                    @error('ProfilePhotos')
+                        <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
+                
+                <div class="form-group">
                     <label for="Nim" class="form-label">NIM</label>
                     <input name="Nim" class="form-control mb-2" type="text" value="{{$mhs->nim}}" disabled>
                 </div>
@@ -35,14 +43,6 @@
                 <div class="form-group">
                     <label for="Prodi" class="form-label">Program Studi</label>
                     <input name="Prodi" class="form-control mb-3" type="text" value="{{$mhs->user->prodi}}" disabled>
-                </div>
-
-                <div class="form-group">
-                    <img src="{{asset($mhs->user->pfp)}}" style="width: 10%; height: auto; padding-bottom:0.5%" alt="Foto Profil" class="mr-2">
-                    <input name="ProfilePhotos" class="form-control @error('ProfilePhotos') is-invalid @enderror mb-3" type="file">
-                    @error('ProfilePhotos')
-                        <span class="text-danger">{{$message}}</span>
-                    @enderror
                 </div>
 
                 <hr>

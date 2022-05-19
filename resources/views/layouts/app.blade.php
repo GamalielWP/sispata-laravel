@@ -103,7 +103,7 @@
         </nav>
         @endif
 
-        <main class="container py-4">
+        <main style="{{session()->has('role') ? 'margin-right: 15% !important' : ''}}" class="container py-4">
             @yield('role')
             @if (session()->has('pesan'))
                 <div class="alert alert-success">

@@ -7,6 +7,7 @@
         <div class="card">
             <div class="card-body">
               <img src="{{asset($mhs->user->pfp)}}" style="width: 10%; height: auto; float:left; padding-bottom:0.5%" alt="Foto Profil" class="mr-2">
+              <a href="/mahasiswa-file" style="float: right" class="fa fa-pencil btn-success btn-sm"></a>
               <h5 class="card-title">{{$sempro->title}}</h5>
               <h6 class="card-subtitle mb-2 text-muted">{{$mhs->nim}} - {{$mhs->user->name}} <b style="color: {{$mhs->thesis_proposal != null ? 'green' : 'red'}}">&nbsp;&nbsp;{{$mhs->thesis_proposal != null ? 'Terdaftar' : 'Belum Terdaftar'}}</b></h6>
               <p class="card-text">

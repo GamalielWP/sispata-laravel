@@ -45,11 +45,11 @@ class MahasiswaController extends Controller
     {
         $validateData = $request->validate([
             'Judul' => 'min:20',
-            'Form' => 'mimes:pdf|max:1000',
-            'KSM' => 'mimes:pdf|max:1000',
-            'Transkrip' => 'mimes:pdf|max:1000',
-            'Pengesahan' => 'mimes:pdf|max:1000',
-            'Proposal' => 'mimes:pdf|max:37000'
+            'Form' => 'required|mimes:pdf|max:1000',
+            'KSM' => 'required|mimes:pdf|max:1000',
+            'Transkrip' => 'required|mimes:pdf|max:1000',
+            'Pengesahan' => 'required|mimes:pdf|max:1000',
+            'Proposal' => 'required|mimes:pdf|max:37000'
         ]);
 
         $mhs = Mahasiswa::where('user_id', Auth::user()->id)->first();
