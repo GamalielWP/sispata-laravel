@@ -45,35 +45,43 @@
                     <input name="Prodi" class="form-control mb-3" type="text" value="{{$mhs->user->prodi}}" disabled>
                 </div>
 
+                <a class="btn btn-warning" data-bs-toggle="collapse" href="#pwd-collapse">
+                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                    Ubah Password
+                </a>
                 <hr>
-
-                <div class="form-group">
-                    <label for="NewPassword" class="form-label">Password Baru</label>
-                    <input name="NewPassword" class="form-control @error('NewPassword') is-invalid @enderror mb-2" type="password" placeholder="Password Baru">
-                    @error('NewPassword')
-                        <span class="text-danger">{{$message}}</span>
-                    @enderror
+                <div class="collapse" id="pwd-collapse">
+                    <div class="form-group">
+                        <label for="NewPassword" class="form-label">Password Baru</label>
+                        <input name="NewPassword" class="form-control @error('NewPassword') is-invalid @enderror mb-2" type="password" placeholder="Password Baru">
+                        @error('NewPassword')
+                            <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="ConfirmPassword" class="form-label">Ulangi Password</label>
+                        <input name="ConfirmPassword" class="form-control @error('ConfirmPassword') is-invalid @enderror mb-2" type="password" placeholder="Ulangi Password">
+                        @error('ConfirmPassword')
+                            <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
+    
+                    <hr>
+    
+                    <div class="form-group">
+                        <label for="OldPassword" class="form-label">Password Saat Ini</label>
+                        <input name="OldPassword" class="form-control @error('OldPassword') is-invalid @enderror mb-2" type="password" placeholder="Password Saat Ini">
+                        @error('OldPassword')
+                            <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="ConfirmPassword" class="form-label">Ulangi Password</label>
-                    <input name="ConfirmPassword" class="form-control @error('ConfirmPassword') is-invalid @enderror mb-2" type="password" placeholder="Ulangi Password">
-                    @error('ConfirmPassword')
-                        <span class="text-danger">{{$message}}</span>
-                    @enderror
-                </div>
-
-                <hr>
-
-                <div class="form-group">
-                    <label for="OldPassword" class="form-label">Password Saat Ini</label>
-                    <input name="OldPassword" class="form-control @error('OldPassword') is-invalid @enderror mb-2" type="password" placeholder="Password Saat Ini">
-                    @error('OldPassword')
-                        <span class="text-danger">{{$message}}</span>
-                    @enderror
-                </div>
-
-                <button type="submit" class="btn btn-primary">Simpan</button>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                    Simpan
+                </button>
             </form>
         </div>
         

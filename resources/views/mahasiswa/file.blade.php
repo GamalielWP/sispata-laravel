@@ -109,7 +109,10 @@
                     </div>
                 @endif
 
-                <button type="submit" class="btn btn-primary">Simpan</button>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                    Simpan
+                </button>
             </form>
         </div>
         
