@@ -1,0 +1,43 @@
+.file {
+    margin: auto;
+    justify-items: center;
+    width: 70%;
+}
+.form-label {
+    cursor: pointer;
+}
+.fileName {
+    color: green;
+}
+
+.center {
+    text-align: center;
+}
+
+.btn-primary {
+    float: right;
+}
+
+.filePfp {
+    display: none ;
+}
+.img-style {
+    width: 60%;
+    height: auto;
+    border-radius: 5px;
+}
+.img-style:hover {
+    box-shadow: 0 3px 4px #000;
+}
+
+.doc-icon {
+    width: 30%;
+}
+
+.score-icon {
+    width: 20%;
+}
+
+.score-mini-icon {
+    width: 15%;
+}

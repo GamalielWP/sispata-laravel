@@ -27,6 +27,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
     <link href="{{ asset('css/sidebar.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/file.css') }}" rel="stylesheet">
 
     {{-- DataTables CSS --}}
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
@@ -118,6 +119,7 @@
             @yield('content')
         </main>
     </div>
+    
     {{-- Bundle --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     {{-- Script --}}
@@ -128,5 +130,6 @@
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
     {{-- DataTables Script --}}
     @yield('table')
-</body>
+    {{-- Style Script --}}
+    @yield('styleScript')
 </html>
