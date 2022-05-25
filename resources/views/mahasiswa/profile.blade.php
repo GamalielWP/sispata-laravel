@@ -57,12 +57,12 @@
                     </div>
                 </div>
 
-                <a class="btn btn-warning" data-bs-toggle="collapse" href="#pwd-collapse">
+                <a class="btn btn-warning" data-bs-toggle="collapse" href="#pwd-collapse-mahasiswa">
                     <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                     Ubah Password
                 </a>
                 <hr>
-                <div class="collapse" id="pwd-collapse">
+                <div class="collapse" id="pwd-collapse-mahasiswa">
                     <div class="form-group">
                         <i class="fa fa-key" aria-hidden="true"></i>
                         <label for="NewPassword" class="form-label">Password Baru</label>

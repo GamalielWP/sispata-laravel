@@ -212,7 +212,7 @@ class MahasiswaController extends Controller
                 'Email' => 'required',
                 'PhoneNumber' => 'numeric',
                 'ProfilePhotos' => 'image|mimes:jpg,png,jpeg',
-                'NewPassword' => 'required',
+                'NewPassword' => 'required|min:8',
                 'ConfirmPassword' => 'same:NewPassword',
                 'OldPassword' => 'required'
             ]);

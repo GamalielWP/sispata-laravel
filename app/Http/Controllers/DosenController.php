@@ -215,8 +215,7 @@ class DosenController extends Controller
                 'Email' => 'required',
                 'PhoneNumber' => 'numeric',
                 'Alamat' => 'required',
-                'ProfilePhotos' => 'image|mimes:jpg,png,jpeg',
-                'OldPassword' => 'required'
+                'ProfilePhotos' => 'image|mimes:jpg,png,jpeg'
             ]);
         } else {
             $validateData = $request->validate([
@@ -224,7 +223,7 @@ class DosenController extends Controller
                 'PhoneNumber' => 'numeric',
                 'Alamat' => 'required',
                 'ProfilePhotos' => 'image|mimes:jpg,png,jpeg',
-                'NewPassword' => 'required',
+                'NewPassword' => 'required|min:8',
                 'ConfirmPassword' => 'same:NewPassword',
                 'OldPassword' => 'required'
             ]);
@@ -232,57 +231,54 @@ class DosenController extends Controller
 
         $user = User::where('id', $id)->first();
 
-        if ($user) {
+        //save identitas
+        User::where('id', $id)->update([
+            'email' => $validateData['Email'],
+            'phone_number' => $validateData['PhoneNumber']
+        ]);
 
-            $pwd = Hash::check($validateData['OldPassword'], $user->password);
-            if ($pwd) {
+        //save alamat
+        Dosen::where('user_id', $id)->update([
+            'address' => $request->Alamat
+        ]);
 
-                //save identitas
-                User::where('id', $id)->update([
-                    'email' => $validateData['Email'],
-                    'phone_number' => $validateData['PhoneNumber']
-                ]);
+        //cek upload foto profil tidak
+        if ($request->hasFile('ProfilePhotos')) {
 
-                // if ($request->Alamat != null) {
-                    Dosen::where('user_id', $id)->update([
-                        'address' => $request->Alamat
-                    ]);
-                // }
+            $extFile = $validateData['ProfilePhotos']->getClientOriginalExtension();
+            $namaFile = $user->id.'-'.$user->role.".".$extFile;
 
-                //cek upload foto profil tidak
-                if ($request->hasFile('ProfilePhotos')) {
-
-                    $extFile = $validateData['ProfilePhotos']->getClientOriginalExtension();
-                    $namaFile = $user->id.'-'.$user->role.".".$extFile;
-
-                    //hapus foto profil sebelumnya
-                    if (File::exists('img\pfp'.$namaFile)) {
-                        File::delete('img\pfp'.$namaFile);
-                    }
-
-                    $path = $validateData['ProfilePhotos']->move('img\pfp', $namaFile);
-            
-                    //simpan foto profil baru
-                    User::findOrFail($id)->update([
-                        'pfp' => $path
-                    ]);
-
-                }
-
-                //save new password
-                if ($request->NewPassword != null) {
-                    User::where('id', $id)->update([
-                        'password' => Hash::make($validateData['NewPassword'])
-                    ]);
-                }
-
-            } else {
-                return back()->with('error', "Data gagal diubah.");
+            //hapus foto profil sebelumnya
+            if (File::exists('img\pfp'.$namaFile)) {
+                File::delete('img\pfp'.$namaFile);
             }
-        } else {
-            return back()->with('error', "Data gagal diubah.");
+
+            $path = $validateData['ProfilePhotos']->move('img\pfp', $namaFile);
+    
+            //simpan foto profil baru
+            User::findOrFail($id)->update([
+                'pfp' => $path
+            ]);
+
         }
 
+        if ($request->NewPassword != null) {
+            if ($user) {
+                $pwd = Hash::check($request->OldPassword, $user->password);
+                if ($pwd) {
+                    //save new password
+                    if ($request->NewPassword != null) {
+                        User::where('id', $id)->update([
+                            'password' => Hash::make($validateData['NewPassword'])
+                        ]);
+                    }
+    
+                } else {
+                    return back()->with('error', "Data gagal diubah.");
+                }
+            }
+        }
+        
         return back()->with('pesan', "Data berhasil diubah.");
     }
 
