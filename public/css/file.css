@@ -29,6 +29,17 @@
 .img-style:hover {
     box-shadow: 0 3px 4px #000;
 }
+.shadow {
+    box-shadow: 0 3px 4px #000;
+}
+.circle { 
+    width: 20px;
+    height: 20px;
+    background: #e6e7e9; 
+    -moz-border-radius: 50px; 
+    -webkit-border-radius: 50px; 
+    border-radius: 50px;
+ }
 
 .doc-icon {
     width: 30%;

@@ -9,6 +9,7 @@ use App\Mahasiswa;
 use App\Sempro;
 use App\User;
 use File;
+use PDF;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Carbon;
 
@@ -181,6 +182,15 @@ class MahasiswaController extends Controller
 
         return back()->with('pesan',"Data berhasil diubah.");
         
+    }
+
+    public function download($id)
+    {
+        $mhs = Mahasiswa::where('user_id', $id)->first();
+        $file = $mhs->user_id.'-'.$mhs->nim.'-Berita-Acara'.'.pdf';
+        $pdf = PDF::loadView('mahasiswa.berita-acara', compact('mhs'));
+
+        return $pdf->download($file);
     }
 
     public function profile()

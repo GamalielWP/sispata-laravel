@@ -6,51 +6,53 @@
             <form action="/mahasiswa-file-updated/{{Auth::user()->id}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
+                <div class="row">
+                    <div class="form-group col">
+                        <i class="fa fa-quote-right" aria-hidden="true"></i>
+                        <label for="Judul" class="form-label">Judul</label>
+                        <input name="Judul" class="form-control @error('Judul') is-invalid @enderror mb-2" type="text" value="{{$sempro->title !=null ? $sempro->title : ''}}" placeholder="Ketik judul penelitian...">
+                        @error('Judul')
+                            <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
 
-                <div class="form-group">
-                    <i class="fa fa-quote-right" aria-hidden="true"></i>
-                    <label for="Judul" class="form-label">Judul</label>
-                    <input name="Judul" class="form-control @error('Judul') is-invalid @enderror mb-2" type="text" value="{{$sempro->title !=null ? $sempro->title : ''}}" placeholder="Ketik judul penelitian...">
-                    @error('Judul')
-                        <span class="text-danger">{{$message}}</span>
-                    @enderror
+                    <div class="form-group col">
+                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                        <label for="Schedule" class="form-label">Jadwal Seminar Proposal</label>
+                        <input name="Schedule" type="date" class="form-control mb-3" value="{{$sempro->schedule !=null ? $sempro->schedule : ''}}" {{$sempro->schedule == null ? 'disabled' : ''}}>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col">
+                        <i class="fa fa-lightbulb-o"></i>
+                        <label for="Pembimbing1" class="form-label">Pembimbing-1</label>
+                        <input name="Pembimbing1" class="form-control {{$sempro->adviser1_code != null ? 'mb-3' : ''}}" list="dosen1" id="DataList" value="{{$sempro->adviser1_code !=null ? $sempro->adviser1_code : ''}}" placeholder="Ketik untuk mencari..." {{$sempro->adviser1_code != null ? 'disabled' : ''}}>
+                        <datalist id="dosen1">
+                            @foreach ($dosen as $dos)
+                                <option value="{{$dos->lecturer_code}}">{{$dos->user->name}}
+                            @endforeach
+                        </datalist>
+                        @if ($sempro->adviser1_code == null)
+                            <span class="mb-3" style="color: red">* kode dosen hanya dapat diinputkan 1 kali.</span>
+                        @endif
+                    </div>
+    
+                    <div class="form-group col">
+                        <i class="fa fa-lightbulb-o"></i>
+                        <label for="Pembimbing2" class="form-label">Pembimbing-2</label>
+                        <input name="Pembimbing2" class="form-control {{$sempro->adviser2_code != null ? 'mb-3' : ''}}" list="dosen2" id="DataList" value="{{$sempro->adviser2_code !=null ? $sempro->adviser2_code : ''}}" placeholder="Ketik untuk mencari..." {{$sempro->adviser2_code != null ? 'disabled' : ''}}>
+                        <datalist id="dosen2">
+                            @foreach ($dosen as $dos)
+                                <option value="{{$dos->lecturer_code}}">{{$dos->user->name}}
+                            @endforeach
+                        </datalist>
+                        @if ($sempro->adviser2_code == null)
+                            <span class="mb-3" style="color: red">* kode dosen hanya dapat diinputkan 1 kali.</span><br>
+                            <span class="mb-3" style="color: red">* isi dengan kode dosen Pembimbing 1 jika anda hanya memilih satu pembimbing saja.</span>
+                        @endif
+                    </div>
                 </div>
                 
-                <div class="form-group">
-                    <i class="fa fa-lightbulb-o"></i>
-                    <label for="Pembimbing1" class="form-label">Pembimbing-1</label>
-                    <input name="Pembimbing1" class="form-control {{$sempro->adviser1_code != null ? 'mb-3' : ''}}" list="dosen1" id="DataList" value="{{$sempro->adviser1_code !=null ? $sempro->adviser1_code : ''}}" placeholder="Ketik untuk mencari..." {{$sempro->adviser1_code != null ? 'disabled' : ''}}>
-                    <datalist id="dosen1">
-                        @foreach ($dosen as $dos)
-                            <option value="{{$dos->lecturer_code}}">{{$dos->user->name}}
-                        @endforeach
-                    </datalist>
-                    @if ($sempro->adviser1_code == null)
-                        <span class="mb-3" style="color: red">* kode dosen hanya dapat diinputkan 1 kali.</span>
-                    @endif
-                </div>
-
-                <div class="form-group">
-                    <i class="fa fa-lightbulb-o"></i>
-                    <label for="Pembimbing2" class="form-label">Pembimbing-2</label>
-                    <input name="Pembimbing2" class="form-control {{$sempro->adviser2_code != null ? 'mb-3' : ''}}" list="dosen2" id="DataList" value="{{$sempro->adviser2_code !=null ? $sempro->adviser2_code : ''}}" placeholder="Ketik untuk mencari..." {{$sempro->adviser2_code != null ? 'disabled' : ''}}>
-                    <datalist id="dosen2">
-                        @foreach ($dosen as $dos)
-                            <option value="{{$dos->lecturer_code}}">{{$dos->user->name}}
-                        @endforeach
-                    </datalist>
-                    @if ($sempro->adviser2_code == null)
-                        <span class="mb-3" style="color: red">* kode dosen hanya dapat diinputkan 1 kali.</span><br>
-                        <span class="mb-3" style="color: red">* isi dengan kode dosen Pembimbing 1 jika anda hanya memilih satu pembimbing saja.</span>
-                    @endif
-                </div>
-
-                <div class="form-group">
-                    <i class="fa fa-calendar-o" aria-hidden="true"></i>
-                    <label for="Schedule" class="form-label">Jadwal Seminar Proposal</label>
-                    <input name="Schedule" type="date" class="form-control mb-3" value="{{$sempro->schedule !=null ? $sempro->schedule : ''}}" {{$sempro->schedule == null ? 'disabled' : ''}}>
-                </div>
-
                 <div class="row center mb-3">
                     <div class="form-group col">
                         <label for="Form" class="form-label">
@@ -139,15 +141,22 @@
                         @endif                
                     </div>
 
-                    <div class="col"></div>
-                </div>
-
-                @if ($sempro->news_doc != null)
-                    <div class="form-group">
-                        <label for="BeritaAcara" class="form-label">Berita Acara</label>
-                        <a class="mb-3" href="{{$sempro->news_doc}}">{{$mhs->nim}}-berita-acara.pdf</a> 
+                    <div class="col">
+                        @if ($sempro->news_doc != null)
+                            <div class="form-group">
+                                <label for="BeritaAcara" class="form-label">
+                                    Berita Acara <br>
+                                    <img class="doc-icon mb-2" src="{{asset('img/icon/envelope.png')}}" alt="Berita Acara"> <br>
+                                    <a href="/mahasiswa-file-download/{{$mhs->user_id}}" class="btn btn-success">
+                                        <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                                        Download
+                                    </a>
+                                </label>
+                                <a class="mb-3" href="{{$sempro->news_doc}}">{{$mhs->nim}}-berita-acara.pdf</a> 
+                            </div>
+                        @endif
                     </div>
-                @endif
+                </div>
 
                 <button type="submit" class="btn btn-primary">
                     <i class="fa fa-floppy-o" aria-hidden="true"></i>
