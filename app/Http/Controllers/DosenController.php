@@ -188,10 +188,15 @@ class DosenController extends Controller
         ->make(true);
     }
 
-    public function pembimbing()
+    public function pembimbing1()
     {
         $data = Auth::user();
-        return view('dosen.pembimbing', compact('data'));
+        return view('dosen.pembimbing-1', compact('data'));
+    }
+    public function pembimbing2()
+    {
+        $data = Auth::user();
+        return view('dosen.pembimbing-2', compact('data'));
     }
 
     public function penguji()
@@ -325,7 +330,7 @@ class DosenController extends Controller
             'adviser1_score' => $request->Nilai
         ]);
 
-        return redirect('/dosen-pembimbing');
+        return redirect('/dosen-pembimbing-1');
     }
 
     public function cetak($id)
@@ -348,7 +353,7 @@ class DosenController extends Controller
             'adviser2_score' => $request->Nilai
         ]);
 
-        return redirect('/dosen-pembimbing');
+        return redirect('/dosen-pembimbing-2');
     }
 
     public function updatePenguji(Request $request, $id)

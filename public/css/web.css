@@ -1,0 +1,14 @@
+body {
+    background-color: whitesmoke;
+}
+
+.box {
+    position: relative;
+    background: linear-gradient(#1cb5e0, transparent);
+    top: 20px;
+    bottom: ;
+   }
+
+.on {
+    background-color: whitesmoke !important;
+}

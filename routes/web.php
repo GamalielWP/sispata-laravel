@@ -42,7 +42,8 @@ Route::patch('/kelompok-keahlian-update/{id}', 'KelompokKeahlianController@updat
 Route::get('/kelompok-keahlian-account', 'KelompokKeahlianController@akun');
 
 //dosen role
-Route::get('/dosen-pembimbing', 'DosenController@pembimbing');
+Route::get('/dosen-pembimbing-1', 'DosenController@pembimbing1');
+Route::get('/dosen-pembimbing-2', 'DosenController@pembimbing2');
 Route::get('/dosen-data-table-1', 'DosenController@yajraIndexPembimbing1')->name('dataDosenPembimbing1');
 Route::get('/dosen-data-table-2', 'DosenController@yajraIndexPembimbing2')->name('dataDosenPembimbing2');
 Route::get('/dosen-pembimbing-1-edit/{id}', 'DosenController@editPembimbing1');

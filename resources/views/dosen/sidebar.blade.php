@@ -3,7 +3,7 @@
 @section('sidebar')
     {{-- Role Pembimbing Penguji--}}
     @if ($data->role == 'pembimbing-penguji')
-        <li class="side-item"> <a href="/dosen-pembimbing" class="nav-link {{'dosen-pembimbing' == request()->path() ? 'active' : 'text-white'}}"> <i class="fa fa-lightbulb-o"></i><span class="ms-2">Pembimbing</span> </a> </li>
+        <li class="side-item"> <a href="/dosen-pembimbing-1" class="nav-link {{'dosen-pembimbing-1' == request()->path() || 'dosen-pembimbing-2' == request()->path() ? 'active' : 'text-white'}}"> <i class="fa fa-lightbulb-o"></i><span class="ms-2">Pembimbing</span> </a> </li>
         <li class="side-item"> <a href="/dosen-penguji" class="nav-link {{'dosen-penguji' == request()->path() ? 'active' : 'text-white'}}"> <i class="fa fa-id-badge"></i><span class="ms-2">Penguji</span> </a> </li>
         <li class="side-item"> <a href="/dosen-profile" class="nav-link {{'dosen-profile' == request()->path() ? 'active' : 'text-white'}}"> <i class="fa fa-user"></i><span class="ms-2">Profile</span> </a> </li>  
     @endif
@@ -17,12 +17,13 @@
         </a>
         <div class="collapse {{
 
-        'dosen-pembimbing' == request()->path() ||
+        'dosen-pembimbing-1' == request()->path() ||
+        'dosen-pembimbing-2' == request()->path() ||
         'dosen-penguji' == request()->path()
 
         ? 'show' : ''}}" id="collapse1">
 
-        <li class="side-item ml-4"> <a href="/dosen-pembimbing" class="nav-link {{'dosen-pembimbing' == request()->path() ? 'active' : 'text-white'}}"> <i class="fa fa-lightbulb-o"></i><span class="ms-2">Pembimbing</span> </a> </li>
+        <li class="side-item ml-4"> <a href="/dosen-pembimbing-1" class="nav-link {{'dosen-pembimbing-1' == request()->path() || 'dosen-pembimbing-2' == request()->path() ? 'active' : 'text-white'}}"> <i class="fa fa-lightbulb-o"></i><span class="ms-2">Pembimbing</span> </a> </li>
         <li class="side-item ml-4"> <a href="/dosen-penguji" class="nav-link {{'dosen-penguji' == request()->path() ? 'active' : 'text-white'}}"> <i class="fa fa-id-badge"></i><span class="ms-2">Penguji</span> </a> </li>
     
         </div>
@@ -48,12 +49,13 @@
         </a>
         <div class="collapse {{
 
-            'dosen-pembimbing' == request()->path() ||
+            'dosen-pembimbing-1' == request()->path() ||
+            'dosen-pembimbing-2' == request()->path() ||
             'dosen-penguji' == request()->path()
 
             ? 'show' : ''}}" id="collapse1">
 
-            <li class="side-item ml-4"> <a href="/dosen-pembimbing" class="nav-link {{'dosen-pembimbing' == request()->path() ? 'active' : 'text-white'}}"> <i class="fa fa-lightbulb-o"></i><span class="ms-2">Pembimbing</span> </a> </li>
+            <li class="side-item ml-4"> <a href="/dosen-pembimbing-1" class="nav-link {{'dosen-pembimbing-1' == request()->path() || 'dosen-pembimbing-2' == request()->path() ? 'active' : 'text-white'}}"> <i class="fa fa-lightbulb-o"></i><span class="ms-2">Pembimbing</span> </a> </li>
             <li class="side-item ml-4"> <a href="/dosen-penguji" class="nav-link {{'dosen-penguji' == request()->path() ? 'active' : 'text-white'}}"> <i class="fa fa-id-badge"></i><span class="ms-2">Penguji</span> </a> </li>
                 
         </div>
@@ -79,12 +81,13 @@
         </a>
         <div class="collapse {{
 
-            'dosen-pembimbing' == request()->path() ||
+            'dosen-pembimbing-1' == request()->path() ||
+            'dosen-pembimbing-2' == request()->path() ||
             'dosen-penguji' == request()->path()
 
             ? 'show' : ''}}" id="collapse1">
 
-            <li class="side-item ml-4"> <a href="/dosen-pembimbing" class="nav-link {{'dosen-pembimbing' == request()->path() ? 'active' : 'text-white'}}"> <i class="fa fa-lightbulb-o"></i><span class="ms-2">Pembimbing</span> </a> </li>
+            <li class="side-item ml-4"> <a href="/dosen-pembimbing-1" class="nav-link {{'dosen-pembimbing-1' == request()->path() || 'dosen-pembimbing-2' == request()->path() ? 'active' : 'text-white'}}"> <i class="fa fa-lightbulb-o"></i><span class="ms-2">Pembimbing</span> </a> </li>
             <li class="side-item ml-4"> <a href="/dosen-penguji" class="nav-link {{'dosen-penguji' == request()->path() ? 'active' : 'text-white'}}"> <i class="fa fa-id-badge"></i><span class="ms-2">Penguji</span> </a> </li>     
         
         </div>

@@ -56,7 +56,7 @@ class LoginController extends Controller
 
             case 'pembimbing-penguji':
                 session(['role' => $role]);
-                return '/dosen-pembimbing';
+                return '/dosen-pembimbing-1';
                 break;
         }
     }
