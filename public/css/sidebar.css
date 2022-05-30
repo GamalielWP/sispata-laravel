@@ -3,7 +3,12 @@ body {
 }
 
 .side-item:hover {
-    background-color: #525252 !important
+    background-color: #a07558 !important;
+    border-radius: 30px;
+}
+.active {
+    background-color: #2f210d !important;
+    border-radius: 30px !important;
 }
 
 .nav-link .fa {

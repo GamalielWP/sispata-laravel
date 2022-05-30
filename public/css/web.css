@@ -3,18 +3,19 @@ body {
 }
 
 .box-1 {
-    background: linear-gradient(#1cb5e0, transparent);
+    background: linear-gradient(#a07558, transparent);
     position: relative;
     bottom:1px;
-    margin-left: 1px;
-    border-top-right-radius: 5px;
+    border-top-right-radius: 15px !important;
 }
 .box-2 {
-    background: linear-gradient(#1cb5e0, transparent);
+    background: linear-gradient(#a07558, transparent);
     position: relative;
     bottom:1px;
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
+    border-top-right-radius: 15px !important;
+    border-top-left-radius: 15px !important;
+    border-bottom-right-radius: none !important;
+    border-bottom-left-radius: none !important;
 }
 
 .space {
@@ -22,5 +23,15 @@ body {
 }
 
 .on {
-    background-color: #1cb5e0 !important;
+    background-color: #a07558 !important;
+    border-top-right-radius: 15px !important;
+    border-top-left-radius: 15px !important;
+    color: black;
+}
+
+.bg-young-brown {
+    background-color: #964b00;
+}
+.bg-brown {
+    background-color: #2f210d;
 }

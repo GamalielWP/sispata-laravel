@@ -39,7 +39,7 @@
     <div id="app">
         @if (session()->has('role'))
         <div class="py-6">
-            <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 13.15%; height: 1210px; float:left">
+            <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-young-brown" style="width: 13.15%; height: 1210px; float:left">
         
                 <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                     <img src="{{asset('img/fif.png')}}" width="20%" height="auto">
@@ -55,7 +55,7 @@
             </div>
         </div>
 
-        <nav class="navbar navbar-expand-md navbar-dark bg-primary shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-brown shadow-sm">
             <div class="container">
                 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
