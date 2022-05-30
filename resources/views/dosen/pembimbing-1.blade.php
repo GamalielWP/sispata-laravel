@@ -1,31 +1,37 @@
 @extends('dosen.sidebar')
 
 @section('content')
-    <ul class="nav nav-tabs mb-3">
+    <ul class="nav nav-tabs">
         <li class="nav-item">
-        <a class="nav-link {{'dosen-pembimbing-1' == request()->path() ? 'active on' : ''}}" aria-current="page" href="/dosen-pembimbing-1">Pembimbing 1</a>
+        <a class="nav-link {{'dosen-pembimbing-1' == request()->path() ? 'active on' : 'text-dark'}}" aria-current="page" href="/dosen-pembimbing-1">Pembimbing 1<b></b></a>
         </li>
         <li class="nav-item">
-        <a class="nav-link {{'dosen-pembimbing-2' == request()->path() ? 'active on' : ''}}" href="/dosen-pembimbing-2">Pembimbing 2</a>
+        <a class="nav-link {{'dosen-pembimbing-2' == request()->path() ? 'active on' : 'text-dark'}}" href="/dosen-pembimbing-2">Pembimbing 2</a>
         </li>
     </ul>
-    <div class="box"></div>
-    <table class="table table-striped" id="data-tabel">
-        <thead>
-            <tr>
-                <th>NIM</th>
-                <th>Judul</th>
-                <th>Nama Mahasiswa</th>
-                <th>Prodi</th>
-                <th>Berkas</th>
-                <th>Nilai</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-                
-        </tbody>
-    </table>
+    <div class="box-1">
+        <div class="space">
+        
+        </div>
+        <div class="container">
+            <table class="table table-striped" id="data-tabel">
+                <thead>
+                    <tr>
+                        <th>NIM</th>
+                        <th>Judul</th>
+                        <th>Nama Mahasiswa</th>
+                        <th>Prodi</th>
+                        <th>Berkas</th>
+                        <th>Nilai</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        
+                </tbody>
+            </table>
+        </div>
+    </div> 
 @endsection
 
 @section('table')

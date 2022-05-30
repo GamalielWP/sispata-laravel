@@ -5,21 +5,28 @@
 @endsection
 
 @section('content')
-    <table class="table table-striped" id="data-tabel">
-        <thead>
-            <tr>
-                <th>NIM</th>
-                <th>Judul</th>
-                <th>Nama Mahasiswa</th>
-                <th>Berkas</th>
-                <th>Status</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-                
-        </tbody>
-    </table>
+    <div class="box-2">
+        <div class="space">
+
+        </div>
+        <div class="container">
+            <table class="table table-striped" id="data-tabel">
+                <thead>
+                    <tr>
+                        <th>NIM</th>
+                        <th>Judul</th>
+                        <th>Nama Mahasiswa</th>
+                        <th>Berkas</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        
+                </tbody>
+            </table>
+        </div>
+    </div>
 @endsection
 
 @section('table')
