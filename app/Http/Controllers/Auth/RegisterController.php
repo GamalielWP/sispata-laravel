@@ -32,20 +32,37 @@ class RegisterController extends Controller
      */
     // protected $redirectTo = RouteServiceProvider::HOME;
 
-    public function redirectTo()
-    {
-        $role = Auth::user()->role;
+    // public function redirectTo()
+    // {
+    //     $role = Auth::user()->role;
 
-        switch ($role) {
-            case 'admin':
-                return '/admin';
-                break;
-        
-            case 'user':
-                return '/home';
-                break;
-        }
-    }
+    //     switch ($role) {
+    //         case 'mahasiswa':
+    //             session(['role' => $role]);
+    //             return '/mahasiswa-dashboard';
+    //             break;
+
+    //         case 'gugus-tugas':
+    //             session(['role' => $role]);
+    //             return '/gugus-tugas-dashboard';
+    //             break;
+
+    //         case 'kelompok-keahlian':
+    //             session(['role' => $role]);
+    //             return '/kelompok-keahlian-dashboard';
+    //             break;
+
+    //         case 'kk-gg':
+    //             session(['role' => $role]);
+    //             return '/kelompok-keahlian-dashboard';
+    //             break;
+
+    //         case 'pembimbing-penguji':
+    //             session(['role' => $role]);
+    //             return '/dosen-pembimbing-1';
+    //             break;
+    //     }
+    // }
     /**
      * Create a new controller instance.
      *
@@ -65,12 +82,13 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'address' => ['required'],
-            'phone_number' => ['required', 'numeric']
-            // 'role' => ['required']
+            'Nim' => ['required', 'numeric', 'min:8', 'unique:mahasiswas'],
+            'Nama' => ['required', 'string', 'max:255'],
+            'Email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'Phone' => ['required', 'numeric', 'min:11'],
+            'Prodi' => ['required'],
+            'NewPassword' => ['required', 'string', 'min:8'],
+            'ConfirmPassword' => ['required', 'string', 'same:NewPassword']
         ]);
     }
 
@@ -83,13 +101,13 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'phone_number' => $data['phone_number'],
-            'address' => $data['address'],
-            'role' => 'user'
-            // 'role' => $data['role']
+            'name' => $data['Nama'],
+            'email' => $data['Email'],
+            'phone_number' => $data['Phone'],
+            'prodi' => $data['Prodi'],
+            'pfp' => "img/default-user.png",
+            'role' => "mahasiswa",
+            'password' => Hash::make($data['ConfirmPassword'])
         ]);
     }
 }

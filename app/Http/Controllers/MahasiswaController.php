@@ -23,7 +23,7 @@ class MahasiswaController extends Controller
 
     public function dashboard()
     {
-        $mhs = Mahasiswa::where('id', Auth::user()->id)->first();
+        $mhs = Mahasiswa::where('user_id', Auth::user()->id)->first();
         $sempro = Sempro::where('mhs_user_id', Auth::user()->id)->first();
         $dosen1 = Dosen::where('lecturer_code', $sempro->adviser1_code)->first();
         $dosen2 = Dosen::where('lecturer_code', $sempro->adviser2_code)->first();

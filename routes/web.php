@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'LandingPageController@landing');
+Route::get('/register', 'LandingPageController@landing');
 
 Auth::routes();
 
