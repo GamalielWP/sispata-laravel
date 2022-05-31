@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\BatalSempro;
 use App\Dosen;
 use Illuminate\Http\Request;
 use Auth;
@@ -262,6 +263,35 @@ class MahasiswaController extends Controller
         }
 
         return back()->with('pesan', "Data berhasil diubah.");
+    }
+
+    public function resetFile($id)
+    {
+        Mahasiswa::where('user_id', $id)->update([
+            'regis_form' => null,
+            'ksm' => null,
+            'temp_transcript' => null,
+            'validity_sheet' => null,
+            'thesis_proposal' => null
+        ]);
+
+        Sempro::where('mhs_user_id', $id)->update([
+            'title' => null,
+            'scope_id' => null,
+            'adviser1_code' => null,
+            'adviser2_code' => null,
+            'examiner_code' => null,
+            'schedule' => null,
+            'track' => null
+        ]);
+
+        BatalSempro::create([
+            'user_id' => $id,
+            'date' => Carbon::now()->format('Y-m-d'),
+            'time' => Carbon::now()->format('H:i:s')
+        ]);
+
+        return back()->with('pesan', "Pendaftaran berhasil dibatalkan.");
     }
 
 }

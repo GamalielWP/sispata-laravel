@@ -9,7 +9,15 @@
               <img src="{{asset($mhs->user->pfp)}}" style="width: 10% !important; height: auto; float:left;" alt="Foto Profil" class="mr-2 img-style">
               <a href="/mahasiswa-profile" style="float: right" class="fa fa-pencil btn-success btn-sm"></a>
               <h5 class="card-title">{{$sempro->title}}</h5>
-              <h6 class="card-subtitle mb-2 text-muted">{{$mhs->nim}} - {{$mhs->user->name}} <b style="color: {{$mhs->thesis_proposal != null ? 'green' : 'red'}}">&nbsp;&nbsp;{{$mhs->thesis_proposal != null ? 'Terdaftar' : 'Belum Terdaftar'}}</b></h6>
+              <h6 class="card-subtitle mb-2 text-muted">{{$mhs->nim}} - {{$mhs->user->name}}
+                <b style="color: {{$mhs->thesis_proposal != null ? 'green' : 'red'}}">&nbsp;&nbsp;
+                  {{$mhs->thesis_proposal != null ? 'Terdaftar' : 'Belum Terdaftar'}}
+                </b>
+                {{-- @if ($mhs->thesis_proposal != null) --}}
+                  &nbsp;&nbsp;
+                  <a href="/mahasiswa-file-cancel/{{$mhs->user_id}}" class="fa fa-times-circle btn btn-danger btn-sm"> Batalkan</a>
+                {{-- @endif --}}
+              </h6>
               <p class="card-text">
                 <i class="fa fa-envelope mr-3" aria-hidden="true"> {{$mhs->user->email}}</i>
                 <i class="fa fa-mobile mr-3" aria-hidden="true"> {{$mhs->user->phone_number}}</i>
