@@ -11,42 +11,42 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => 'Mahasiswa 1',
-            'email' => 'mahasiswa1@mahasiswa1.com',
-            'phone_number' => '081222',
-            'prodi' => 'S1-Rekayasa Perangkat Lunak',
-            'pfp' => 'img/default-user.png',
-            'role' => 'mahasiswa',
-            'password' => Hash::make('1234')
-        ]);
-        DB::table('users')->insert([
-            'name' => 'Mahasiswa 2',
-            'email' => 'mahasiswa2@mahasiswa2.com',
-            'phone_number' => '081222',
-            'prodi' => 'S1-Informatika',
-            'pfp' => 'img/default-user.png',
-            'role' => 'mahasiswa',
-            'password' => Hash::make('1234')
-        ]);
-        DB::table('users')->insert([
-            'name' => 'Mahasiswa 3',
-            'email' => 'mahasiswa3@mahasiswa3.com',
-            'phone_number' => '081222',
-            'prodi' => 'S1-Sistem Informasi',
-            'pfp' => 'img/default-user.png',
-            'role' => 'mahasiswa',
-            'password' => Hash::make('1234')
-        ]);
-        DB::table('users')->insert([
-            'name' => 'Mahasiswa 4',
-            'email' => 'mahasiswa4@mahasiswa4.com',
-            'phone_number' => '081222',
-            'prodi' => 'S1-Sains Data',
-            'pfp' => 'img/default-user.png',
-            'role' => 'mahasiswa',
-            'password' => Hash::make('1234')
-        ]);
+        // DB::table('users')->insert([
+        //     'name' => 'Mahasiswa 1',
+        //     'email' => 'mahasiswa1@mahasiswa1.com',
+        //     'phone_number' => '081222',
+        //     'prodi' => 'S1-Rekayasa Perangkat Lunak',
+        //     'pfp' => 'img/default-user.png',
+        //     'role' => 'mahasiswa',
+        //     'password' => Hash::make('1234')
+        // ]);
+        // DB::table('users')->insert([
+        //     'name' => 'Mahasiswa 2',
+        //     'email' => 'mahasiswa2@mahasiswa2.com',
+        //     'phone_number' => '081222',
+        //     'prodi' => 'S1-Informatika',
+        //     'pfp' => 'img/default-user.png',
+        //     'role' => 'mahasiswa',
+        //     'password' => Hash::make('1234')
+        // ]);
+        // DB::table('users')->insert([
+        //     'name' => 'Mahasiswa 3',
+        //     'email' => 'mahasiswa3@mahasiswa3.com',
+        //     'phone_number' => '081222',
+        //     'prodi' => 'S1-Sistem Informasi',
+        //     'pfp' => 'img/default-user.png',
+        //     'role' => 'mahasiswa',
+        //     'password' => Hash::make('1234')
+        // ]);
+        // DB::table('users')->insert([
+        //     'name' => 'Mahasiswa 4',
+        //     'email' => 'mahasiswa4@mahasiswa4.com',
+        //     'phone_number' => '081222',
+        //     'prodi' => 'S1-Sains Data',
+        //     'pfp' => 'img/default-user.png',
+        //     'role' => 'mahasiswa',
+        //     'password' => Hash::make('1234')
+        // ]);
 
         DB::table('users')->insert([
             'name' => 'Pembimbing & Penguji 1',

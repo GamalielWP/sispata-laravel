@@ -15,6 +15,15 @@ class CreateRegistrasisTable extends Migration
     {
         Schema::create('registrasis', function (Blueprint $table) {
             $table->id();
+            $table->string('nim');
+            $table->string('name');
+            $table->string('email');
+            $table->string('phone_number');
+            $table->string('prodi');
+            $table->string('pfp');
+            $table->string('role');
+            $table->string('status')->nullable();
+            $table->string('password');
             $table->timestamps();
         });
     }

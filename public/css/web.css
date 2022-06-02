@@ -3,13 +3,13 @@ body {
 }
 
 .box-1 {
-    background: linear-gradient(#a07558, transparent);
+    background: linear-gradient(#ff7f00, transparent);
     position: relative;
     bottom:1px;
     border-top-right-radius: 15px !important;
 }
 .box-2 {
-    background: linear-gradient(#a07558, transparent);
+    background: linear-gradient(#ff7f00, transparent);
     position: relative;
     bottom:1px;
     border-top-right-radius: 15px !important;

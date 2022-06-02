@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="/register-up">
                         @csrf
 
                         <div class="form-group row">
@@ -29,7 +29,7 @@
                             <label for="Nama" class="col-md-4 col-form-label text-md-right">{{ __('Nama') }}</label>
 
                             <div class="col-md-6">
-                                <input id="Nama" type="text" class="form-control @error('Nama') is-invalid @enderror" name="Nama" value="{{ old('Nama') }}" required autocomplete="Nama" autofocus>
+                                <input id="Nama" type="text" class="form-control @error('Nama') is-invalid @enderror" name="Nama" value="{{ old('Nama') }}" required autocomplete="Nama">
 
                                 @error('Nama')
                                     <span class="invalid-feedback" role="alert">
@@ -90,7 +90,7 @@
                             <label for="NewPassword" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="NewPassword" type="password" class="form-control @error('NewPassword') is-invalid @enderror" name="NewPassword" required autocomplete="NewPassword">
+                                <input id="NewPassword" type="password" class="form-control @error('NewPassword') is-invalid @enderror" name="NewPassword" required>
 
                                 @error('NewPassword')
                                     <span class="invalid-feedback" role="alert">
@@ -116,7 +116,11 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <a href="/" class="btn btn-primary ">
+                                    
+                                    {{ __('Kembali') }}
+                                </a>
+                                <button type="submit" class="btn btn-success">
                                     {{ __('Register') }}
                                 </button>
                             </div>

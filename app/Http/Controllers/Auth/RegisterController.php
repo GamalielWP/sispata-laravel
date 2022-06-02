@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\Registrasi;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -32,37 +33,10 @@ class RegisterController extends Controller
      */
     // protected $redirectTo = RouteServiceProvider::HOME;
 
-    // public function redirectTo()
-    // {
-    //     $role = Auth::user()->role;
-
-    //     switch ($role) {
-    //         case 'mahasiswa':
-    //             session(['role' => $role]);
-    //             return '/mahasiswa-dashboard';
-    //             break;
-
-    //         case 'gugus-tugas':
-    //             session(['role' => $role]);
-    //             return '/gugus-tugas-dashboard';
-    //             break;
-
-    //         case 'kelompok-keahlian':
-    //             session(['role' => $role]);
-    //             return '/kelompok-keahlian-dashboard';
-    //             break;
-
-    //         case 'kk-gg':
-    //             session(['role' => $role]);
-    //             return '/kelompok-keahlian-dashboard';
-    //             break;
-
-    //         case 'pembimbing-penguji':
-    //             session(['role' => $role]);
-    //             return '/dosen-pembimbing-1';
-    //             break;
-    //     }
-    // }
+    public function redirectTo()
+    {
+        return view('auth.login');
+    }
     /**
      * Create a new controller instance.
      *
@@ -100,7 +74,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        return Registrasi::create([
+            'nim' => $data['Nim'],
             'name' => $data['Nama'],
             'email' => $data['Email'],
             'phone_number' => $data['Phone'],

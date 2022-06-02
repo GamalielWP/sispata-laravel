@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\BidangKeahlian;
 use App\Dosen;
 use App\Mahasiswa;
+use App\Registrasi;
 use App\Sempro;
 use App\User;
 use Yajra\Datatables\Datatables;
@@ -77,6 +78,65 @@ class GugusTugasController extends Controller
         ->make(true);
     }
 
+    public function yajraIndexRequest()
+    {
+        $user = Registrasi::where('role', 'mahasiswa')
+                ->where('prodi', Auth::user()->prodi)
+                ->where('status', null)->get();
+
+        return Datatables::of($user)
+        ->addColumn('action', function($user){
+            $btn = '
+                <a href="/gugus-tugas-request-accept/'.$user->id.'" class="fa fa-check btn-outline-success btn-sm">Terima</a>'
+                ."|".
+                '<a href="/gugus-tugas-request-decline/'.$user->id.'" class="fa fa-times btn-outline-danger btn-sm">Tolak</a>
+            ';
+            return $btn;
+        })
+        ->rawColumns(['action'])
+        ->make(true);
+    }
+
+    public function accept($id)
+    {
+        $regis = Registrasi::where('id', $id)->first();
+
+        User::create([
+            'name' => $regis->name,
+            'email' => $regis->email,
+            'phone_number' => $regis->phone_number,
+            'prodi' => $regis->prodi,
+            'pfp' => $regis->pfp,
+            'role' => $regis->role,
+            'password' => $regis->password
+        ]);
+
+        $user = User::where('email', $regis->email)->first();
+
+        Mahasiswa::create([
+            'user_id' => $user->id,
+            'nim' => $regis->nim
+        ]);
+
+        Sempro::create([
+            'mhs_user_id' => $user->id,
+            'tiitle' => null
+        ]);
+
+        Registrasi::destroy($id);
+
+        return back();
+    }
+
+    public function decline($id)
+    {
+        Registrasi::findOrFail($id)->update([
+            'status' => "ditolak"
+        ]);
+
+        return back();
+    }
+
     public function edit($id)
     {
         $data = Auth::user();
@@ -113,6 +173,12 @@ class GugusTugasController extends Controller
     {
         $data = Auth::user();
         return view('gugusTugas.dashboard', compact('data'));
+    }
+
+    public function request()
+    {
+        $data = Auth::user();
+        return view('gugusTugas.request', compact('data'));
     }
 
 }

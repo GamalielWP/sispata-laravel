@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'LandingPageController@landing');
 Route::get('/register', 'LandingPageController@landing');
+Route::post('/register-up', 'LandingPageController@register');
 
 Auth::routes();
 
@@ -32,7 +33,11 @@ Route::get('/mahasiswa-file-cancel/{id}', 'MahasiswaController@resetFile');
 
 //gugus tugas role
 Route::get('/gugus-tugas-dashboard', 'GugusTugasController@index');
-Route::get('/gugus-tugas-data-table', 'GugusTugasController@yajraIndex')->name('dataGG');
+Route::get('/gugus-tugas-request', 'GugusTugasController@request');
+Route::get('/gugus-tugas-request-accept/{id}', 'GugusTugasController@accept');
+Route::get('/gugus-tugas-request-decline/{id}', 'GugusTugasController@decline');
+Route::get('/gugus-tugas-data-table-dasboard', 'GugusTugasController@yajraIndex')->name('dataGG');
+Route::get('/gugus-tugas-data-table-request', 'GugusTugasController@yajraIndexRequest')->name('dataGGRequest');
 Route::get('/gugus-tugas-edit/{id}', 'GugusTugasController@edit');
 Route::patch('/gugus-tugas-update/{id}', 'GugusTugasController@update');
 
