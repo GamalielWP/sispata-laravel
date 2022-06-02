@@ -16,14 +16,14 @@
                 <div class="form-group col">
                     <i class="fa fa-quote-right" aria-hidden="true"></i>
                     <label for="Judul" class="form-label">Judul</label>
-                    <input name="Judul" class="form-control mb-2" type="text" value="{{$sempro->title}}" disabled>
+                    <input name="Judul" class="form-control mb-2" type="text" value="{{$sempro->title}}">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col">
                     <i class="fa fa-id-card" aria-hidden="true"></i>
                     <label for="Nim" class="form-label">NIM</label>
-                    <input name="Nim" class="form-control mb-2" type="text" value="{{$mhs->nim}}" disabled>
+                    <input name="Nim" class="form-control mb-2" type="text" value="{{$mhs->nim}}">
                 </div>
                 <div class="form-group col">
                     <i class="fa fa-lightbulb-o"></i>
@@ -35,7 +35,7 @@
                 <div class="form-group col">
                     <i class="fa fa-id-badge" aria-hidden="true"></i>
                     <label for="Nama" class="form-label">Nama</label>
-                    <input name="Nama" class="form-control mb-2" type="text" value="{{$mhs->user->name}}" disabled>
+                    <input name="Nama" class="form-control mb-2" type="text" value="{{$mhs->user->name}}">
                 </div>
                 <div class="form-group col">
                     <i class="fa fa-lightbulb-o"></i>
@@ -51,7 +51,7 @@
                 <div class="form-group col">
                     <i class="fa fa-envelope" aria-hidden="true"></i>
                     <label for="Email" class="form-label">Email</label>
-                    <input name="Email" class="form-control @error('Email') is-invalid @enderror mb-2" type="text" value="{{$mhs->user->email}}" disabled>
+                    <input name="Email" class="form-control @error('Email') is-invalid @enderror mb-2" type="text" value="{{$mhs->user->email}}">
                 </div>
                 <div class="form-group col">
                     <i class="fa fa-id-badge"></i>
@@ -63,7 +63,7 @@
                 <div class="form-group col">
                     <i class="fa fa-mobile" aria-hidden="true"></i>
                     <label for="PhoneNumber" class="form-label">Nomor HP</label>
-                    <input name="PhoneNumber" class="form-control @error('PhoneNumber') is-invalid @enderror mb-2" type="text" value="{{$mhs->user->phone_number}}" disabled>
+                    <input name="PhoneNumber" class="form-control @error('PhoneNumber') is-invalid @enderror mb-2" type="text" value="{{$mhs->user->phone_number}}">
                 </div>
                 <div class="form-group col">
                     <i class="fa fa-code-fork" aria-hidden="true"></i>

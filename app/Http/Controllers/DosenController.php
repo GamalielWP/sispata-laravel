@@ -66,9 +66,11 @@ class DosenController extends Controller
                 return $score;
             }
         })
-        ->addColumn('detail', function($user){
+        ->addColumn('detail', function($sempro){
+            $mhs = Mahasiswa::where('user_id', $sempro->mhs_user_id)->first();
+
             $btn = '
-                <a href="/dosen-pembimbing-1-edit/'.$user->id.'" class="fa fa-pencil btn-success btn-sm"></a>
+                <a href="/dosen-pembimbing-1-edit/'.$mhs->user_id.'" class="fa fa-pencil btn-success btn-sm"></a>
             ';
             return $btn;
         })
@@ -122,9 +124,11 @@ class DosenController extends Controller
                 return $score;
             }
         })
-        ->addColumn('detail', function($user){
+        ->addColumn('detail', function($sempro){
+            $mhs = Mahasiswa::where('user_id', $sempro->mhs_user_id)->first();
+
             $btn = '
-                <a href="/dosen-pembimbing-2-edit/'.$user->id.'" class="fa fa-pencil btn-success btn-sm"></a>
+                <a href="/dosen-pembimbing-2-edit/'.$mhs->user_id.'" class="fa fa-pencil btn-success btn-sm"></a>
             ';
             return $btn;
         })
@@ -338,6 +342,10 @@ class DosenController extends Controller
         $mhs = Mahasiswa::where('user_id', $id)->first();
         $file = $mhs->user_id.'-'.$mhs->nim.'-Berita-Acara'.'.pdf';
         $pdf = PDF::loadView('mahasiswa.berita-acara', compact('mhs'));
+
+        Sempro::where('mhs_user_id', $id)->update([
+            'news_doc' => 'doc/user/'.$file
+        ]);
 
         //hapus file sebelumnya
         if (File::exists('doc\user'.$file)) {

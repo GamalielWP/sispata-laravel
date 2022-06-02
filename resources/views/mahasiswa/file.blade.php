@@ -147,7 +147,7 @@
                                 <label for="BeritaAcara" class="form-label">
                                     Berita Acara <br>
                                     <img class="doc-icon mb-2" src="{{asset('img/icon/envelope.png')}}" alt="Berita Acara"> <br>
-                                    <a href="/mahasiswa-file-download/{{$mhs->user_id}}" class="btn btn-success">
+                                    <a href="/mahasiswa-file-download/{{$mhs->user_id}}" class="btn btn-outline-success">
                                         <i class="fa fa-cloud-download" aria-hidden="true"></i>
                                         Download
                                     </a>

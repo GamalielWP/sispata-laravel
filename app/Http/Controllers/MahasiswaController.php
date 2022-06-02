@@ -204,12 +204,16 @@ class MahasiswaController extends Controller
     {
         if ($request->NewPassword == null) {
             $validateData = $request->validate([
+                'Nim' => 'required|min:8',
+                'Nama' => 'required|min:3',
                 'Email' => 'required',
                 'PhoneNumber' => 'numeric',
                 'ProfilePhotos' => 'image|mimes:jpg,png,jpeg'
             ]);
         } else {
             $validateData = $request->validate([
+                'Nim' => 'required|min:8',
+                'Nama' => 'required|min:3',
                 'Email' => 'required',
                 'PhoneNumber' => 'numeric',
                 'ProfilePhotos' => 'image|mimes:jpg,png,jpeg',
@@ -223,8 +227,12 @@ class MahasiswaController extends Controller
 
         //save identitas
         User::where('id', $id)->update([
+            'name' => $validateData['Nama'],
             'email' => $validateData['Email'],
             'phone_number' => $validateData['PhoneNumber']
+        ]);
+        Mahasiswa::where('user_id', $id)->update([
+            'nim' => $validateData['Nim']
         ]);
 
         //cek upload foto profil tidak
@@ -290,6 +298,24 @@ class MahasiswaController extends Controller
             'date' => Carbon::now()->format('Y-m-d'),
             'time' => Carbon::now()->format('H:i:s')
         ]);
+
+        $mhs = Mahasiswa::where('user_id', $id)->first();
+
+        $file = [
+            'Form-Pendaftaran',
+            'Kartu-Studi-Mahasiswa',
+            'Lembar-Pengesahan',
+            'Proposal-TA1',
+            'Transkrip-Nilai-Sementara'
+        ];
+
+        //hapus berkas pendaftaran
+        foreach ($file as $fl) {
+            $namaFile = $mhs->user_id.'-'.$mhs->nim.'-'.$fl.'.pdf';
+            if (File::exists('doc/user/'.$namaFile)) {
+                File::delete('doc/user/'.$namaFile);
+            }
+        }
 
         return back()->with('pesan', "Pendaftaran berhasil dibatalkan.");
     }

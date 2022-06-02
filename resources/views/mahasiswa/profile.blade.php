@@ -20,7 +20,10 @@
                     <div class="form-group col">
                         <i class="fa fa-id-card" aria-hidden="true"></i>
                         <label for="Nim" class="form-label">NIM</label>
-                        <input name="Nim" class="form-control mb-2" type="text" value="{{$mhs->nim}}" disabled>
+                        <input name="Nim" class="form-control @error('Nim') is-invalid @enderror mb-2" type="text" value="{{$mhs->nim}}">
+                        @error('Nim')
+                            <span class="text-danger">{{$message}}</span>
+                        @enderror
                     </div>
                     <div class="form-group col">
                         <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -35,7 +38,10 @@
                     <div class="form-group col">
                         <i class="fa fa-id-badge" aria-hidden="true"></i>
                         <label for="Nama" class="form-label">Nama</label>
-                        <input name="Nama" class="form-control mb-2" type="text" value="{{$mhs->user->name}}" disabled>
+                        <input name="Nama" class="form-control @error('Nama') is-invalid @enderror mb-2" type="text" value="{{$mhs->user->name}}">
+                        @error('Nama')
+                            <span class="text-danger">{{$message}}</span>
+                        @enderror
                     </div>
                     <div class="form-group col">
                         <i class="fa fa-mobile" aria-hidden="true"></i>

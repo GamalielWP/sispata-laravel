@@ -13,10 +13,10 @@
                 <b style="color: {{$mhs->thesis_proposal != null ? 'green' : 'red'}}">&nbsp;&nbsp;
                   {{$mhs->thesis_proposal != null ? 'Terdaftar' : 'Belum Terdaftar'}}
                 </b>
-                {{-- @if ($mhs->thesis_proposal != null) --}}
+                @if ($mhs->thesis_proposal != null)
                   &nbsp;&nbsp;
                   <a href="/mahasiswa-file-cancel/{{$mhs->user_id}}" class="fa fa-times-circle btn btn-danger btn-sm"> Batalkan</a>
-                {{-- @endif --}}
+                @endif
               </h6>
               <p class="card-text">
                 <i class="fa fa-envelope mr-3" aria-hidden="true"> {{$mhs->user->email}}</i>

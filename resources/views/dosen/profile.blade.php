@@ -19,7 +19,7 @@
                     <div class="form-group col">
                         <i class="fa fa-id-card" aria-hidden="true"></i>
                         <label for="Nim" class="form-label">NIDN</label>
-                        <input name="Nim" class="form-control mb-2" type="text" value="{{$dsn->nidn}}" disabled>
+                        <input name="Nim" class="form-control mb-2" type="text" value="{{$dsn->nidn}}">
                     </div>
                     <div class="form-group col">
                         <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -34,7 +34,7 @@
                     <div class="form-group col">
                         <i class="fa fa-id-badge" aria-hidden="true"></i>
                         <label for="Nama" class="form-label">Nama</label>
-                        <input name="Nama" class="form-control mb-2" type="text" value="{{$dsn->user->name}}" disabled>
+                        <input name="Nama" class="form-control mb-2" type="text" value="{{$dsn->user->name}}">
                     </div>
                     <div class="form-group col">
                         <i class="fa fa-mobile" aria-hidden="true"></i>
@@ -49,7 +49,7 @@
                     <div class="form-group col">
                         <i class="fa fa-graduation-cap" aria-hidden="true"></i>
                         <label for="Prodi" class="form-label">Program Studi</label>
-                        <input name="Prodi" class="form-control mb-3" type="text" value="{{$dsn->user->prodi}}" disabled>
+                        <input name="Prodi" class="form-control mb-3" type="text" value="{{$dsn->user->prodi}}">
                     </div>
                     <div class="form-group col">
                         <i class="fa fa-home" aria-hidden="true"></i>
