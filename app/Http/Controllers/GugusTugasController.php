@@ -11,6 +11,7 @@ use App\User;
 use Yajra\Datatables\Datatables;
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\Hash;
 
 class GugusTugasController extends Controller
 {
@@ -179,6 +180,141 @@ class GugusTugasController extends Controller
     {
         $data = Auth::user();
         return view('gugusTugas.request', compact('data'));
+    }
+
+    public function listDosen()
+    {
+        $data = Auth::user();
+        return view('gugusTugas.list-dosen', compact('data'));
+    }
+
+    public function yajraIndexDosen()
+    {
+        $user = User::where('role', '!=', 'mahasiswa')->where('prodi', Auth::user()->prodi)->get();
+
+        return Datatables::of($user)
+        ->addColumn('nidn', function($user){
+            $dosen = Dosen::where('user_id', $user->id)->first();
+            return $dosen->nidn;
+        })
+        ->addColumn('lecturer_code', function($user){
+            $dosen = Dosen::where('user_id', $user->id)->first();
+            return $dosen->lecturer_code;
+        })
+        ->addColumn('role', function($user){
+            switch ($user->role) {
+                case 'pembimbing-penguji':
+                    $role = "Pembimbing - Penguji";
+                    return $role;
+                case 'gugus-tugas':
+                    $role = "Gugus Tugas";
+                    return $role;
+                case 'kelompok-keahlian':
+                    $role = "Ketua KK";
+                    return $role;
+                case 'kk-gg':
+                    $role = "Ketua KK - Gugus Tugas";
+                    return $role;
+            }
+        })
+        ->addColumn('action', function($user){
+            $btn = '
+                <a href="/gugus-tugas-edit-dosen/'.$user->id.'" class="fa fa-pencil btn-outline-success btn-sm"></a>'
+                ."|".
+                '<a href="/gugus-tugas-delete-dosen/'.$user->id.'" class="fa fa-trash btn-outline-danger btn-sm"></a>
+            ';
+            return $btn;
+        })
+        ->rawColumns(['nidn', 'role', 'lecturer_code','action'])
+        ->make(true);
+    }
+
+    public function addDosen(Request $request)
+    {
+        $request->validate([
+            'nidn' => 'required|numeric|unique:dosens',
+            'lecturer_code' => 'required|unique:dosens',
+            'Nama' => 'required|min:3',
+            'email' => 'required|unique:users',
+            'Phone' => 'required|numeric|min:11',
+            'Prodi' => 'required'
+        ]);
+
+        User::create([
+            'name' => $request->Nama,
+            'email' => $request->email,
+            'phone_number' => $request->Phone,
+            'prodi' => $request->Prodi,
+            'pfp' => "img/default-user.png",
+            'role' => "pembimbing-penguji",
+            'password' => Hash::make($request->nidn)
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        Dosen::create([
+            'user_id' => $user->id,
+            'nidn' => $request->nidn,
+            'lecturer_code' => $request->lecturer_code,
+            'address' => "Institut Teknologi Telkom Purwokerto Jl. DI Panjaitan No.128, Karangreja, Purwokerto Kidul, Kec. Purwokerto Sel., Kabupaten Banyumas, Jawa Tengah 53147 (0281) 641629"
+        ]);
+
+        return redirect('/gugus-tugas-list-dosen')->with('pesan', "Data berhasil ditambahkan.");
+    }
+
+    public function editDosen($id)
+    {
+        $data = Auth::user();
+        $dosen = Dosen::where('user_id', $id)->first();
+        $prodi = ["S1-Rekayasa Perangkat Lunak", "S1-Informatika", "S1-Sistem Informasi", "S1-Sains Data"];
+
+        return view('gugusTugas.edit-dosen', compact('data', 'dosen', 'prodi'));
+    }
+
+    public function updateDosen(Request $request, $id)
+    {
+        $request->validate([
+            'nidn' => 'required|numeric',
+            'lecturer_code' => 'required',
+            'Nama' => 'required|min:3',
+            'email' => 'required',
+            'Phone' => 'required|numeric|min:11',
+            'Prodi' => 'required',
+            'Role' => 'required'
+        ]);
+
+        User::findOrFail($id)->update([
+            'name' => $request->Nama,
+            'email' => $request->email,
+            'phone_number' => $request->Phone,
+            'prodi' => $request->Prodi,
+            'role' => $request->Role
+        ]);
+
+        Dosen::where('user_id', $id)->update([
+            'nidn' => $request->nidn,
+            'lecturer_code' => $request->lecturer_code,
+        ]);
+
+        return redirect('/gugus-tugas-list-dosen')->with('pesan', "Data berhasil diubah.");
+    }
+
+    public function deleteDosen($id)
+    {   $dosen = Dosen::where('user_id', $id)->first();
+
+        Sempro::where('adviser1_code', $dosen->lecturer_code)
+            ->orWhere('adviser2_code', $dosen->lecturer_code)
+            ->orWhere('examiner_code', $dosen->lecturer_code)
+            ->update([
+                'adviser1_code' => null,
+                'adviser2_code' => null,
+                'examiner_code' => null
+            ]);
+
+        Dosen::where('user_id', $id)->delete();
+        User::destroy($id);
+
+        return back();
     }
 
 }

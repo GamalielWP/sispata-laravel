@@ -38,12 +38,14 @@
         <div class="collapse {{
 
         'gugus-tugas-dashboard' == request()->path() ||
-        'gugus-tugas-request' == request()->path()
+        'gugus-tugas-request' == request()->path() ||
+        'gugus-tugas-list-dosen' == request()->path()
 
         ? 'show' : ''}}" id="collapse2">
 
             <li class="side-item ml-4"> <a href="/gugus-tugas-dashboard" class="nav-link {{'gugus-tugas-dashboard' == request()->path() ? 'active' : 'text-white'}}"> <i class="fa fa-dashboard"></i><span class="ms-2">Dashboard</span> </a> </li>
             <li class="side-item ml-4"> <a href="/gugus-tugas-request" class="nav-link {{'gugus-tugas-request' == request()->path() ? 'active' : 'text-white'}}"> <i class="fa fa-question-circle-o"></i><span class="ms-2">Request</span> </a> </li>
+            <li class="side-item ml-4"> <a href="/gugus-tugas-list-dosen" class="nav-link {{'gugus-tugas-list-dosen' == request()->path() ? 'active' : 'text-white'}}"> <i class="fa fa-users"></i><span class="ms-2">Daftar Dosen</span> </a> </li>
         
         </div>
 
@@ -113,12 +115,14 @@
         </a>
         <div class="collapse {{
         'gugus-tugas-dashboard' == request()->path() ||
-        'gugus-tugas-request' == request()->path()
+        'gugus-tugas-request' == request()->path() ||
+        'gugus-tugas-list-dosen' == request()->path()
         
         ? 'show' : ''}}" id="collapse2">
         
             <li class="side-item ml-4"> <a href="/gugus-tugas-dashboard" class="nav-link {{'gugus-tugas-dashboard' == request()->path() ? 'active' : 'text-white'}}"> <i class="fa fa-dashboard"></i><span class="ms-2">Dashboard</span> </a> </li>
             <li class="side-item ml-4"> <a href="/gugus-tugas-request" class="nav-link {{'gugus-tugas-request' == request()->path() ? 'active' : 'text-white'}}"> <i class="fa fa-question-circle-o"></i><span class="ms-2">Request</span> </a> </li>
+            <li class="side-item ml-4"> <a href="/gugus-tugas-list-dosen" class="nav-link {{'gugus-tugas-list-dosen' == request()->path() ? 'active' : 'text-white'}}"> <i class="fa fa-users"></i><span class="ms-2">Daftar Dosen</span> </a> </li>
         </div>
 
         {{-- Kelompok Keahlian Menu --}}

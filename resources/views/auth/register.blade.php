@@ -4,17 +4,16 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
+            <div class="card regis">
+                <div class="card-header">{{ __('Registrasi Mahasiswa') }}</div>
                 <div class="card-body">
                     <form method="POST" action="/register-up">
                         @csrf
 
-                        <div class="form-group row">
-                            <label for="Nim" class="col-md-4 col-form-label text-md-right">{{ __('NIM') }}</label>
+                        <div class="form-group">
+                            <label for="Nim" class="form-label">{{ __('NIM') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="">
                                 <input id="Nim" type="text" class="form-control @error('Nim') is-invalid @enderror" name="Nim" value="{{ old('Nim') }}" required autocomplete="Nim">
 
                                 @error('Nim')
@@ -25,10 +24,10 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="Nama" class="col-md-4 col-form-label text-md-right">{{ __('Nama') }}</label>
+                        <div class="form-group">
+                            <label for="Nama" class="form-label">{{ __('Nama') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="">
                                 <input id="Nama" type="text" class="form-control @error('Nama') is-invalid @enderror" name="Nama" value="{{ old('Nama') }}" required autocomplete="Nama">
 
                                 @error('Nama')
@@ -39,10 +38,10 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="Email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
+                        <div class="form-group">
+                            <label for="Email" class="form-label">{{ __('E-Mail') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="">
                                 <input id="Email" type="email" class="form-control @error('Email') is-invalid @enderror" name="Email" value="{{ old('Email') }}" required autocomplete="Email">
 
                                 @error('Email')
@@ -53,10 +52,10 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="Phone" class="col-md-4 col-form-label text-md-right">{{ __('Nomor HP') }}</label>
+                        <div class="form-group">
+                            <label for="Phone" class="form-label">{{ __('Nomor HP') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="">
                                 <input id="Phone" type="text" class="form-control @error('Phone') is-invalid @enderror" name="Phone" value="{{ old('Phone') }}" required autocomplete="Phone">
 
                                 @error('Phone')
@@ -67,10 +66,10 @@
                             </div>
                         </div>
                         
-                        <div class="form-group row">
-                            <label for="Prodi" class="col-md-4 col-form-label text-md-right">{{ __('Prodi') }}</label>
+                        <div class="form-group">
+                            <label for="Prodi" class="form-label">{{ __('Prodi') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="">
                                 <select name="Prodi" class="form-control @error('Prodi') is-invalid @enderror" required>
                                     <option value="S1-Rekayasa Perangkat Lunak">S1-Rekayasa Perangkat Lunak</option>
                                     <option value="S1-Informatika">S1-Informatika</option>
@@ -86,10 +85,10 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="NewPassword" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                        <div class="form-group">
+                            <label for="NewPassword" class="form-label">{{ __('Password') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="">
                                 <input id="NewPassword" type="password" class="form-control @error('NewPassword') is-invalid @enderror" name="NewPassword" required>
 
                                 @error('NewPassword')
@@ -100,10 +99,10 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="ConfirmPassword" class="col-md-4 col-form-label text-md-right">{{ __('Konfirmasi Password') }}</label>
+                        <div class="form-group">
+                            <label for="ConfirmPassword" class="form-label">{{ __('Konfirmasi Password') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="">
                                 <input id="ConfirmPassword" type="password" class="form-control @error('ConfirmPassword') is-invalid @enderror" name="ConfirmPassword" required>
 
                                 @error('ConfirmPassword')
@@ -114,14 +113,15 @@
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
+                        <div class="form-group">
+                            <div class="">
                                 <a href="/" class="btn btn-primary ">
-                                    
+                                    <i class="fa fa-undo" aria-hidden="true"></i>
                                     {{ __('Kembali') }}
                                 </a>
                                 <button type="submit" class="btn btn-success">
-                                    {{ __('Register') }}
+                                    <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                    {{ __('Daftar') }}
                                 </button>
                             </div>
                         </div>

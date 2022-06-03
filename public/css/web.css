@@ -35,3 +35,15 @@ body {
 .bg-brown {
     background-color: #2f210d;
 }
+
+.border-radius {
+    border-radius: 15px !important;
+}
+.border-top-radius {
+    border-top-right-radius: 15px !important;
+    border-top-left-radius: 15px !important;
+}
+.border-bottom-radius {
+    border-bottom-right-radius: 15px !important;
+    border-bottom-left-radius: 15px !important;
+}

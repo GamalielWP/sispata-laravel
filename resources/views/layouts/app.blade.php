@@ -26,6 +26,7 @@
     <!-- Custom CSS -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/register.css') }}" rel="stylesheet">
     <link href="{{ asset('css/sidebar.css') }}" rel="stylesheet">
     <link href="{{ asset('css/file.css') }}" rel="stylesheet">
     <link href="{{ asset('css/web.css') }}" rel="stylesheet">
@@ -39,7 +40,7 @@
     <div id="app">
         @if (session()->has('role'))
         <div class="py-6">
-            <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-young-brown" style="width: 13.15%; height: 1210px; float:left">
+            <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-young-brown" style="width: 13.15%; height: 1250px; float:left">
         
                 <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                     <img src="{{asset('img/fif.png')}}" width="20%" height="auto">
