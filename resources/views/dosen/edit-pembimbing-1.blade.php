@@ -16,7 +16,12 @@
                 <div class="form-group col">
                     <i class="fa fa-quote-right" aria-hidden="true"></i>
                     <label for="Judul" class="form-label">Judul</label>
-                    <input name="Judul" class="form-control mb-2" type="text" value="{{$sempro->title}}" disabled>
+                    <input name="Judul" class="form-control mb-2 @error('Judul') is-invalid @enderror" type="text" value="{{$sempro->title}}">
+                    @error('Judul')
+                        <span class="invalid-feedback" role="alert">
+                            {{ $message }}
+                        </span>
+                    @enderror
                 </div>
             </div>
             <div class="row">

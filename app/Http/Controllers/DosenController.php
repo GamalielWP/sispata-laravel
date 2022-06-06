@@ -330,7 +330,12 @@ class DosenController extends Controller
 
     public function updatePembimbing1(Request $request, $id)
     {
+        $request->validate([
+            'Judul' => 'min:20'
+        ]);
+        
         Sempro::where('mhs_user_id', $id)->update([
+            'title' => $request->Judul,
             'adviser1_score' => $request->Nilai
         ]);
 

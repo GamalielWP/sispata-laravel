@@ -16,14 +16,24 @@
                 <div class="form-group col">
                     <i class="fa fa-quote-right" aria-hidden="true"></i>
                     <label for="Judul" class="form-label">Judul</label>
-                    <input name="Judul" class="form-control mb-2" type="text" value="{{$sempro->title}}">
+                    <input name="Judul" class="form-control mb-2 @error('Judul') is-invalid @enderror" type="text" value="{{$sempro->title}}">
+                    @error('Judul')
+                        <span class="invalid-feedback" role="alert">
+                            {{ $message }}
+                        </span>
+                    @enderror
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col">
                     <i class="fa fa-id-card" aria-hidden="true"></i>
                     <label for="Nim" class="form-label">NIM</label>
-                    <input name="Nim" class="form-control mb-2" type="text" value="{{$mhs->nim}}">
+                    <input name="Nim" class="form-control mb-2 @error('Nim') is-invalid @enderror" type="text" value="{{$mhs->nim}}">
+                    @error('Nim')
+                        <span class="invalid-feedback" role="alert">
+                            {{ $message }}
+                        </span>
+                    @enderror
                 </div>
                 <div class="form-group col">
                     <i class="fa fa-lightbulb-o"></i>
@@ -35,7 +45,12 @@
                 <div class="form-group col">
                     <i class="fa fa-id-badge" aria-hidden="true"></i>
                     <label for="Nama" class="form-label">Nama</label>
-                    <input name="Nama" class="form-control mb-2" type="text" value="{{$mhs->user->name}}">
+                    <input name="Nama" class="form-control mb-2 @error('Nama') is-invalid @enderror" type="text" value="{{$mhs->user->name}}">
+                    @error('Nama')
+                        <span class="invalid-feedback" role="alert">
+                            {{ $message }}
+                        </span>
+                    @enderror
                 </div>
                 <div class="form-group col">
                     <i class="fa fa-lightbulb-o"></i>
@@ -52,6 +67,11 @@
                     <i class="fa fa-envelope" aria-hidden="true"></i>
                     <label for="Email" class="form-label">Email</label>
                     <input name="Email" class="form-control @error('Email') is-invalid @enderror mb-2" type="text" value="{{$mhs->user->email}}">
+                    @error('Email')
+                        <span class="invalid-feedback" role="alert">
+                            {{ $message }}
+                        </span>
+                    @enderror
                 </div>
                 <div class="form-group col">
                     <i class="fa fa-id-badge"></i>
@@ -64,6 +84,11 @@
                     <i class="fa fa-mobile" aria-hidden="true"></i>
                     <label for="PhoneNumber" class="form-label">Nomor HP</label>
                     <input name="PhoneNumber" class="form-control @error('PhoneNumber') is-invalid @enderror mb-2" type="text" value="{{$mhs->user->phone_number}}">
+                    @error('PhoneNumber')
+                        <span class="invalid-feedback" role="alert">
+                            {{ $message }}
+                        </span>
+                    @enderror
                 </div>
                 <div class="form-group col">
                     <i class="fa fa-code-fork" aria-hidden="true"></i>

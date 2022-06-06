@@ -154,6 +154,14 @@ class GugusTugasController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'Judul' => 'min:20',
+            'Nim' => 'required|min:8',
+            'Nama' => 'required|min:3',
+            'Email' => 'required',
+            'PhoneNumber' => 'numeric'
+        ]);
+
         $sempro = Sempro::where('mhs_user_id', $id)->first();
 
         if ($sempro->track == "Sedang diproses PENGUJI") {
@@ -162,8 +170,19 @@ class GugusTugasController extends Controller
             ]);
         } else {
             Sempro::where('mhs_user_id', $id)->update([
+                'title' => $request->Judul,
                 'scope_id' => $request->Bidang,
                 'track' => "Sedang diproses KELOMPOK KEAHLIAN"
+            ]);
+
+            Mahasiswa::where('user_id', $id)->update([
+                'nim' => $request->Nim
+            ]);
+
+            User::where('id', $id)->update([
+                'name' => $request->Nama,
+                'email' => $request->Email,
+                'phone_number' => $request->PhoneNumber
             ]);
         }
 
@@ -290,6 +309,8 @@ class GugusTugasController extends Controller
             'prodi' => $request->Prodi,
             'role' => $request->Role
         ]);
+
+        //PR cek htaccess, scope kk, bug
 
         Dosen::where('user_id', $id)->update([
             'nidn' => $request->nidn,
