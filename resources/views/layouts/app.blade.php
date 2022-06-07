@@ -110,12 +110,12 @@
             <main class="container-md py-3">
                 @yield('role')
                 @if (session()->has('pesan'))
-                    <div class="alert alert-success">
+                    <div class="alert alert-success border-radius">
                         <span>{{session()->get('pesan')}}</span>
                     </div>
                 @endif
                 @if (session()->has('error'))
-                    <div class="alert alert-danger">
+                    <div class="alert alert-danger border-radius">
                         <span>{{session()->get('error')}}</span>
                     </div>
                 @endif

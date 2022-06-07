@@ -5,12 +5,13 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card regis">
-                <div class="card-header">{{ __('Registrasi Mahasiswa') }}</div>
+                <div class="card-header bg-young-brown text-white">{{ __('Registrasi Mahasiswa') }}</div>
                 <div class="card-body">
                     <form method="POST" action="/register-up">
                         @csrf
 
                         <div class="form-group">
+                            <i class="fa fa-id-card" aria-hidden="true"></i>
                             <label for="Nim" class="form-label">{{ __('NIM') }}</label>
 
                             <div class="">
@@ -25,6 +26,7 @@
                         </div>
 
                         <div class="form-group">
+                            <i class="fa fa-id-badge" aria-hidden="true"></i>
                             <label for="Nama" class="form-label">{{ __('Nama') }}</label>
 
                             <div class="">
@@ -39,6 +41,7 @@
                         </div>
 
                         <div class="form-group">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
                             <label for="Email" class="form-label">{{ __('E-Mail') }}</label>
 
                             <div class="">
@@ -53,6 +56,7 @@
                         </div>
 
                         <div class="form-group">
+                            <i class="fa fa-mobile" aria-hidden="true"></i>
                             <label for="Phone" class="form-label">{{ __('Nomor HP') }}</label>
 
                             <div class="">
@@ -67,6 +71,7 @@
                         </div>
                         
                         <div class="form-group">
+                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
                             <label for="Prodi" class="form-label">{{ __('Prodi') }}</label>
 
                             <div class="">
@@ -86,6 +91,7 @@
                         </div>
 
                         <div class="form-group">
+                            <i class="fa fa-key" aria-hidden="true"></i>
                             <label for="NewPassword" class="form-label">{{ __('Password') }}</label>
 
                             <div class="">
@@ -100,6 +106,7 @@
                         </div>
 
                         <div class="form-group">
+                            <i class="fa fa-unlock-alt" aria-hidden="true"></i>
                             <label for="ConfirmPassword" class="form-label">{{ __('Konfirmasi Password') }}</label>
 
                             <div class="">
@@ -116,8 +123,8 @@
                         <div class="form-group">
                             <div class="">
                                 <a href="/" class="btn btn-primary ">
-                                    <i class="fa fa-undo" aria-hidden="true"></i>
-                                    {{ __('Kembali') }}
+                                    <i class="fa fa-sign-in" aria-hidden="true"></i>
+                                    {{ __('Login') }}
                                 </a>
                                 <button type="submit" class="btn btn-success">
                                     <i class="fa fa-file-text-o" aria-hidden="true"></i>

@@ -30,11 +30,11 @@
                             {{ __('Login') }}
                         </button>
                         @if (Route::has('password.request'))
-                            <a class="btn btn-link" href="{{ route('password.request') }}">
+                            <a class="center mt-2" href="{{ route('password.request') }}">
                                 {{ __('Lupa passwordnya?') }}
                             </a>
                         @endif
-                        <a class="btn btn-link" href="{{ route('register') }}">
+                        <a class="center mt-2" href="{{ route('register') }}">
                             {{ __('Baru pertama kali kesini?') }}
                         </a>
                     </div>
