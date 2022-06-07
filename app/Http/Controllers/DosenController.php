@@ -258,11 +258,11 @@ class DosenController extends Controller
             $namaFile = $user->id.'-'.$user->role.".".$extFile;
 
             //hapus foto profil sebelumnya
-            if (File::exists('img\pfp'.$namaFile)) {
-                File::delete('img\pfp'.$namaFile);
+            if (File::exists('img/pfp/'.$namaFile)) {
+                File::delete('img/pfp/'.$namaFile);
             }
 
-            $path = $validateData['ProfilePhotos']->move('img\pfp', $namaFile);
+            $path = $validateData['ProfilePhotos']->move('img/pfp', $namaFile);
     
             //simpan foto profil baru
             User::findOrFail($id)->update([
@@ -353,8 +353,8 @@ class DosenController extends Controller
         ]);
 
         //hapus file sebelumnya
-        if (File::exists('doc\user'.$file)) {
-            File::delete('doc\user'.$file);
+        if (File::exists('doc/user/'.$file)) {
+            File::delete('doc/user/'.$file);
         }
 
         return $pdf->save('doc/user/'.$file)->stream($file);

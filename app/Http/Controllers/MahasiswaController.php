@@ -84,11 +84,11 @@ class MahasiswaController extends Controller
             $namaFile = $mhs->user_id.'-'.$mhs->nim.'-Form-Pendaftaran'.".".$extFile;
 
             //hapus file sebelumnya
-            if (File::exists('doc\user'.$namaFile)) {
-                File::delete('doc\user'.$namaFile);
+            if (File::exists('doc/user/'.$namaFile)) {
+                File::delete('doc/user/'.$namaFile);
             }
 
-            $path = $validateData['Form']->move('doc\user',$namaFile);
+            $path = $validateData['Form']->move('doc/user',$namaFile);
             
             //simpan file baru
             Mahasiswa::where('user_id', $id)->update([
@@ -104,11 +104,11 @@ class MahasiswaController extends Controller
             $namaFile = $mhs->user_id.'-'.$mhs->nim.'-Kartu-Studi-Mahasiswa'.".".$extFile;
 
             //hapus file sebelumnya
-            if (File::exists('doc\user'.$namaFile)) {
-                File::delete('doc\user'.$namaFile);
+            if (File::exists('doc/user/'.$namaFile)) {
+                File::delete('doc/user/'.$namaFile);
             }
 
-            $path = $validateData['KSM']->move('doc\user',$namaFile);
+            $path = $validateData['KSM']->move('doc/user',$namaFile);
             
             //simpan file baru
             Mahasiswa::where('user_id', $id)->update([
@@ -124,11 +124,11 @@ class MahasiswaController extends Controller
             $namaFile = $mhs->user_id.'-'.$mhs->nim.'-Transkrip-Nilai-Sementara'.".".$extFile;
 
             //hapus file sebelumnya
-            if (File::exists('doc\user'.$namaFile)) {
-                File::delete('doc\user'.$namaFile);
+            if (File::exists('doc/user/'.$namaFile)) {
+                File::delete('doc/user/'.$namaFile);
             }
 
-            $path = $validateData['Transkrip']->move('doc\user',$namaFile);
+            $path = $validateData['Transkrip']->move('doc/user',$namaFile);
             
             //simpan file baru
             Mahasiswa::where('user_id', $id)->update([
@@ -144,11 +144,11 @@ class MahasiswaController extends Controller
             $namaFile = $mhs->user_id.'-'.$mhs->nim.'-Lembar-Pengesahan'.".".$extFile;
 
             //hapus file sebelumnya
-            if (File::exists('doc\user'.$namaFile)) {
-                File::delete('doc\user'.$namaFile);
+            if (File::exists('doc/user/'.$namaFile)) {
+                File::delete('doc/user/'.$namaFile);
             }
 
-            $path = $validateData['Pengesahan']->move('doc\user',$namaFile);
+            $path = $validateData['Pengesahan']->move('doc/user',$namaFile);
             
             //simpan file baru
             Mahasiswa::where('user_id', $id)->update([
@@ -164,11 +164,11 @@ class MahasiswaController extends Controller
             $namaFile = $mhs->user_id.'-'.$mhs->nim.'-Proposal-TA1'.".".$extFile;
 
             //hapus file sebelumnya
-            if (File::exists('doc\user'.$namaFile)) {
-                File::delete('doc\user'.$namaFile);
+            if (File::exists('doc/user/'.$namaFile)) {
+                File::delete('doc/user/'.$namaFile);
             }
 
-            $path = $validateData['Proposal']->move('doc\user',$namaFile);
+            $path = $validateData['Proposal']->move('doc/user',$namaFile);
             
             //simpan file baru
             Mahasiswa::where('user_id', $id)->update([
@@ -242,11 +242,11 @@ class MahasiswaController extends Controller
             $namaFile = $user->id.'-'.$user->role.".".$extFile;
 
             //hapus foto profil sebelumnya
-            if (File::exists('img\pfp'.$namaFile)) {
-                File::delete('img\pfp'.$namaFile);
+            if (File::exists('img/pfp/'.$namaFile)) {
+                File::delete('img/pfp/'.$namaFile);
             }
 
-            $path = $validateData['ProfilePhotos']->move('img\pfp',$namaFile);
+            $path = $validateData['ProfilePhotos']->move('img/pfp',$namaFile);
     
             //simpan foto profil baru
             User::findOrFail($id)->update([
