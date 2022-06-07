@@ -7,7 +7,7 @@
 @section('content')
     <div class="">
         <div class="row justify-content-center">
-            <div class="col space">
+            <div class="col">
                 <div class="card border-radius">
                     <div class="card-body">
                         <table class="table table-striped" id="data-tabel">

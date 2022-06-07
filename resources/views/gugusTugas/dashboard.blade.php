@@ -5,11 +5,8 @@
 @endsection
 
 @section('content')
-    <div class="box-2">
-        <div class="space">
-
-        </div>
-        <div class="container">
+    <div class="card border-radius">
+        <div class="card-body">
             <table class="table table-striped" id="data-tabel">
                 <thead>
                     <tr>

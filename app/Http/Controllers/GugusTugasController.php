@@ -39,7 +39,7 @@ class GugusTugasController extends Controller
         })
         ->addColumn('detail', function($user){
             $btn = '
-                <a href="/gugus-tugas-edit/'.$user->id.'" class="fa fa-pencil btn-success btn-sm"></a>
+                <a href="/gugus-tugas-edit/'.$user->id.'" class="fa fa-pencil btn-outline-success btn-sm"></a>
             ';
             return $btn;
         })

@@ -2,9 +2,9 @@
 
 @section('content')
 
-<div class="row mb-4">
+<div class="row">
     <div class="col">
-        <div class="card">
+        <div class="card border-radius">
             <div class="card-body">
               <img src="{{asset($mhs->user->pfp)}}" style="width: 10% !important; height: auto; float:left;" alt="Foto Profil" class="mr-2 img-style">
               <a href="/mahasiswa-profile" style="float: right" class="fa fa-pencil btn-success btn-sm"></a>

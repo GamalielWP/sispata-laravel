@@ -159,5 +159,44 @@ class UserSeeder extends Seeder
             'role' => 'kk-gg',
             'password' => Hash::make('1234')
         ]);
+
+
+        // DB::table('users')->insert([
+        //     'name' => 'Bu Gita',
+        //     'email' => 'gita@ittelkom-pwt.ac.id',
+        //     'phone_number' => '000000000000',
+        //     'prodi' => 'S1-Rekayasa Perangkat Lunak',
+        //     'pfp' => 'img/default-user.png',
+        //     'role' => 'pembimbing-penguji',
+        //     'password' => Hash::make('1234')
+        // ]);
+        // DB::table('users')->insert([
+        //     'name' => 'Pak Rifki',
+        //     'email' => 'rifki@ittelkom-pwt.ac.id',
+        //     'phone_number' => '000000000000',
+        //     'prodi' => 'S1-Rekayasa Perangkat Lunak',
+        //     'pfp' => 'img/default-user.png',
+        //     'role' => 'pembimbing-penguji',
+        //     'password' => Hash::make('1234')
+        // ]);
+        // DB::table('users')->insert([
+        //     'name' => 'Pak Adit',
+        //     'email' => 'aditya.wijayanto@ittelkom-pwt.ac.id',
+        //     'phone_number' => '000000000000',
+        //     'prodi' => 'S1-Rekayasa Perangkat Lunak',
+        //     'pfp' => 'img/default-user.png',
+        //     'role' => 'pembimbing-penguji',
+        //     'password' => Hash::make('1234')
+        // ]);
+        // DB::table('users')->insert([
+        //     'name' => 'Pak Faisal',
+        //     'email' => 'faisal@ittelkom-pwt.ac.id',
+        //     'phone_number' => '000000000000',
+        //     'prodi' => 'S1-Rekayasa Perangkat Lunak',
+        //     'pfp' => 'img/default-user.png',
+        //     'role' => 'pembimbing-penguji',
+        //     'password' => Hash::make('1234')
+        // ]);
+
     }
 }

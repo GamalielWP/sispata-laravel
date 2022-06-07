@@ -31,7 +31,10 @@
                 </tbody>
             </table>
         </div>
-    </div> 
+        <div class="space border-bottom-radius">
+        
+        </div>
+    </div>
 @endsection
 
 @section('table')

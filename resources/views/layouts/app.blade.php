@@ -40,12 +40,12 @@
     <div id="app">
         @if (session()->has('role'))
         <div class="py-6">
-            <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-young-brown" style="width: 13.15%; height: 1250px; float:left">
+            <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-young-brown" style="width: 18%; height: 1500px; float:left;">
         
-                <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <div class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                     <img src="{{asset('img/fif.png')}}" width="20%" height="auto">
                     <span class="fs-7 ml-1">Sistem Pendaftaran TA 1<br>Fakultas Informatika</span>
-                </a>
+                </div>
         
                 <span class="text-menu">Menu</span>
                 
@@ -106,20 +106,23 @@
         </nav>
         @endif
 
-        <main style="{{session()->has('role') ? 'margin-right: 15% !important' : ''}}" class="container py-4">
-            @yield('role')
-            @if (session()->has('pesan'))
-                <div class="alert alert-success">
-                    <span>{{session()->get('pesan')}}</span>
-                </div>
-            @endif
-            @if (session()->has('error'))
-                <div class="alert alert-danger">
-                    <span>{{session()->get('error')}}</span>
-                </div>
-            @endif
-            @yield('content')
-        </main>
+        <div style="{{session()->has('role') ? 'margin-left: 18%' : ''}}">
+            <main class="container-md py-3">
+                @yield('role')
+                @if (session()->has('pesan'))
+                    <div class="alert alert-success">
+                        <span>{{session()->get('pesan')}}</span>
+                    </div>
+                @endif
+                @if (session()->has('error'))
+                    <div class="alert alert-danger">
+                        <span>{{session()->get('error')}}</span>
+                    </div>
+                @endif
+                @yield('content')
+            </main>
+        </div>
+        
     </div>
     
     {{-- Bundle --}}

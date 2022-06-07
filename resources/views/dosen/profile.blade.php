@@ -1,7 +1,7 @@
 @extends('dosen.sidebar')
 
 @section('content')
-    <div class="card">
+    <div class="card border-radius">
         <div class="card-body">
             <form action="/dosen-profile-updated/{{$dsn->user_id}}" method="POST" enctype="multipart/form-data">
                 @csrf

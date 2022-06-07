@@ -1,7 +1,7 @@
 @extends('mahasiswa.sidebar')
 
 @section('content')
-    <div class="card">
+    <div class="card border-radius">
         <div class="card-body">
             <form action="/mahasiswa-profile-updated/{{Auth::user()->id}}" method="POST" enctype="multipart/form-data">
                 @csrf
