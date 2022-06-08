@@ -19,7 +19,7 @@ class CreateKetuaKKSTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->bigInteger('dosen_id')->unsigned();
             $table->foreign('dosen_id')->references('id')->on('dosens');
-            $table->bigInteger('scope_id')->unsigned();
+            $table->bigInteger('scope_id')->unsigned()->nullable();
             $table->foreign('scope_id')->references('id')->on('bidang_keahlians');
             $table->timestamps();
         });

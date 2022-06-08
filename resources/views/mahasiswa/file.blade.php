@@ -26,12 +26,11 @@
                     <div class="form-group col">
                         <i class="fa fa-lightbulb-o"></i>
                         <label for="Pembimbing1" class="form-label">Pembimbing-1</label>
-                        <input name="Pembimbing1" class="form-control {{$sempro->adviser1_code != null ? 'mb-3' : ''}}" list="dosen1" id="DataList" value="{{$sempro->adviser1_code !=null ? $sempro->adviser1_code : ''}}" placeholder="Ketik untuk mencari..." {{$sempro->adviser1_code != null ? 'disabled' : ''}}>
-                        <datalist id="dosen1">
+                        <select name="Pembimbing1" class="form-select {{$sempro->adviser1_code != null ? 'mb-3' : ''}}" aria-label="Pembimbing1 select" {{$sempro->adviser1_code != null ? 'disabled' : ''}}>
                             @foreach ($dosen as $dos)
-                                <option value="{{$dos->lecturer_code}}">{{$dos->user->name}}
+                                <option value="{{$dos->lecturer_code}}" {{$dos->lecturer_code == $sempro->adviser1_code ? 'selected' : ''}}>{{$dos->lecturer_code}} - {{$dos->user->name}}</option>
                             @endforeach
-                        </datalist>
+                        </select>
                         @if ($sempro->adviser1_code == null)
                             <span class="mb-3" style="color: red">* kode dosen hanya dapat diinputkan 1 kali.</span>
                         @endif
@@ -40,12 +39,11 @@
                     <div class="form-group col">
                         <i class="fa fa-lightbulb-o"></i>
                         <label for="Pembimbing2" class="form-label">Pembimbing-2</label>
-                        <input name="Pembimbing2" class="form-control {{$sempro->adviser2_code != null ? 'mb-3' : ''}}" list="dosen2" id="DataList" value="{{$sempro->adviser2_code !=null ? $sempro->adviser2_code : ''}}" placeholder="Ketik untuk mencari..." {{$sempro->adviser2_code != null ? 'disabled' : ''}}>
-                        <datalist id="dosen2">
+                        <select name="Pembimbing2" class="form-select {{$sempro->adviser2_code != null ? 'mb-3' : ''}}" aria-label="Pembimbing2 select" {{$sempro->adviser2_code != null ? 'disabled' : ''}}>
                             @foreach ($dosen as $dos)
-                                <option value="{{$dos->lecturer_code}}">{{$dos->user->name}}
+                                <option value="{{$dos->lecturer_code}}" {{$dos->lecturer_code == $sempro->adviser2_code ? 'selected' : ''}}>{{$dos->lecturer_code}} - {{$dos->user->name}}</option>
                             @endforeach
-                        </datalist>
+                        </select>
                         @if ($sempro->adviser2_code == null)
                             <span class="mb-3" style="color: red">* kode dosen hanya dapat diinputkan 1 kali.</span><br>
                             <span class="mb-3" style="color: red">* isi dengan kode dosen Pembimbing 1 jika anda hanya memilih satu pembimbing saja.</span>

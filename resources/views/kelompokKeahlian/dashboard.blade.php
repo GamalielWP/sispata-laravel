@@ -1,7 +1,7 @@
 @extends('dosen.sidebar')
 
 @section('role')
-    <h3 class="mb-3">Kelompok Keahlian {{$keahlian->scope}}</h3>
+    <h3 class="mb-3">Kelompok Keahlian {{$ketua->scope_id != null ? $keahlian->scope : '[Belum Dipilih]'}}</h3>
 @endsection
 
 @section('content')

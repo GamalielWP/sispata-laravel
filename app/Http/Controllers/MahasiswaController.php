@@ -55,25 +55,23 @@ class MahasiswaController extends Controller
         ]);
 
         $mhs = Mahasiswa::where('user_id', Auth::user()->id)->first();
+        $sempro = Sempro::where('mhs_user_id', Auth::user()->id)->first();
 
         Sempro::where('mhs_user_id', $id)->update([
-            'title' => $request->Judul
+            'title' => $request->Judul,
+            'schedule' => $request->Schedule
         ]);
 
-        if ($request->Pembimbing1 != null && Dosen::where('lecturer_code', $request->Pembimbing1)->first()) {
-            if (Dosen::where('lecturer_code', $request->Pembimbing2)->first()) {
-
-                Sempro::where('mhs_user_id', $id)->update([
-                    'adviser1_code' => $request->Pembimbing1,
-                    'adviser2_code' => $request->Pembimbing2
-                ]);
-
-            } else {
-                return back()->with('error', "Data gagal diubah.");
-            }
-            
+        if ($sempro->adviser1_code == null && $sempro->adviser2_code == null) {
+            Sempro::where('mhs_user_id', $id)->update([
+                'adviser1_code' => $request->Pembimbing1,
+                'adviser2_code' => $request->Pembimbing2
+            ]);
         } else {
-            return back()->with('error', "Data gagal diubah.");
+            Sempro::where('mhs_user_id', $id)->update([
+                'adviser1_code' => $sempro->adviser1_code,
+                'adviser2_code' => $sempro->adviser2_code
+            ]);
         }
         
 

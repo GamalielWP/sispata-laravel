@@ -47,6 +47,20 @@
                 </div>
                 <div class="row">
                     <div class="form-group col">
+                        <i class="fa fa-code-fork" aria-hidden="true"></i>
+                        <label for="Bidang" class="form-label">Bidang Keahlian</label>
+                        <select name="Bidang" class="form-select" aria-label="Scope select">
+                            @foreach ($bidang as $bd)
+                                <option value="{{$bd->id}}" {{$bd->id == $kk->scope_id ? 'selected' : ''}}>{{$bd->scope}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col">
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col">
                         <i class="fa fa-graduation-cap" aria-hidden="true"></i>
                         <label for="Prodi" class="form-label">Program Studi</label>
                         <input name="Prodi" class="form-control mb-3" type="text" value="{{$dsn->user->prodi}}">

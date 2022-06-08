@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="row">
+<div class="row mb-4">
     <div class="col">
         <div class="card border-radius">
             <div class="card-body">
@@ -62,7 +62,7 @@
 
   @if ($sempro->adviser1_code != null)
     <div class="col">
-      <div class="card">
+      <div class="card border-radius">
         <div class="card-body">
           <img src="{{asset($dosen1->user->pfp)}}" style="width: 10%; height: auto; float:left" alt="Foto Profil" class="mr-2 img-style">
           <h5 class="card-title">{{$dosen1->user->name}}</h5>
@@ -80,7 +80,7 @@
     
   @if ($sempro->adviser2_code != null && $sempro->adviser2_code != $sempro->adviser1_code)
     <div class="col">
-      <div class="card">
+      <div class="card border-radius">
         <div class="card-body">
           <img src="{{asset($dosen2->user->pfp)}}" style="width: 10%; height: auto; float:left" alt="Foto Profil" class="mr-2 img-style">
           <h5 class="card-title">{{$dosen2->user->name}}</h5>

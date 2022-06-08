@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\BidangKeahlian;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
 use App\Dosen;
+use App\KetuaKK;
 use App\Mahasiswa;
 use App\Sempro;
 use File;
@@ -213,8 +215,10 @@ class DosenController extends Controller
     {
         $data = Auth::user();
         $dsn = Dosen::where('user_id', $data->id)->first();
+        $kk = KetuaKK::where('user_id', $data->id)->first();
+        $bidang = BidangKeahlian::all();
 
-        return view('dosen.profile', compact('data', 'dsn'));
+        return view('dosen.profile', compact('data', 'dsn', 'kk', 'bidang'));
     }
 
     public function update_profile(Request $request, $id)
@@ -250,6 +254,12 @@ class DosenController extends Controller
         Dosen::where('user_id', $id)->update([
             'address' => $request->Alamat
         ]);
+
+        if (Auth::user()->role == 'kelompok-keahlian' || Auth::user()->role == 'kk-gg') {
+            KetuaKK::where('user_id', $id)->update([
+                'scope_id' => $request->Bidang
+            ]);
+        }
 
         //cek upload foto profil tidak
         if ($request->hasFile('ProfilePhotos')) {

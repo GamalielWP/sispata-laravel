@@ -28,12 +28,11 @@
                 <div class="form-group col">
                     <i class="fa fa-lightbulb-o"></i>
                     <label for="Pembimbing1" class="form-label">Pembimbing 1</label>
-                    <input name="Pembimbing1" class="form-control mb-3" list="dosen1" id="DataList" type="text" value="{{$sempro->adviser1_code !=null ? $sempro->adviser1_code : ''}}" placeholder="Ketik untuk mencari...">
-                    <datalist id="dosen1">
+                    <select name="Pembimbing1" class="form-select {{$sempro->adviser1_code != null ? 'mb-3' : ''}}" aria-label="Pembimbing1 select">
                         @foreach ($dosen as $dos)
-                            <option value="{{$dos->lecturer_code}}">{{$dos->user->name}}
+                            <option value="{{$dos->lecturer_code}}" {{$dos->lecturer_code == $sempro->adviser1_code ? 'selected' : ''}}>{{$dos->lecturer_code}} - {{$dos->user->name}}</option>
                         @endforeach
-                    </datalist>
+                    </select>
                 </div>
             </div>
             <div class="row">
@@ -45,12 +44,11 @@
                 <div class="form-group col">
                     <i class="fa fa-lightbulb-o"></i>
                     <label for="Pembimbing2" class="form-label">Pembimbing 2</label>
-                    <input name="Pembimbing2" class="form-control" list="dosen2" id="DataList" type="text" value="{{$sempro->adviser2_code !=null ? $sempro->adviser2_code : ''}}" placeholder="Ketik untuk mencari...">
-                    <datalist id="dosen2">
+                    <select name="Pembimbing2" class="form-select" aria-label="Pembimbing2 select">
                         @foreach ($dosen as $dos)
-                            <option value="{{$dos->lecturer_code}}">{{$dos->user->name}}
+                            <option value="{{$dos->lecturer_code}}" {{$dos->lecturer_code == $sempro->adviser2_code ? 'selected' : ''}}>{{$dos->lecturer_code}} - {{$dos->user->name}}</option>
                         @endforeach
-                    </datalist>
+                    </select>
                     <span class="mb-3" style="color: red">* isi dengan kode dosen Pembimbing 1 jika anda hanya memilih satu pembimbing saja.</span>
                 </div>
             </div>
@@ -63,12 +61,11 @@
                 <div class="form-group col">
                     <i class="fa fa-id-badge"></i>
                     <label for="Penguji" class="form-label">Penguji</label>
-                    <input name="Penguji" class="form-control mb-3" list="dosen3" id="DataList" type="text" value="{{$sempro->examiner_code !=null ? $sempro->examiner_code : ''}}" placeholder="Ketik untuk mencari...">
-                    <datalist id="dosen3">
+                    <select name="Penguji" class="form-select" aria-label="Penguji select">
                         @foreach ($dosen as $dos)
-                            <option value="{{$dos->lecturer_code}}">{{$dos->user->name}}
+                            <option value="{{$dos->lecturer_code}}" {{$dos->lecturer_code == $sempro->examiner_code ? 'selected' : ''}}>{{$dos->lecturer_code}} - {{$dos->user->name}}</option>
                         @endforeach
-                    </datalist>
+                    </select>
                 </div>
             </div>
             <div class="row">

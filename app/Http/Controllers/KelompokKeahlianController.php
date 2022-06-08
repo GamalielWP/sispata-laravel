@@ -68,9 +68,11 @@ class KelompokKeahlianController extends Controller
                 return $file;
             }   
         })
-        ->addColumn('detail', function($user){
+        ->addColumn('detail', function($sempro){
+            $mhs = Mahasiswa::where('user_id', $sempro->mhs_user_id)->first();
+
             $btn = '
-                <a href="/kelompok-keahlian-edit/'.$user->id.'" class="fa fa-pencil btn-success btn-sm"></a>
+                <a href="/kelompok-keahlian-edit/'.$mhs->user_id.'" class="fa fa-pencil btn-outline-success btn-sm"></a>
             ';
             return $btn;
         })
@@ -124,12 +126,6 @@ class KelompokKeahlianController extends Controller
         $ketua = KetuaKK::where('user_id', $data->id)->first();
         $keahlian = BidangKeahlian::where('id', $ketua->scope_id)->first();
         
-        return view('kelompokKeahlian.dashboard', compact('data', 'keahlian'));
-    }
-
-    public function akun()
-    {
-        $data = Auth::user();
-        return view('kelompokKeahlian.akun', compact('data'));
+        return view('kelompokKeahlian.dashboard', compact('data', 'ketua', 'keahlian'));
     }
 }

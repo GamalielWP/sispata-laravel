@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\BidangKeahlian;
 use App\Dosen;
+use App\KetuaKK;
 use App\Mahasiswa;
 use App\Registrasi;
 use App\Sempro;
@@ -310,14 +311,48 @@ class GugusTugasController extends Controller
             'role' => $request->Role
         ]);
 
-        //PR cek htaccess, scope kk, bug
-
         Dosen::where('user_id', $id)->update([
             'nidn' => $request->nidn,
             'lecturer_code' => $request->lecturer_code,
         ]);
 
-        return redirect('/gugus-tugas-list-dosen')->with('pesan', "Data berhasil diubah.");
+        $dosen = Dosen::where('user_id', $id)->first();
+        $kk = KetuaKK::where('user_id', $id)->exists();
+
+        if ($request->Role == 'kelompok-keahlian' || $request->Role == 'kk-gg') {
+            if (!$kk) {
+                KetuaKK::create([
+                    'user_id' => $id,
+                    'dosen_id' => $dosen->id,
+                    'scope_id' => null
+                ]);
+            }
+        } else {
+            if ($kk) {
+                KetuaKK::where('user_id', $id)->delete();
+            }
+        }
+
+        //return sesuai role
+        $user = User::where('id', Auth::user()->id)->first();
+
+        switch ($user->role) {
+            case 'gugus-tugas':
+                return redirect('/gugus-tugas-list-dosen')->with('pesan', "Data berhasil diubah.");
+                break;
+
+            case 'kelompok-keahlian':
+                return redirect('/kelompok-keahlian-dashboard')->with('pesan', "Data berhasil diubah.");
+                break;
+
+            case 'kk-gg':
+                return redirect('/kelompok-keahlian-dashboard')->with('pesan', "Data berhasil diubah.");
+                break;
+
+            case 'pembimbing-penguji':
+                return redirect('/dosen-pembimbing-1')->with('pesan', "Data berhasil diubah.");
+                break;
+        }
     }
 
     public function deleteDosen($id)
