@@ -25,5 +25,9 @@ class Sempro extends Model
     {
         return $this->belongsTo('App\BidangKeahlian');
     }
+    public function score()
+    {
+        return $this->belongsTo('App\Score');
+    }
 
 }

@@ -7,6 +7,7 @@ use App\Dosen;
 use Illuminate\Http\Request;
 use Auth;
 use App\Mahasiswa;
+use App\Score;
 use App\Sempro;
 use App\User;
 use File;
@@ -25,13 +26,23 @@ class MahasiswaController extends Controller
     {
         $mhs = Mahasiswa::where('user_id', Auth::user()->id)->first();
         $sempro = Sempro::where('mhs_user_id', Auth::user()->id)->first();
+
         $dosen1 = Dosen::where('lecturer_code', $sempro->adviser1_code)->first();
         $dosen2 = Dosen::where('lecturer_code', $sempro->adviser2_code)->first();
         $dosen3 = Dosen::where('lecturer_code', $sempro->examiner_code)->first();
 
         $jadwal = Carbon::parse($sempro->schedule)->translatedFormat('l, d F Y');
+        $record = Score::where('mhs_user_id', Auth::user()->id);
 
-        return view('mahasiswa.dashboard', compact('mhs', 'sempro', 'dosen1', 'dosen2', 'dosen3', 'jadwal'));
+        if ($record->exists()) {
+            $score1 = Score::where('mhs_user_id', Auth::user()->id)->where('dsn_user_id', $dosen1->id)->first();
+            $score2 = Score::where('mhs_user_id', Auth::user()->id)->where('dsn_user_id', $dosen2->id)->first();
+            $score3 = Score::where('mhs_user_id', Auth::user()->id)->where('dsn_user_id', $dosen3->id)->first();
+
+            return view('mahasiswa.dashboard', compact('mhs', 'sempro', 'dosen1', 'dosen2', 'dosen3', 'jadwal', 'score1', 'score2', 'score3'));
+        } else {
+            return view('mahasiswa.dashboard', compact('mhs', 'sempro', 'dosen1', 'dosen2', 'dosen3', 'jadwal'));
+        }
     }
 
     public function file()
@@ -67,13 +78,7 @@ class MahasiswaController extends Controller
                 'adviser1_code' => $request->Pembimbing1,
                 'adviser2_code' => $request->Pembimbing2
             ]);
-        } else {
-            Sempro::where('mhs_user_id', $id)->update([
-                'adviser1_code' => $sempro->adviser1_code,
-                'adviser2_code' => $sempro->adviser2_code
-            ]);
         }
-        
 
         //form pendaftaran
         if ($request->hasFile('Form')) {

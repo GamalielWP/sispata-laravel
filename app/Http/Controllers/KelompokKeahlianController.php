@@ -6,6 +6,7 @@ use App\BidangKeahlian;
 use App\Dosen;
 use App\KetuaKK;
 use App\Mahasiswa;
+use App\Score;
 use App\Sempro;
 use App\User;
 use Illuminate\Http\Request;
@@ -92,32 +93,38 @@ class KelompokKeahlianController extends Controller
 
     public function update(Request $request, $id)
     {
-        if ($request->Pembimbing1 != null &&
-            Dosen::where('lecturer_code', $request->Pembimbing1)->first() &&
-            Dosen::where('lecturer_code', $request->Pembimbing2)->first() &&
-            Dosen::where('lecturer_code', $request->Penguji)->first()
-        ) {
-            $sempro = Sempro::where('mhs_user_id', $id)->first();
-
-            if ($sempro->adviser2_code == $sempro->adviser1_code) {
-                Sempro::where('mhs_user_id', $id)->update([
-                    'adviser1_code' => $request->Pembimbing1,
-                    'examiner_code' => $request->Penguji,
-                    'track' => "Sedang diproses PENGUJI"
-                ]);
-            } else {
-                Sempro::where('mhs_user_id', $id)->update([
-                    'adviser1_code' => $request->Pembimbing1,
-                    'adviser2_code' => $request->Pembimbing2,
-                    'examiner_code' => $request->Penguji,
-                    'track' => "Sedang diproses PENGUJI"
-                ]);
-            }
-
-            return redirect('/kelompok-keahlian-dashboard');
-        } else {
-            return back()->with('error', "Data gagal diubah.");
+        if (Score::where('mhs_user_id', $id)->exists()) {
+            Score::where('mhs_user_id', $id)->delete();
         }
+
+        Sempro::where('mhs_user_id', $id)->update([
+            'adviser1_code' => $request->Pembimbing1,
+            'adviser2_code' => $request->Pembimbing2,
+            'examiner_code' => $request->Penguji,
+            'track' => "Sedang diproses PENGUJI"
+        ]);
+
+        $adviser1 = Dosen::where('lecturer_code', $request->Pembimbing1)->first();
+        Score::create([
+            'mhs_user_id' => $id,
+            'dsn_user_id' => $adviser1->user_id
+        ]);
+
+        if ($request->Pembimbing1 != $request->Pembimbing2) {
+            $adviser2 = Dosen::where('lecturer_code', $request->Pembimbing2)->first();
+            Score::create([
+                'mhs_user_id' => $id,
+                'dsn_user_id' => $adviser2->user_id
+            ]);
+        }
+
+        $examiner = Dosen::where('lecturer_code', $request->Penguji)->first();
+        Score::create([
+            'mhs_user_id' => $id,
+            'dsn_user_id' => $examiner->user_id
+        ]);
+
+        return redirect('/kelompok-keahlian-dashboard');
     }
 
     public function index()

@@ -78,9 +78,42 @@
             </div>
             <div class="row">
                 <div class="form-group col">
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <label for="Nilai" class="form-label">Nilai</label>
-                    <input name="Nilai" class="form-control mb-3" type="number" min="0" max="100" value="{{$sempro->adviser1_score !=null ? $sempro->adviser1_score : '0'}}">
+                    <a class="btn btn-outline-success" data-bs-toggle="collapse" href="#score-collapse">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        Nilai
+                    </a>
+                    <div class="collapse" id="score-collapse">
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="Ide" class="form-label">Ide dan Rumusan Masalah</label>
+                                <input name="Ide" class="form-control mb-3" type="number" min="0" max="20" value="{{$sempro->adviser1_score !=null ? $score->ide : '0'}}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="Solusi" class="form-label">Teknik Solusi</label>
+                                <input name="Solusi" class="form-control mb-3" type="number" min="0" max="20" value="{{$sempro->adviser1_score !=null ? $score->solusi : '0'}}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="Analisa" class="form-label">Analisa dan Penarikan simpulan</label>
+                                <input name="Analisa" class="form-control mb-3" type="number" min="0" max="20" value="{{$sempro->adviser1_score !=null ? $score->analisa : '0'}}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="Penulisan" class="form-label">Tata Tulis Proposal</label>
+                                <input name="Penulisan" class="form-control mb-3" type="number" min="0" max="20" value="{{$sempro->adviser1_score !=null ? $score->penulisan : '0'}}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group ">
+                                <label for="Kemandirian" class="form-label">Kemandirian</label>
+                                <input name="Kemandirian" class="form-control mb-3" type="number" min="0" max="20" value="{{$sempro->adviser1_score !=null ? $score->kemandirian_presentasi : '0'}}">
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group col">
                     <i class="fa fa-file-text" aria-hidden="true"></i>

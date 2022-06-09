@@ -9,6 +9,7 @@ use App\User;
 use App\Dosen;
 use App\KetuaKK;
 use App\Mahasiswa;
+use App\Score;
 use App\Sempro;
 use File;
 use PDF;
@@ -184,9 +185,9 @@ class DosenController extends Controller
                 return $score;
             }
         })
-        ->addColumn('detail', function($user){
+        ->addColumn('detail', function($sempro){
             $btn = '
-                <a href="/dosen-penguji-edit/'.$user->id.'" class="fa fa-pencil btn-success btn-sm"></a>
+                <a href="/dosen-penguji-edit/'.$sempro->mhs_user_id.'" class="fa fa-pencil btn-success btn-sm"></a>
             ';
             return $btn;
         })
@@ -306,36 +307,39 @@ class DosenController extends Controller
         $data = Auth::user();
         $mhs = Mahasiswa::where('user_id', $id)->first();
         $sempro = Sempro::where('mhs_user_id', $id)->first();
+        $score = Score::where('mhs_user_id', $id)->where('dsn_user_id', Auth::user()->id)->first();
 
         $dosen1 = Dosen::where('lecturer_code', $sempro->adviser1_code)->first();
         $dosen2 = Dosen::where('lecturer_code', $sempro->adviser2_code)->first();
         $dosen3 = Dosen::where('lecturer_code', $sempro->examiner_code)->first();
 
-        return view('dosen.edit-pembimbing-1', compact('data', 'mhs', 'sempro', 'dosen1', 'dosen2', 'dosen3'));
+        return view('dosen.edit-pembimbing-1', compact('data', 'mhs', 'score', 'sempro', 'dosen1', 'dosen2', 'dosen3'));
     }
     public function editPembimbing2($id)
     {
         $data = Auth::user();
         $mhs = Mahasiswa::where('user_id', $id)->first();
         $sempro = Sempro::where('mhs_user_id', $id)->first();
+        $score = Score::where('mhs_user_id', $id)->where('dsn_user_id', Auth::user()->id)->first();
 
         $dosen1 = Dosen::where('lecturer_code', $sempro->adviser1_code)->first();
         $dosen2 = Dosen::where('lecturer_code', $sempro->adviser2_code)->first();
         $dosen3 = Dosen::where('lecturer_code', $sempro->examiner_code)->first();
 
-        return view('dosen.edit-pembimbing-2', compact('data', 'mhs', 'sempro', 'dosen1', 'dosen2', 'dosen3'));
+        return view('dosen.edit-pembimbing-2', compact('data', 'mhs', 'score', 'sempro', 'dosen1', 'dosen2', 'dosen3'));
     }
     public function editPenguji($id)
     {
         $data = Auth::user();
         $mhs = Mahasiswa::where('user_id', $id)->first();
         $sempro = Sempro::where('mhs_user_id', $id)->first();
+        $score = Score::where('mhs_user_id', $id)->where('dsn_user_id', Auth::user()->id)->first();
 
         $dosen1 = Dosen::where('lecturer_code', $sempro->adviser1_code)->first();
         $dosen2 = Dosen::where('lecturer_code', $sempro->adviser2_code)->first();
         $dosen3 = Dosen::where('lecturer_code', $sempro->examiner_code)->first();
 
-        return view('dosen.edit-penguji', compact('data', 'mhs', 'sempro', 'dosen1', 'dosen2', 'dosen3'));
+        return view('dosen.edit-penguji', compact('data', 'mhs', 'score', 'sempro', 'dosen1', 'dosen2', 'dosen3'));
     }
 
     public function updatePembimbing1(Request $request, $id)
@@ -343,10 +347,26 @@ class DosenController extends Controller
         $request->validate([
             'Judul' => 'min:20'
         ]);
+
+        $score = Score::where('mhs_user_id', $id)->where('dsn_user_id', Auth::user()->id);
+
+        if ($score->exists()) {
+            $score->update([
+                'ide' => $request->Ide,
+                'solusi' => $request->Solusi,
+                'analisa' => $request->Analisa,
+                'penulisan' => $request->Penulisan,
+                'kemandirian_presentasi' => $request->Kemandirian
+            ]);
+
+            $record = $score->first();
+            Sempro::where('mhs_user_id', $id)->update([
+                'adviser1_score' => $record->id
+            ]);
+        }
         
         Sempro::where('mhs_user_id', $id)->update([
-            'title' => $request->Judul,
-            'adviser1_score' => $request->Nilai
+            'title' => $request->Judul
         ]);
 
         return redirect('/dosen-pembimbing-1');
@@ -372,18 +392,44 @@ class DosenController extends Controller
 
     public function updatePembimbing2(Request $request, $id)
     {
-        Sempro::where('mhs_user_id', $id)->update([
-            'adviser2_score' => $request->Nilai
-        ]);
+        $score = Score::where('mhs_user_id', $id)->where('dsn_user_id', Auth::user()->id);
+
+        if ($score->exists()) {
+            $score->update([
+                'ide' => $request->Ide,
+                'solusi' => $request->Solusi,
+                'analisa' => $request->Analisa,
+                'penulisan' => $request->Penulisan,
+                'kemandirian_presentasi' => $request->Kemandirian
+            ]);
+
+            $record = $score->first();
+            Sempro::where('mhs_user_id', $id)->update([
+                'adviser2_score' => $record->id
+            ]);
+        }
 
         return redirect('/dosen-pembimbing-2');
     }
 
     public function updatePenguji(Request $request, $id)
     {
-        Sempro::where('mhs_user_id', $id)->update([
-            'examiner_score' => $request->Nilai
-        ]);
+        $score = Score::where('mhs_user_id', $id)->where('dsn_user_id', Auth::user()->id);
+
+        if ($score->exists()) {
+            $score->update([
+                'ide' => $request->Ide,
+                'solusi' => $request->Solusi,
+                'analisa' => $request->Analisa,
+                'penulisan' => $request->Penulisan,
+                'kemandirian_presentasi' => $request->Presentasi
+            ]);
+
+            $record = $score->first();
+            Sempro::where('mhs_user_id', $id)->update([
+                'examiner_score' => $record->id
+            ]);
+        }
 
         return redirect('/dosen-penguji');
     }

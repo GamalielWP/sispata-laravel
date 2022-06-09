@@ -24,9 +24,12 @@ class CreateSemprosTable extends Migration
             $table->string('adviser2_code')->nullable();
             $table->string('examiner_code')->nullable();
             $table->date('schedule')->nullable();
-            $table->integer('adviser1_score')->nullable();
-            $table->integer('adviser2_score')->nullable();
-            $table->integer('examiner_score')->nullable();
+            $table->bigInteger('adviser1_score')->unsigned()->nullable();
+            $table->foreign('adviser1_score')->references('id')->on('scores');
+            $table->bigInteger('adviser2_score')->unsigned()->nullable();
+            $table->foreign('adviser2_score')->references('id')->on('scores');
+            $table->bigInteger('examiner_score')->unsigned()->nullable();
+            $table->foreign('examiner_score')->references('id')->on('scores');
             $table->string('news_doc')->nullable();
             $table->string('track')->nullable();
             $table->timestamps();

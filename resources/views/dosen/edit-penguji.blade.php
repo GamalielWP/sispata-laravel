@@ -73,9 +73,42 @@
             </div>
             <div class="row">
                 <div class="form-group col">
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <label for="Nilai" class="form-label">Nilai</label>
-                    <input name="Nilai" class="form-control mb-3" type="number" min="0" max="100" value="{{$sempro->examiner_score !=null ? $sempro->examiner_score : '0'}}">
+                    <a class="btn btn-outline-success" data-bs-toggle="collapse" href="#score-collapse">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        Nilai
+                    </a>
+                    <div class="collapse" id="score-collapse">
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="Ide" class="form-label">Ide dan Rumusan Masalah</label>
+                                <input name="Ide" class="form-control mb-3" type="number" min="0" max="15" value="{{$sempro->examiner_score !=null ? $score->ide : '0'}}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="Solusi" class="form-label">Teknik Solusi</label>
+                                <input name="Solusi" class="form-control mb-3" type="number" min="0" max="25" value="{{$sempro->examiner_score !=null ? $score->solusi : '0'}}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="Analisa" class="form-label">Analisa dan Penarikan simpulan</label>
+                                <input name="Analisa" class="form-control mb-3" type="number" min="0" max="15" value="{{$sempro->examiner_score !=null ? $score->analisa : '0'}}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="Penulisan" class="form-label">Tata Tulis Proposal</label>
+                                <input name="Penulisan" class="form-control mb-3" type="number" min="0" max="20" value="{{$sempro->examiner_score !=null ? $score->penulisan : '0'}}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group ">
+                                <label for="Presentasi" class="form-label">Presentasi dan <i>Handling</i> Question</label>
+                                <input name="Presentasi" class="form-control mb-3" type="number" min="0" max="25" value="{{$sempro->examiner_score !=null ? $score->kemandirian_presentasi : '0'}}">
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col"></div>
             </div>
