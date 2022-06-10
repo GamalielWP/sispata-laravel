@@ -117,7 +117,7 @@
                 <i class="fa fa-floppy-o" aria-hidden="true"></i>
                 Simpan
             </button>
-            <a href="/dosen-pembimbing-1" class="btn btn-primary">
+            <a href="/dosen-pembimbing-2" class="btn btn-primary">
                 <i class="fa fa-lightbulb-o"></i>
                 Kembali
             </a>

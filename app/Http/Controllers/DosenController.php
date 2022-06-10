@@ -62,10 +62,11 @@ class DosenController extends Controller
         })
         ->editColumn('score', function($sempro){
             if ($sempro->adviser1_score != null) {
-                $sempro->adviser1_score;
-                return $sempro->adviser1_score;
+                $score = Score::where('mhs_user_id', $sempro->mhs_user_id)->where('dsn_user_id', Auth::user()->id)->first();
+                $nilai = $score->ide + $score->solusi + $score->analisa + $score->penulisan + $score->kemandirian_presentasi;
+                return $nilai;
             } else {
-                $score = 0;
+                $score = "Belum dinilai";
                 return $score;
             }
         })
@@ -73,7 +74,7 @@ class DosenController extends Controller
             $mhs = Mahasiswa::where('user_id', $sempro->mhs_user_id)->first();
 
             $btn = '
-                <a href="/dosen-pembimbing-1-edit/'.$mhs->user_id.'" class="fa fa-pencil btn-success btn-sm"></a>
+                <a href="/dosen-pembimbing-1-edit/'.$mhs->user_id.'" class="fa fa-pencil btn-outline-success btn-sm"></a>
             ';
             return $btn;
         })
@@ -120,10 +121,11 @@ class DosenController extends Controller
         })
         ->editColumn('score', function($sempro){
             if ($sempro->adviser2_score != null) {
-                $sempro->adviser2_score;
-                return $sempro->adviser2_score;
+                $score = Score::where('mhs_user_id', $sempro->mhs_user_id)->where('dsn_user_id', Auth::user()->id)->first();
+                $nilai = $score->ide + $score->solusi + $score->analisa + $score->penulisan + $score->kemandirian_presentasi;
+                return $nilai;
             } else {
-                $score = 0;
+                $score = "Belum dinilai";
                 return $score;
             }
         })
@@ -131,7 +133,7 @@ class DosenController extends Controller
             $mhs = Mahasiswa::where('user_id', $sempro->mhs_user_id)->first();
 
             $btn = '
-                <a href="/dosen-pembimbing-2-edit/'.$mhs->user_id.'" class="fa fa-pencil btn-success btn-sm"></a>
+                <a href="/dosen-pembimbing-2-edit/'.$mhs->user_id.'" class="fa fa-pencil btn-outline-success btn-sm"></a>
             ';
             return $btn;
         })
@@ -178,16 +180,17 @@ class DosenController extends Controller
         })
         ->editColumn('score', function($sempro){
             if ($sempro->examiner_score != null) {
-                $sempro->examiner_score;
-                return $sempro->examiner_score;
+                $score = Score::where('mhs_user_id', $sempro->mhs_user_id)->where('dsn_user_id', Auth::user()->id)->first();
+                $nilai = $score->ide + $score->solusi + $score->analisa + $score->penulisan + $score->kemandirian_presentasi;
+                return $nilai;
             } else {
-                $score = 0;
+                $score = "Belum dinilai";
                 return $score;
             }
         })
         ->addColumn('detail', function($sempro){
             $btn = '
-                <a href="/dosen-penguji-edit/'.$sempro->mhs_user_id.'" class="fa fa-pencil btn-success btn-sm"></a>
+                <a href="/dosen-penguji-edit/'.$sempro->mhs_user_id.'" class="fa fa-pencil btn-outline-success btn-sm"></a>
             ';
             return $btn;
         })

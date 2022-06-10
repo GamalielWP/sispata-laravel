@@ -58,6 +58,8 @@ class MahasiswaController extends Controller
     {
         $validateData = $request->validate([
             'Judul' => 'min:20',
+            'Pembimbing1' => 'required',
+            'Pembimbing2' => 'required',
             'Form' => 'required|mimes:pdf|max:1000',
             'KSM' => 'required|mimes:pdf|max:1000',
             'Transkrip' => 'required|mimes:pdf|max:1000',

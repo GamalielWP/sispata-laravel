@@ -94,6 +94,7 @@
                     <i class="fa fa-code-fork" aria-hidden="true"></i>
                     <label for="Bidang" class="form-label">Bidang Keahlian</label>
                     <select name="Bidang" class="form-select" aria-label="Scope select">
+                        <option value="{{null}}" {{$sempro->scope_id == null ? 'selected' : ''}}>-- Belum ditentukan --</option>
                         @foreach ($bidang as $bd)
                             <option value="{{$bd->id}}" {{$bd->id == $sempro->scope_id ? 'selected' : ''}}>{{$bd->scope}}</option>
                         @endforeach

@@ -172,9 +172,18 @@ class GugusTugasController extends Controller
         } else {
             Sempro::where('mhs_user_id', $id)->update([
                 'title' => $request->Judul,
-                'scope_id' => $request->Bidang,
-                'track' => "Sedang diproses KELOMPOK KEAHLIAN"
+                'scope_id' => $request->Bidang
             ]);
+
+            if ($request->Bidang != null) {
+                Sempro::where('mhs_user_id', $id)->update([
+                    'track' => "Sedang diproses KELOMPOK KEAHLIAN"
+                ]);
+            } else {
+                Sempro::where('mhs_user_id', $id)->update([
+                    'track' => "Sedang diproses GUGUS TUGAS"
+                ]);
+            }
 
             Mahasiswa::where('user_id', $id)->update([
                 'nim' => $request->Nim

@@ -100,17 +100,24 @@ class KelompokKeahlianController extends Controller
         Sempro::where('mhs_user_id', $id)->update([
             'adviser1_code' => $request->Pembimbing1,
             'adviser2_code' => $request->Pembimbing2,
-            'examiner_code' => $request->Penguji,
-            'track' => "Sedang diproses PENGUJI"
+            'examiner_code' => $request->Penguji
         ]);
 
-        $adviser1 = Dosen::where('lecturer_code', $request->Pembimbing1)->first();
-        Score::create([
-            'mhs_user_id' => $id,
-            'dsn_user_id' => $adviser1->user_id
-        ]);
+        if ($request->Penguji != null) {
+            Sempro::where('mhs_user_id', $id)->update([
+                'track' => "Sedang diproses PENGUJI"
+            ]);
+        }
 
-        if ($request->Pembimbing1 != $request->Pembimbing2) {
+        if ($request->Pembimbing1 != null) {
+            $adviser1 = Dosen::where('lecturer_code', $request->Pembimbing1)->first();
+            Score::create([
+                'mhs_user_id' => $id,
+                'dsn_user_id' => $adviser1->user_id
+            ]);
+        }
+
+        if ($request->Pembimbing2 != null && $request->Pembimbing1 != $request->Pembimbing2) {
             $adviser2 = Dosen::where('lecturer_code', $request->Pembimbing2)->first();
             Score::create([
                 'mhs_user_id' => $id,
@@ -118,11 +125,13 @@ class KelompokKeahlianController extends Controller
             ]);
         }
 
-        $examiner = Dosen::where('lecturer_code', $request->Penguji)->first();
-        Score::create([
-            'mhs_user_id' => $id,
-            'dsn_user_id' => $examiner->user_id
-        ]);
+        if ($request->Penguji != null) {
+            $examiner = Dosen::where('lecturer_code', $request->Penguji)->first();
+            Score::create([
+                'mhs_user_id' => $id,
+                'dsn_user_id' => $examiner->user_id
+            ]);
+        }
 
         return redirect('/kelompok-keahlian-dashboard');
     }

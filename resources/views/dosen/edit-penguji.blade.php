@@ -118,8 +118,8 @@
                 Simpan
             </button>
             <a href="/dosen-penguji" class="btn btn-primary">
-                <i class="fa fa-dashboard"></i>
-                Dashboard
+                <i class="fa fa-id-badge"></i>
+                Kembali
             </a>
         </form>
     </div>

@@ -27,10 +27,14 @@
                         <i class="fa fa-lightbulb-o"></i>
                         <label for="Pembimbing1" class="form-label">Pembimbing-1</label>
                         <select name="Pembimbing1" class="form-select {{$sempro->adviser1_code != null ? 'mb-3' : ''}}" aria-label="Pembimbing1 select" {{$sempro->adviser1_code != null ? 'disabled' : ''}}>
+                            <option value="{{null}}" {{$sempro->adviser1_code == null ? 'selected' : ''}}>-- Belum ditentukan --</option>
                             @foreach ($dosen as $dos)
                                 <option value="{{$dos->lecturer_code}}" {{$dos->lecturer_code == $sempro->adviser1_code ? 'selected' : ''}}>{{$dos->lecturer_code}} - {{$dos->user->name}}</option>
                             @endforeach
                         </select>
+                        @error('Pembimbing1')
+                            <span class="text-danger">{{$message}}</span><br>
+                        @enderror
                         @if ($sempro->adviser1_code == null)
                             <span class="mb-3" style="color: red">* kode dosen hanya dapat diinputkan 1 kali.</span>
                         @endif
@@ -40,10 +44,14 @@
                         <i class="fa fa-lightbulb-o"></i>
                         <label for="Pembimbing2" class="form-label">Pembimbing-2</label>
                         <select name="Pembimbing2" class="form-select {{$sempro->adviser2_code != null ? 'mb-3' : ''}}" aria-label="Pembimbing2 select" {{$sempro->adviser2_code != null ? 'disabled' : ''}}>
+                            <option value="{{null}}" {{$sempro->adviser2_code == null ? 'selected' : ''}}>-- Belum ditentukan --</option>
                             @foreach ($dosen as $dos)
                                 <option value="{{$dos->lecturer_code}}" {{$dos->lecturer_code == $sempro->adviser2_code ? 'selected' : ''}}>{{$dos->lecturer_code}} - {{$dos->user->name}}</option>
                             @endforeach
                         </select>
+                        @error('Pembimbing2')
+                            <span class="text-danger">{{$message}}</span><br>
+                        @enderror
                         @if ($sempro->adviser2_code == null)
                             <span class="mb-3" style="color: red">* kode dosen hanya dapat diinputkan 1 kali.</span><br>
                             <span class="mb-3" style="color: red">* isi dengan kode dosen Pembimbing 1 jika anda hanya memilih satu pembimbing saja.</span>
@@ -57,9 +65,6 @@
                             Form Perdaftaran <br>
                             <img class="doc-icon mb-2" src="{{asset('img/icon/forms.png')}}" alt="Form Perdaftaran">
                             <input name="Form" class="form-control file @error('Form') is-invalid @enderror" type="file" id="Form">
-                            {{-- <br>
-                            <span class="fileName" id="formName"></span>
-                            <br> --}}
                             @error('Form')
                                 <span class="text-danger">{{$message}}</span><br>
                             @enderror
@@ -74,9 +79,6 @@
                             Kartu Studi Mahasiswa <br>
                             <img class="doc-icon mb-2" src="{{asset('img/icon/document.png')}}" alt="Kartu Studi Mahasiswa">
                             <input name="KSM" class="form-control file @error('KSM') is-invalid @enderror" type="file" id="ksm">
-                            {{-- <br>
-                            <span class="fileName" id="ksmName"></span>
-                            <br> --}}
                             @error('KSM')
                                 <span class="text-danger">{{$message}}</span><br>
                             @enderror
@@ -91,9 +93,6 @@
                             Transkrip Nilai Sementara <br>
                             <img class="doc-icon mb-2" src="{{asset('img/icon/score.png')}}" alt="Transkrip Nilai Sementara">
                             <input name="Transkrip" class="form-control file @error('Transkrip') is-invalid @enderror" type="file" id="Transkrip">
-                            {{-- <br>
-                            <span class="fileName" id="TranskripName"></span>
-                            <br> --}}
                             @error('Transkrip')
                                 <span class="text-danger">{{$message}}</span><br>
                             @enderror
@@ -110,9 +109,6 @@
                             Lembar Pengesahan <br>
                             <img class="doc-icon mb-2" src="{{asset('img/icon/validation.png')}}" alt="Lembar Pengesahan">
                             <input name="Pengesahan" class="form-control file @error('Pengesahan') is-invalid @enderror" type="file" id="Pengesahan">
-                            {{-- <br>
-                            <span class="fileName" id="PengesahanName"></span>
-                            <br> --}}
                             @error('Pengesahan')
                                 <span class="text-danger">{{$message}}</span><br>
                             @enderror
@@ -127,9 +123,6 @@
                             Proposal TA 1 <br>
                             <img class="doc-icon mb-2" src="{{asset('img/icon/proposal.png')}}" alt="Proposal TA 1">
                             <input name="Proposal" class="form-control file @error('Proposal') is-invalid @enderror" type="file" id="Proposal">
-                            {{-- <br>
-                            <span class="fileName" id="ProposalName"></span>
-                            <br> --}}
                             @error('Proposal')
                                 <span class="text-danger">{{$message}}</span><br>
                             @enderror
@@ -155,11 +148,12 @@
                         @endif
                     </div>
                 </div>
-
+                
                 <button type="submit" class="btn btn-success">
                     <i class="fa fa-floppy-o" aria-hidden="true"></i>
                     Simpan
                 </button>
+                <span style="color: red">* harap inputkan data sekaligus.</span><br>
             </form>
         </div>
         
