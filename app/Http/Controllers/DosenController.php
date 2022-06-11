@@ -12,6 +12,7 @@ use App\Mahasiswa;
 use App\Score;
 use App\Sempro;
 use File;
+use Illuminate\Support\Carbon;
 use PDF;
 use Illuminate\Support\Facades\Hash;
 use Yajra\Datatables\Datatables;
@@ -59,6 +60,16 @@ class DosenController extends Controller
 
                 return $file;
             }   
+        })
+        ->editColumn('schedule', function($sempro){
+            if ($sempro->schedule != null) {
+
+                $jadwal = Carbon::parse($sempro->schedule)->translatedFormat('l, d F Y');
+                return $jadwal;
+
+            } else {
+                return "Belum ditentukan";
+            }
         })
         ->editColumn('score', function($sempro){
             if ($sempro->adviser1_score != null) {
@@ -119,6 +130,16 @@ class DosenController extends Controller
                 return $file;
             }   
         })
+        ->editColumn('schedule', function($sempro){
+            if ($sempro->schedule != null) {
+
+                $jadwal = Carbon::parse($sempro->schedule)->translatedFormat('l, d F Y');
+                return $jadwal;
+
+            } else {
+                return "Belum ditentukan";
+            }
+        })
         ->editColumn('score', function($sempro){
             if ($sempro->adviser2_score != null) {
                 $score = Score::where('mhs_user_id', $sempro->mhs_user_id)->where('dsn_user_id', Auth::user()->id)->first();
@@ -177,6 +198,16 @@ class DosenController extends Controller
 
                 return $file;
             }   
+        })
+        ->editColumn('schedule', function($sempro){
+            if ($sempro->schedule != null) {
+
+                $jadwal = Carbon::parse($sempro->schedule)->translatedFormat('l, d F Y');
+                return $jadwal;
+
+            } else {
+                return "Belum ditentukan";
+            }
         })
         ->editColumn('score', function($sempro){
             if ($sempro->examiner_score != null) {

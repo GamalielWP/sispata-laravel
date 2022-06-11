@@ -18,10 +18,10 @@
                 <thead>
                     <tr>
                         <th>NIM</th>
-                        <th>Judul</th>
                         <th>Nama Mahasiswa</th>
                         <th>Prodi</th>
                         <th>Berkas</th>
+                        <th>Jadwal</th>
                         <th>Nilai</th>
                         <th>Aksi</th>
                     </tr>
@@ -46,10 +46,10 @@
                 ajax: "{{ route('dataDosenPembimbing1') }}",
                 columns: [
                     { data: 'nim', name: 'nim' },
-                    { data: 'title', name: 'judul' },
                     { data: 'name', name: 'nama' },
                     { data: 'prodi', name: 'prodi' },
                     { data: 'file', name: 'berkas' },
+                    { data: 'schedule', name: 'jadwal' },
                     { data: 'score', name: 'nilai' },
                     { data: 'detail', name: 'detail' },
                 ]

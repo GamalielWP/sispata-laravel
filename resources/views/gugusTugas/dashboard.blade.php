@@ -11,9 +11,9 @@
                 <thead>
                     <tr>
                         <th>NIM</th>
-                        <th>Judul</th>
                         <th>Nama Mahasiswa</th>
                         <th>Berkas</th>
+                        <th>Jadwal</th>
                         <th>Status</th>
                         <th>Aksi</th>
                     </tr>
@@ -35,9 +35,9 @@
             ajax: "{{ route('dataGG') }}",
             columns: [
                 { data: 'nim', name: 'nim' },
-                { data: 'title', name: 'judul' },
                 { data: 'name', name: 'nama' },
                 { data: 'file', name: 'berkas' },
+                { data: 'schedule', name: 'jadwal' },
                 { data: 'status', name: 'status' },
                 { data: 'detail', name: 'detail' }
             ]

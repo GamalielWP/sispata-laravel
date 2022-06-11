@@ -12,6 +12,7 @@ use App\User;
 use Yajra\Datatables\Datatables;
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 
 class GugusTugasController extends Controller
@@ -32,11 +33,19 @@ class GugusTugasController extends Controller
             $mhs->nim;
             return $mhs->nim; 
         })
-        ->addColumn('title', function($user){
+        ->addColumn('schedule', function($user){
             $mhs = Mahasiswa::where('user_id', $user->id)->first();
             
             $sempro = Sempro::where('mhs_user_id', $mhs->user_id)->first();
-            return $sempro->title;
+
+            if ($sempro->schedule != null) {
+
+                $jadwal = Carbon::parse($sempro->schedule)->translatedFormat('l, d F Y');
+                return $jadwal;
+
+            } else {
+                return "Belum ditentukan";
+            }
         })
         ->addColumn('detail', function($user){
             $btn = '
@@ -76,7 +85,7 @@ class GugusTugasController extends Controller
 
             }
         })
-        ->rawColumns(['nim', 'title', 'detail', 'file', 'status'])
+        ->rawColumns(['nim', 'schedule', 'detail', 'file', 'status'])
         ->make(true);
     }
 
