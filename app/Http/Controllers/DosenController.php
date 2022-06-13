@@ -409,8 +409,21 @@ class DosenController extends Controller
     public function cetak($id)
     {
         $mhs = Mahasiswa::where('user_id', $id)->first();
+        $sempro = Sempro::where('mhs_user_id', $id)->first();
+
+        $pembimbing1 = Dosen::where('lecturer_code', $sempro->adviser1_code)->first();
+        $pembimbing2 = Dosen::where('lecturer_code', $sempro->adviser2_code)->first();
+        $penguji = Dosen::where('lecturer_code', $sempro->examiner_code)->first();
+
+        $score1 = Score::where('mhs_user_id', $id)->where('dsn_user_id', $pembimbing1->id)->first();
+        $score2 = Score::where('mhs_user_id', $id)->where('dsn_user_id', $pembimbing2->id)->first();
+        $score3 = Score::where('mhs_user_id', $id)->where('dsn_user_id', $penguji->id)->first();
+
+        $jadwal = Carbon::parse($sempro->schedule)->translatedFormat('l, d F Y');
+
         $file = $mhs->user_id.'-'.$mhs->nim.'-Berita-Acara'.'.pdf';
-        $pdf = PDF::loadView('mahasiswa.berita-acara', compact('mhs'));
+
+        $pdf = PDF::loadView('mahasiswa.berita-acara', compact('mhs', 'sempro', 'pembimbing1', 'pembimbing2', 'penguji', 'jadwal', 'score1', 'score2', 'score3'));
 
         Sempro::where('mhs_user_id', $id)->update([
             'news_doc' => 'doc/user/'.$file

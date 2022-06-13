@@ -41,7 +41,7 @@
                 <div class="col">
                   <img class="score-mini-icon mb-2" src="{{asset('img/icon/star.png')}}" alt="Nilai Penguji">
                   <h6><b>Nilai Penguji</b></h6>
-                  <span><b>{{$sempro->examiner_score != null ? $nilai_3 = $score3->ide + $score3->solusi + $score3->analisa + $score3->penulisan + $score3->kemandirian_presentasi: 'Belum dinilai'}}</b></span>
+                  <span><b>{{$sempro->examiner_score != null ? $nilai_3 = $score3->ide + $score3->solusi + $score3->analisa + $score3->penulisan + $score3->kemandirian_presentasi : 'Belum dinilai'}}</b></span>
                 </div>
                 <div class="col">
                   <img class="score-icon mb-2" src="{{asset('img/icon/score-star.png')}}" alt="Nilai Rata-rata">

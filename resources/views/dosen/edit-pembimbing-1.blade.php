@@ -115,15 +115,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group col">
-                    <i class="fa fa-file-text" aria-hidden="true"></i>
-                    <label for="BeritaAcara" class="form-label">Berita Acara</label>
-                    <br>
-                    <a href="/dosen-pembimbing-1-print/{{$mhs->user_id}}" class="btn btn-warning">
-                        <i class="fa fa-print" aria-hidden="true"></i>
-                        Cetak
-                    </a>
-                </div>
+                @if ($sempro->adviser1_score != null && $sempro->examiner_score != null)
+
+                    
+                        <div class="form-group col">
+                            <i class="fa fa-file-text" aria-hidden="true"></i>
+                            <label for="BeritaAcara" class="form-label">Berita Acara</label>
+                            <br>
+                            <a href="/dosen-pembimbing-1-print/{{$mhs->user_id}}" class="btn btn-warning">
+                                <i class="fa fa-print" aria-hidden="true"></i>
+                                Cetak
+                            </a>
+                        </div>
+                    
+
+                @endif
+                
             </div>
 
             <button type="submit" class="btn btn-success">
