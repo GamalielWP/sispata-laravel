@@ -5,23 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {{-- <link rel="icon" href="{{ asset('img/icon/envelope.png') }}"> --}}
     <title>{{ $mhs->user_id.'-'.$mhs->nim.'-Berita-Acara'.'.pdf' }}</title>
-    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     {{-- <link href="{{ asset('css/file.css') }}" rel="stylesheet"> --}}
 </head>
 <body>
-    <div class="container">
-        <br>
+    <div class="">
         <div class="row">
             {{-- <img src="{{ asset('img/ittp.png') }}" class="img-cop col-md-auto"> --}}
             <div class="col-md-auto"></div>
             <div class="col-md-auto"></div>
             <div class="col-md-auto"></div>
-            <h4 class="center col-md-auto">
+            <span class="center col-md-auto">
                 <br>
                 LEMBAR PENILAIAN GABUNGAN TUGAS AKHIR I
                 <br>
                 FAKULTAS INFORMATIKA-INSTITUT TEKNOLOGI TELKOM PURWOKERTO
-            </h4>
+            </span>
             <div class="col-md-auto"></div>
             <div class="col-md-auto"></div>
             <div class="col-md-auto"></div>
@@ -127,9 +126,9 @@
             </tr>
         </table>
 
-        <br><br>
+        <br>
 
-        <div class="container-fluid">
+        <div class="">
             <table class="table table-bordered border-dark">
                 <tr class="center">
                     <th>Penilai</th>
@@ -185,7 +184,6 @@
                 </div>
             @endif
         </div>
-        <br>
     </div>
 </body>
 </html>
