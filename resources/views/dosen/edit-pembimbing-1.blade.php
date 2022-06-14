@@ -117,7 +117,22 @@
                 </div>
                 @if ($sempro->adviser1_score != null && $sempro->examiner_score != null)
 
-                    
+                    @if ($sempro->adviser2_code != null && $sempro->adviser2_code != $sempro->adviser1_code)
+
+                        @if ($sempro->adviser2_score != null)
+                            <div class="form-group col">
+                                <i class="fa fa-file-text" aria-hidden="true"></i>
+                                <label for="BeritaAcara" class="form-label">Berita Acara</label>
+                                <br>
+                                <a href="/dosen-pembimbing-1-print/{{$mhs->user_id}}" class="btn btn-warning">
+                                    <i class="fa fa-print" aria-hidden="true"></i>
+                                    Cetak
+                                </a>
+                            </div>
+                        @endif
+                            
+                    @else
+
                         <div class="form-group col">
                             <i class="fa fa-file-text" aria-hidden="true"></i>
                             <label for="BeritaAcara" class="form-label">Berita Acara</label>
@@ -127,8 +142,9 @@
                                 Cetak
                             </a>
                         </div>
-                    
-
+                        
+                    @endif
+                        
                 @endif
                 
             </div>
