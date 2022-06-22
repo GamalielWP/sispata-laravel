@@ -57,6 +57,7 @@ body {
     border-color: #964b00;
 }
 .btn-primary:hover {
+    color: #fff;
     background-color: #2f210d ;
     border-color: #2f210d ;
 }

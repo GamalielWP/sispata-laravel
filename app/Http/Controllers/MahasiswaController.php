@@ -56,18 +56,25 @@ class MahasiswaController extends Controller
 
     public function update_file(Request $request, $id)
     {
-        $validateData = $request->validate([
-            'Judul' => 'min:20',
-            'Pembimbing1' => 'required',
-            'Pembimbing2' => 'required',
-            'Form' => 'required|mimes:pdf|max:1000',
-            'KSM' => 'required|mimes:pdf|max:1000',
-            'Transkrip' => 'required|mimes:pdf|max:1000',
-            'Pengesahan' => 'required|mimes:pdf|max:1000',
-            'Proposal' => 'required|mimes:pdf|max:37000'
-        ]);
-
         $mhs = Mahasiswa::where('user_id', Auth::user()->id)->first();
+
+        if ($mhs->thesis_proposal != null) {
+            $validateData = $request->validate([
+                'Judul' => 'min:20'
+            ]);
+        } else {
+            $validateData = $request->validate([
+                'Judul' => 'min:20',
+                'Pembimbing1' => 'required',
+                'Pembimbing2' => 'required',
+                'Form' => 'required|mimes:pdf|max:1000',
+                'KSM' => 'required|mimes:pdf|max:1000',
+                'Transkrip' => 'required|mimes:pdf|max:1000',
+                'Pengesahan' => 'required|mimes:pdf|max:1000',
+                'Proposal' => 'required|mimes:pdf|max:37000'
+            ]);
+        }
+
         $sempro = Sempro::where('mhs_user_id', Auth::user()->id)->first();
 
         Sempro::where('mhs_user_id', $id)->update([

@@ -10,7 +10,7 @@
                     <div class="form-group col">
                         <i class="fa fa-quote-right" aria-hidden="true"></i>
                         <label for="Judul" class="form-label">Judul</label>
-                        <input name="Judul" class="form-control @error('Judul') is-invalid @enderror mb-2" type="text" value="{{$sempro->title !=null ? $sempro->title : ''}}" placeholder="Ketik judul penelitian...">
+                        <input name="Judul" class="form-control @error('Judul') is-invalid @enderror mb-2" type="text" value="{{$sempro->title !=null ? $sempro->title : ''}}" placeholder="Minimal 20 karakter...">
                         @error('Judul')
                             <span class="text-danger">{{$message}}</span>
                         @enderror

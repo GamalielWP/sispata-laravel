@@ -39,23 +39,6 @@
 <body>
     <div id="app">
         @if (session()->has('role'))
-        <div class="py-6">
-            <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-young-brown" style="width: 18%; height: 1500px; float:left;">
-        
-                <div class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                    <img src="{{asset('img/fif.png')}}" width="20%" height="auto">
-                    <span class="fs-7 ml-1">Sistem Pendaftaran TA 1<br>Fakultas Informatika</span>
-                </div>
-        
-                <span class="text-menu">Menu</span>
-                
-                <hr>
-                <ul id="active-list" class="nav nav-pills flex-column mb-auto">
-                    @yield('sidebar')
-                </ul>
-            </div>
-        </div>
-
         <nav class="navbar navbar-expand-md navbar-dark bg-brown shadow-sm">
             <div class="container">
                 
@@ -104,6 +87,23 @@
                 </div>
             </div>
         </nav>
+
+        <div class="py-6">
+            <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-young-brown" style="width: 18%; height: 1500px; float:left;">
+        
+                <div class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <img src="{{asset('img/fif.png')}}" width="20%" height="auto">
+                    <span class="fs-7 ml-1">Sistem Pendaftaran TA 1<br>Fakultas Informatika</span>
+                </div>
+        
+                <span class="text-menu">Menu</span>
+                
+                <hr>
+                <ul id="active-list" class="nav nav-pills flex-column mb-auto">
+                    @yield('sidebar')
+                </ul>
+            </div>
+        </div>
         @endif
 
         <div style="{{session()->has('role') ? 'margin-left: 18%' : ''}}">
