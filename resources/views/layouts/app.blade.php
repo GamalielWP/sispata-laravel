@@ -8,6 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <link rel="icon" href="{{ asset('img/fif-logo.png') }}">
     <title>Sistem Pendaftaran TA 1 Fakultas Informatika</title>
 
     <!-- Scripts -->
@@ -39,7 +40,11 @@
 <body>
     <div id="app">
         @if (session()->has('role'))
-        <nav class="navbar navbar-expand-md navbar-dark bg-brown shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-brown">
+
+            <img src="{{asset('img/fif-logo.png')}}" width="40px" height="auto" class="mt-1 mb-1">
+            <span class="nav-link nav-span">Sistem Pendaftaran TA 1 Fakultas Informatika</span>
+            
             <div class="container">
                 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -90,13 +95,7 @@
 
         <div class="py-6">
             <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-young-brown" style="width: 18%; height: 1500px; float:left;">
-        
-                <div class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                    <img src="{{asset('img/fif.png')}}" width="20%" height="auto">
-                    <span class="fs-7 ml-1">Sistem Pendaftaran TA 1<br>Fakultas Informatika</span>
-                </div>
-        
-                <span class="text-menu">Menu</span>
+                <span class="text-menu mt-1">Menu</span>
                 
                 <hr>
                 <ul id="active-list" class="nav nav-pills flex-column mb-auto">
