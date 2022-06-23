@@ -135,6 +135,4 @@
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
     {{-- DataTables Script --}}
     @yield('table')
-    {{-- Style Script --}}
-    @yield('styleScript')
 </html>

@@ -159,25 +159,3 @@
         
     </div>
 @endsection
-
-@section('styleScript')
-    <script>
-        let input = document.getElementById("Form");
-        let fileName = document.getElementById("formName");
-
-        input.addEventListener("change", ()=>{
-            let inputFile = document.querySelector("input[type=file]").files[0];
-
-            fileName.innerText = inputFile.name;
-        });
-
-        let inpu = document.getElementById("ksm");
-        let fileNam = document.getElementById("ksmName");
-
-        inpu.addEventListener("change", ()=>{
-            let inputFil = document.querySelector("input[type=file]").files[0];
-
-            fileNam.innerText = inputFil.name;
-        })
-    </script>
-@endsection
