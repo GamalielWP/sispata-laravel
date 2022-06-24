@@ -43,7 +43,7 @@
         <nav class="navbar navbar-expand-md navbar-dark bg-brown">
 
             <img src="{{asset('img/fif-logo.png')}}" width="40px" height="auto" class="mt-1 mb-1">
-            <span class="nav-link nav-span">Sistem Pendaftaran TA 1 Fakultas Informatika</span>
+            <span class="nav-link" style="color: whitesmoke">Sistem Pendaftaran TA 1 Fakultas Informatika</span>
             
             <div class="container">
                 

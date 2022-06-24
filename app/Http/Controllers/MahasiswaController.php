@@ -60,11 +60,20 @@ class MahasiswaController extends Controller
 
         if ($mhs->thesis_proposal != null) {
             $validateData = $request->validate([
-                'Judul' => 'min:20'
+                'Judul' => 'min:20',
+                'Schedule' => 'required',
+                'Pembimbing1' => '',
+                'Pembimbing2' => '',
+                'Form' => 'mimes:pdf|max:1000',
+                'KSM' => 'mimes:pdf|max:1000',
+                'Transkrip' => 'mimes:pdf|max:1000',
+                'Pengesahan' => 'mimes:pdf|max:1000',
+                'Proposal' => 'mimes:pdf|max:37000'
             ]);
         } else {
             $validateData = $request->validate([
                 'Judul' => 'min:20',
+                'Schedule' => '',
                 'Pembimbing1' => 'required',
                 'Pembimbing2' => 'required',
                 'Form' => 'required|mimes:pdf|max:1000',

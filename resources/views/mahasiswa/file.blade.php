@@ -19,14 +19,17 @@
                     <div class="form-group col">
                         <i class="fa fa-calendar-o" aria-hidden="true"></i>
                         <label for="Schedule" class="form-label">Jadwal Seminar Proposal</label>
-                        <input name="Schedule" type="date" class="form-control mb-3" value="{{$sempro->schedule !=null ? $sempro->schedule : ''}}" {{$sempro->schedule == null ? 'disabled' : ''}}>
+                        <input name="Schedule" type="date" class="form-control @error('Schedule') is-invalid @enderror mb-2" value="{{$sempro->schedule !=null ? $sempro->schedule : ''}}" {{$sempro->schedule == null ? 'disabled' : ''}}>
+                        @error('Schedule')
+                            <span class="text-danger">{{$message}}</span>
+                        @enderror
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col">
                         <i class="fa fa-lightbulb-o"></i>
                         <label for="Pembimbing1" class="form-label">Pembimbing-1</label>
-                        <select name="Pembimbing1" class="form-select {{$sempro->adviser1_code != null ? 'mb-3' : ''}}" aria-label="Pembimbing1 select" {{$sempro->adviser1_code != null ? 'disabled' : ''}}>
+                        <select name="Pembimbing1" class="form-select {{$sempro->adviser1_code != null ? 'mb-2' : ''}}" aria-label="Pembimbing1 select" {{$sempro->adviser1_code != null ? 'disabled' : ''}}>
                             <option value="{{null}}" {{$sempro->adviser1_code == null ? 'selected' : ''}}>-- Belum ditentukan --</option>
                             @foreach ($dosen as $dos)
                                 <option value="{{$dos->lecturer_code}}" {{$dos->lecturer_code == $sempro->adviser1_code ? 'selected' : ''}}>{{$dos->lecturer_code}} - {{$dos->user->name}}</option>
@@ -36,14 +39,14 @@
                             <span class="text-danger">{{$message}}</span><br>
                         @enderror
                         @if ($sempro->adviser1_code == null)
-                            <span class="mb-3" style="color: red">* kode dosen hanya dapat diinputkan 1 kali.</span>
+                            <span class="mb-2" style="color: red">* kode dosen hanya dapat diinputkan 1 kali.</span>
                         @endif
                     </div>
     
                     <div class="form-group col">
                         <i class="fa fa-lightbulb-o"></i>
                         <label for="Pembimbing2" class="form-label">Pembimbing-2</label>
-                        <select name="Pembimbing2" class="form-select {{$sempro->adviser2_code != null ? 'mb-3' : ''}}" aria-label="Pembimbing2 select" {{$sempro->adviser2_code != null ? 'disabled' : ''}}>
+                        <select name="Pembimbing2" class="form-select {{$sempro->adviser2_code != null ? 'mb-2' : ''}}" aria-label="Pembimbing2 select" {{$sempro->adviser2_code != null ? 'disabled' : ''}}>
                             <option value="{{null}}" {{$sempro->adviser2_code == null ? 'selected' : ''}}>-- Belum ditentukan --</option>
                             @foreach ($dosen as $dos)
                                 <option value="{{$dos->lecturer_code}}" {{$dos->lecturer_code == $sempro->adviser2_code ? 'selected' : ''}}>{{$dos->lecturer_code}} - {{$dos->user->name}}</option>
@@ -53,13 +56,13 @@
                             <span class="text-danger">{{$message}}</span><br>
                         @enderror
                         @if ($sempro->adviser2_code == null)
-                            <span class="mb-3" style="color: red">* kode dosen hanya dapat diinputkan 1 kali.</span><br>
-                            <span class="mb-3" style="color: red">* isi dengan kode dosen Pembimbing 1 jika anda hanya memilih satu pembimbing saja.</span>
+                            <span class="mb-2" style="color: red">* kode dosen hanya dapat diinputkan 1 kali.</span><br>
+                            <span class="mb-2" style="color: red">* isi dengan kode dosen Pembimbing 1 jika anda hanya memilih satu pembimbing saja.</span>
                         @endif
                     </div>
                 </div>
                 
-                <div class="row center mb-3">
+                <div class="row center mb-2">
                     <div class="form-group col">
                         <label for="Form" class="form-label">
                             Form Perdaftaran <br>
@@ -70,7 +73,7 @@
                             @enderror
                         </label>
                         @if ($mhs->regis_form != null)
-                            <a class="mb-3" href="{{$mhs->regis_form}}">{{$mhs->nim}}-form-pendaftaran.pdf</a> 
+                            <a class="mb-2" href="{{$mhs->regis_form}}">{{$mhs->nim}}-form-pendaftaran.pdf</a> 
                         @endif
                     </div>
                     
@@ -84,7 +87,7 @@
                             @enderror
                         </label>
                         @if ($mhs->ksm != null)
-                            <a class="mb-3" href="{{$mhs->ksm}}">{{$mhs->nim}}-KSM.pdf</a> 
+                            <a class="mb-2" href="{{$mhs->ksm}}">{{$mhs->nim}}-KSM.pdf</a> 
                         @endif
                     </div>
                     
@@ -98,12 +101,12 @@
                             @enderror
                         </label>
                         @if ($mhs->temp_transcript != null)
-                            <a class="mb-3" href="{{$mhs->temp_transcript}}">{{$mhs->nim}}-transkrip-nilai-sementara.pdf</a> 
+                            <a class="mb-2" href="{{$mhs->temp_transcript}}">{{$mhs->nim}}-transkrip-nilai-sementara.pdf</a> 
                         @endif                   
                     </div>
                 </div>
 
-                <div class="row center mb-3">
+                <div class="row center mb-2">
                     <div class="form-group col">
                         <label for="Pengesahan" class="form-label">
                             Lembar Pengesahan <br>
@@ -114,7 +117,7 @@
                             @enderror
                         </label>
                         @if ($mhs->validity_sheet != null)
-                            <a class="mb-3" href="{{$mhs->validity_sheet}}">{{$mhs->nim}}-form-lembar-pengesahan.pdf</a> 
+                            <a class="mb-2" href="{{$mhs->validity_sheet}}">{{$mhs->nim}}-form-lembar-pengesahan.pdf</a> 
                         @endif              
                     </div>
     
@@ -128,7 +131,7 @@
                             @enderror
                         </label>
                         @if ($mhs->thesis_proposal != null)
-                            <a class="mb-3" href="{{$mhs->thesis_proposal}}">{{$mhs->nim}}-proposal.pdf</a> 
+                            <a class="mb-2" href="{{$mhs->thesis_proposal}}">{{$mhs->nim}}-proposal.pdf</a> 
                         @endif                
                     </div>
 
@@ -143,7 +146,7 @@
                                         Download
                                     </a>
                                 </label>
-                                <a class="mb-3" href="{{$sempro->news_doc}}">{{$mhs->nim}}-berita-acara.pdf</a> 
+                                <a class="mb-2" href="{{$sempro->news_doc}}">{{$mhs->nim}}-berita-acara.pdf</a> 
                             </div>
                         @endif
                     </div>
@@ -153,7 +156,9 @@
                     <i class="fa fa-floppy-o" aria-hidden="true"></i>
                     Simpan
                 </button>
-                <span style="color: red">* harap inputkan data sekaligus.</span><br>
+                @if ($mhs->thesis_proposal == null)
+                    <span style="color: red">* harap inputkan data sekaligus.</span><br>
+                @endif
             </form>
         </div>
         
