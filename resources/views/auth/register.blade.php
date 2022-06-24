@@ -15,7 +15,7 @@
                             <label for="Nim" class="form-label">{{ __('NIM') }}</label>
 
                             <div class="">
-                                <input id="Nim" type="text" class="form-control @error('Nim') is-invalid @enderror" name="Nim" value="{{ old('Nim') }}" required autocomplete="Nim">
+                                <input id="Nim" type="text" class="form-control @error('Nim') is-invalid @enderror" name="Nim" value="{{ old('Nim') }}" placeholder="NIM" required autocomplete="Nim">
 
                                 @error('Nim')
                                     <span class="invalid-feedback" role="alert">
@@ -30,7 +30,7 @@
                             <label for="Nama" class="form-label">{{ __('Nama') }}</label>
 
                             <div class="">
-                                <input id="Nama" type="text" class="form-control @error('Nama') is-invalid @enderror" name="Nama" value="{{ old('Nama') }}" required autocomplete="Nama">
+                                <input id="Nama" type="text" class="form-control @error('Nama') is-invalid @enderror" name="Nama" value="{{ old('Nama') }}" placeholder="Nama Lengkap" required autocomplete="Nama">
 
                                 @error('Nama')
                                     <span class="invalid-feedback" role="alert">
@@ -45,7 +45,7 @@
                             <label for="Email" class="form-label">{{ __('E-Mail') }}</label>
 
                             <div class="">
-                                <input id="Email" type="email" class="form-control @error('Email') is-invalid @enderror" name="Email" value="{{ old('Email') }}" required autocomplete="Email">
+                                <input id="Email" type="email" class="form-control @error('Email') is-invalid @enderror" name="Email" value="{{ old('Email') }}" placeholder="Email Institusi" required autocomplete="Email">
 
                                 @error('Email')
                                     <span class="invalid-feedback" role="alert">
@@ -60,7 +60,7 @@
                             <label for="Phone" class="form-label">{{ __('Nomor HP') }}</label>
 
                             <div class="">
-                                <input id="Phone" type="text" class="form-control @error('Phone') is-invalid @enderror" name="Phone" value="{{ old('Phone') }}" required autocomplete="Phone">
+                                <input id="Phone" type="text" class="form-control @error('Phone') is-invalid @enderror" name="Phone" value="{{ old('Phone') }}" placeholder="Nomor HP" required autocomplete="Phone">
 
                                 @error('Phone')
                                     <span class="invalid-feedback" role="alert">
@@ -77,7 +77,7 @@
                             <div class="">
                                 <select name="Prodi" class="form-control @error('Prodi') is-invalid @enderror" required>
                                     <option value="S1-Rekayasa Perangkat Lunak">S1-Rekayasa Perangkat Lunak</option>
-                                    <option value="S1-Informatika">S1-Teknik Informatika</option>
+                                    <option value="S1-Teknik Informatika">S1-Teknik Informatika</option>
                                     <option value="S1-Sistem Informasi">S1-Sistem Informasi</option>
                                     <option value="S1-Sains Data">S1-Sains Data</option>
                                 </select>
@@ -95,7 +95,7 @@
                             <label for="NewPassword" class="form-label">{{ __('Password') }}</label>
 
                             <div class="">
-                                <input id="NewPassword" type="password" class="form-control @error('NewPassword') is-invalid @enderror" name="NewPassword" required>
+                                <input id="NewPassword" type="password" class="form-control @error('NewPassword') is-invalid @enderror" name="NewPassword" placeholder="Password" required>
 
                                 @error('NewPassword')
                                     <span class="invalid-feedback" role="alert">
@@ -110,7 +110,7 @@
                             <label for="ConfirmPassword" class="form-label">{{ __('Konfirmasi Password') }}</label>
 
                             <div class="">
-                                <input id="ConfirmPassword" type="password" class="form-control @error('ConfirmPassword') is-invalid @enderror" name="ConfirmPassword" required>
+                                <input id="ConfirmPassword" type="password" class="form-control @error('ConfirmPassword') is-invalid @enderror" name="ConfirmPassword" placeholder="Ketik ulang Password" required>
 
                                 @error('ConfirmPassword')
                                     <span class="invalid-feedback" role="alert">

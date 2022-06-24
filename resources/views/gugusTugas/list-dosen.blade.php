@@ -125,7 +125,7 @@
                                     <div class="">
                                         <select name="Prodi" class="form-control @error('Prodi') is-invalid @enderror" required>
                                             <option value="S1-Rekayasa Perangkat Lunak">S1-Rekayasa Perangkat Lunak</option>
-                                            <option value="S1-Informatika">S1-Teknik Informatika</option>
+                                            <option value="S1-Teknik Informatika">S1-Teknik Informatika</option>
                                             <option value="S1-Sistem Informasi">S1-Sistem Informasi</option>
                                             <option value="S1-Sains Data">S1-Sains Data</option>
                                         </select>
