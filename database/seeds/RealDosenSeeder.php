@@ -489,10 +489,176 @@ class RealDosenSeeder extends Seeder
 
         // SI
         DB::table('real_dosens')->insert([
+            'nidn' => '0631078701',
+            'kode_dosen' => 'STS',
+            'nama' => 'Sisilia Thya Safitri, S.T., M.T',
+            'email' => 'sisil@ittelkom-pwt.ac.id',
+            'tlp' => '000000000000',
+            'prodi' => 'S1-Sistem Informasi',
+            'role' => 'pembimbing-penguji',
+        ]);
+        DB::table('real_dosens')->insert([
+            'nidn' => '0617019102',
+            'kode_dosen' => 'DMK',
+            'nama' => 'Dwi Mustika Kusumawardani, S.Kom., M.Kom',
+            'email' => 'dwimustika@ittelkom-pwt.ac.id',
+            'tlp' => '000000000000',
+            'prodi' => 'S1-Sistem Informasi',
+            'role' => 'pembimbing-penguji',
+        ]);
+        DB::table('real_dosens')->insert([
             'nidn' => '',
             'kode_dosen' => '',
-            'nama' => '',
-            'email' => '',
+            'nama' => 'Dwi Januarita AK., S.T., M.Kom',
+            'email' => 'dwijanuarita@ittelkom-pwt.ac.id',
+            'tlp' => '000000000000',
+            'prodi' => 'S1-Sistem Informasi',
+            'role' => 'pembimbing-penguji',
+        ]);
+        DB::table('real_dosens')->insert([
+            'nidn' => '0602129101',
+            'kode_dosen' => 'CWA',
+            'nama' => 'Citra Wiguna, S.Kom., M.Kom',
+            'email' => 'citra@ittelkom-pwt.ac.id',
+            'tlp' => '000000000000',
+            'prodi' => 'S1-Sistem Informasi',
+            'role' => 'pembimbing-penguji',
+        ]);
+
+        DB::table('real_dosens')->insert([
+            'nidn' => '0621128902',
+            'kode_dosen' => 'YUS',
+            'nama' => 'Yudha Saintika, S.T., M.T.I',
+            'email' => 'yudha@ittelkom-pwt.ac.id',
+            'tlp' => '000000000000',
+            'prodi' => 'S1-Sistem Informasi',
+            'role' => 'pembimbing-penguji',
+        ]);
+        DB::table('real_dosens')->insert([
+            'nidn' => '0618038404',
+            'kode_dosen' => 'DSI',
+            'nama' => 'Didi Supriyadi, S.T., M.Kom., ITIL',
+            'email' => 'didisupriyadi@ittelkom-pwt.ac.id',
+            'tlp' => '000000000000',
+            'prodi' => 'S1-Sistem Informasi',
+            'role' => 'pembimbing-penguji',
+        ]);
+        DB::table('real_dosens')->insert([
+            'nidn' => '0101088702',
+            'kode_dosen' => 'YDO',
+            'nama' => 'Yogo Dwi Prasetyo, S.Si., M.Si',
+            'email' => 'yogo@ittelkom-pwt.ac.id',
+            'tlp' => '000000000000',
+            'prodi' => 'S1-Sistem Informasi',
+            'role' => 'pembimbing-penguji',
+        ]);
+        DB::table('real_dosens')->insert([
+            'nidn' => '0618048902',
+            'kode_dosen' => 'CRI',
+            'nama' => 'Cepi Ramdani, S.Kom., M.Eng',
+            'email' => 'cepi@ittelkom-pwt.ac.id',
+            'tlp' => '000000000000',
+            'prodi' => 'S1-Sistem Informasi',
+            'role' => 'pembimbing-penguji',
+        ]);
+
+        DB::table('real_dosens')->insert([
+            'nidn' => '0610108905',
+            'kode_dosen' => 'SAS',
+            'nama' => 'Sarah Astiti, S.Kom., M.MT',
+            'email' => 'sarah@ittelkom-pwt.ac.id',
+            'tlp' => '000000000000',
+            'prodi' => 'S1-Sistem Informasi',
+            'role' => 'pembimbing-penguji',
+        ]);
+        DB::table('real_dosens')->insert([
+            'nidn' => '0607019401',
+            'kode_dosen' => 'DMS',
+            'nama' => 'Darmansah,S .Kom., M.Kom',
+            'email' => 'darmansah@ittelkom-pwt.ac.id',
+            'tlp' => '000000000000',
+            'prodi' => 'S1-Sistem Informasi',
+            'role' => 'pembimbing-penguji',
+        ]);
+        DB::table('real_dosens')->insert([
+            'nidn' => '0604068901',
+            'kode_dosen' => 'HWU',
+            'nama' => 'Hari Widi Utomo,S.Pd.,M.Ed',
+            'email' => 'hari@ittelkom-pwt.ac.id',
+            'tlp' => '000000000000',
+            'prodi' => 'S1-Sistem Informasi',
+            'role' => 'pembimbing-penguji',
+        ]);
+        DB::table('real_dosens')->insert([
+            'nidn' => '0601099002',
+            'kode_dosen' => 'MYF',
+            'nama' => 'M. Yoka Fathoni, S.Kom., M.Kom',
+            'email' => 'myokafathoni@ittelkom-pwt.ac.id',
+            'tlp' => '000000000000',
+            'prodi' => 'S1-Sistem Informasi',
+            'role' => 'pembimbing-penguji',
+        ]);
+
+        DB::table('real_dosens')->insert([
+            'nidn' => '0613109201',
+            'kode_dosen' => 'SWJ',
+            'nama' => 'Sena Wijayanto,S.Pd.,M.T',
+            'email' => 'sena@ittelkom-pwt.ac.id',
+            'tlp' => '000000000000',
+            'prodi' => 'S1-Sistem Informasi',
+            'role' => 'pembimbing-penguji',
+        ]);
+        DB::table('real_dosens')->insert([
+            'nidn' => '0604069301',
+            'kode_dosen' => 'RNS',
+            'nama' => 'Rona Nisa Sofia Amriza, S.Kom., M.T.I., M.I.M',
+            'email' => 'rona@ittelkom-pwt.ac.id',
+            'tlp' => '000000000000',
+            'prodi' => 'S1-Sistem Informasi',
+            'role' => 'pembimbing-penguji',
+        ]);
+        DB::table('real_dosens')->insert([
+            'nidn' => '0618059401',
+            'kode_dosen' => 'KMN',
+            'nama' => 'Khairun Nisa Meiah, S.Pd., M.Kom',
+            'email' => 'nisa@ittelkom-pwt.ac.id',
+            'tlp' => '000000000000',
+            'prodi' => 'S1-Sistem Informasi',
+            'role' => 'pembimbing-penguji',
+        ]);
+        DB::table('real_dosens')->insert([
+            'nidn' => '0620108501',
+            'kode_dosen' => 'DYK',
+            'nama' => 'Daniel Yeri Kristiyanto, S.Kom., M.Kom., M.Si',
+            'email' => 'daniel@ittelkom-pwt.ac.id',
+            'tlp' => '000000000000',
+            'prodi' => 'S1-Sistem Informasi',
+            'role' => 'pembimbing-penguji',
+        ]);
+
+        DB::table('real_dosens')->insert([
+            'nidn' => '0307057601',
+            'kode_dosen' => 'RSD',
+            'nama' => 'Resad Setyadi, S.T., S.Si., MMSI',
+            'email' => 'resad@ittelkom-pwt.ac.id',
+            'tlp' => '000000000000',
+            'prodi' => 'S1-Sistem Informasi',
+            'role' => 'pembimbing-penguji',
+        ]);
+        DB::table('real_dosens')->insert([
+            'nidn' => '21790003',
+            'kode_dosen' => 'HSD',
+            'nama' => 'RR Hutanti Setyodewi, S.T., S.Si., M.MSI.',
+            'email' => 'hutanti@ittelkom-pwt.ac.id',
+            'tlp' => '000000000000',
+            'prodi' => 'S1-Sistem Informasi',
+            'role' => 'pembimbing-penguji',
+        ]);
+        DB::table('real_dosens')->insert([
+            'nidn' => '0201099202',
+            'kode_dosen' => 'SFR',
+            'nama' => 'Sandhy Fernandez, S.Kom., M.Kom.',
+            'email' => 'sandhy@ittelkom-pwt.ac.id',
             'tlp' => '000000000000',
             'prodi' => 'S1-Sistem Informasi',
             'role' => 'pembimbing-penguji',
