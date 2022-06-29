@@ -19,24 +19,24 @@
                     <div class="form-group col">
                         <i class="fa fa-id-card" aria-hidden="true"></i>
                         <label for="Nik" class="form-label">NIK</label>
-                        <input name="Nik" class="form-control mb-2" type="text" value="{{$dsn->nik}}">
+                        <input name="Nik" class="form-control mb-2" type="text" value="{{$dsn->nik}}" placeholder="NIK">
                     </div>
                     <div class="form-group col">
                         <i class="fa fa-id-card" aria-hidden="true"></i>
                         <label for="Nidn" class="form-label">NIDN</label>
-                        <input name="Nidn" class="form-control mb-2" type="text" value="{{$dsn->nidn}}">
+                        <input name="Nidn" class="form-control mb-2" type="text" value="{{$dsn->nidn}}" placeholder="NIDN">
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col">
                         <i class="fa fa-id-badge" aria-hidden="true"></i>
                         <label for="Nama" class="form-label">Nama</label>
-                        <input name="Nama" class="form-control mb-2" type="text" value="{{$dsn->user->name}}">
+                        <input name="Nama" class="form-control mb-2" type="text" value="{{$dsn->user->name}}" placeholder="Nama Lengkap">
                     </div>
                     <div class="form-group col">
                         <i class="fa fa-envelope" aria-hidden="true"></i>
                         <label for="Email" class="form-label">Email</label>
-                        <input name="Email" class="form-control @error('Email') is-invalid @enderror mb-2" type="text" value="{{$dsn->user->email}}">
+                        <input name="Email" class="form-control @error('Email') is-invalid @enderror mb-2" type="text" value="{{$dsn->user->email}}" placeholder="Email">
                         @error('Email')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
@@ -47,7 +47,7 @@
                     <div class="form-group col">
                         <i class="fa fa-mobile" aria-hidden="true"></i>
                         <label for="PhoneNumber" class="form-label">Nomor HP</label>
-                        <input name="PhoneNumber" class="form-control @error('PhoneNumber') is-invalid @enderror mb-2" type="text" value="{{$dsn->user->phone_number}}">
+                        <input name="PhoneNumber" class="form-control @error('PhoneNumber') is-invalid @enderror mb-2" type="text" value="{{$dsn->user->phone_number}}" placeholder="Nomor HP">
                         @error('PhoneNumber')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
@@ -55,7 +55,7 @@
                     <div class="form-group col">
                         <i class="fa fa-graduation-cap" aria-hidden="true"></i>
                         <label for="Prodi" class="form-label">Program Studi</label>
-                        <input name="Prodi" class="form-control mb-2" type="text" value="{{$dsn->user->prodi}}">
+                        <input name="Prodi" class="form-control mb-2" type="text" value="{{$dsn->user->prodi}}" placeholder="Program Studi">
                     </div>
                 </div>
                 
@@ -63,7 +63,7 @@
                     <div class="form-group col">
                         <i class="fa fa-home" aria-hidden="true"></i>
                         <label for="Alamat" class="form-label">Alamat</label>
-                        <textarea name="Alamat" class="form-control @error('Alamat') is-invalid @enderror mb-2" rows="3">{{$dsn->address}}</textarea>
+                        <textarea name="Alamat" class="form-control @error('Alamat') is-invalid @enderror mb-2" rows="3" placeholder="Alamat">{{$dsn->address}}</textarea>
                         @error('Alamat')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
