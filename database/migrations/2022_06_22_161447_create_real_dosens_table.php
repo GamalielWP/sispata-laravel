@@ -15,7 +15,8 @@ class CreateRealDosensTable extends Migration
     {
         Schema::create('real_dosens', function (Blueprint $table) {
             $table->id();
-            $table->string('nidn');
+            $table->string('nik')->nullable();
+            $table->string('nidn')->nullable();
             $table->string('kode_dosen');
             $table->string('nama');
             $table->string('email')->unique();

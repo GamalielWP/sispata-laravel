@@ -17,8 +17,10 @@ class CreateDosensTable extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('nidn')->unique();
+            $table->string('nik')->unique()->nullable();
+            $table->string('nidn')->unique()->nullable();
             $table->string('lecturer_code')->unique();
+            $table->string('signature')->nullable();
             $table->string('address');
             $table->timestamps();
         });

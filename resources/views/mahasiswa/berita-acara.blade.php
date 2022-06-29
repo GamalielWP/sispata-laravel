@@ -38,9 +38,9 @@
                 <td>{{$penguji->user->name}}</td>
             </tr>
             <tr>
-                <td>NIDN</td>
+                <td>NIDN / NIK</td>
                 <td>:</td>
-                <td>{{$penguji->nidn}}</td>
+                <td>{{$penguji->nidn != null ? $penguji->nidn : '-'}} / {{$penguji->nik != null ? $penguji->nik : '-'}}</td>
             </tr>
             <tr>
                 <td>Program Studi</td>
@@ -63,9 +63,9 @@
                 <td>{{$pembimbing1->user->name}}</td>
             </tr>
             <tr>
-                <td>NIDN</td>
+                <td>NIDN / NIK</td>
                 <td>:</td>
-                <td>{{$pembimbing1->nidn}}</td>
+                <td>{{$pembimbing1->nidn != null ? $pembimbing1->nidn : '-'}} / {{$pembimbing1->nik != null ? $pembimbing1->nik : '-'}}</td>
             </tr>
             <tr>
                 <td>Program Studi</td>
@@ -88,9 +88,9 @@
                     <td>{{$pembimbing2->user->name}}</td>
                 </tr>
                 <tr>
-                    <td>NIDN</td>
+                    <td>NIDN / NIK</td>
                     <td>:</td>
-                    <td>{{$pembimbing2->nidn}}</td>
+                    <td>{{$pembimbing2->nidn != null ? $pembimbing2->nidn : '-'}} / {{$pembimbing2->nik != null ? $pembimbing2->nik : '-'}}</td>
                 </tr>
                 <tr>
                     <td>Program Studi</td>
@@ -186,14 +186,16 @@
             </tr>
             <tr>
                 <td>
-                {{QrCode::size(100)->generate($penguji->nidn)}}
+                    <img src="{{$penguji->signature != null ? asset($penguji->signature) : 'img/default-sig.png'}}" alt="TTD" width="125px">
                 </td>
                 <td>
-                {{QrCode::size(100)->generate($pembimbing1->nidn)}}
+                    <img src="{{$pembimbing1->signature != null ? asset($pembimbing1->signature) : 'img/default-sig.png'}}" alt="TTD" width="125px">
                 </td>
-                <td>
-                {{QrCode::size(100)->generate($pembimbing2->nidn)}}
-                </td>
+                @if ($sempro->adviser2_code != null && $sempro->adviser1_code != $sempro->adviser2_code)
+                    <td>
+                        <img src="{{$pembimbing2->signature != null ? asset($pembimbing2->signature) : 'img/default-sig.png'}}" alt="TTD" width="125px">
+                    </td>
+                @endif
             </tr>
         </table>
 

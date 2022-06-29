@@ -260,17 +260,21 @@ class DosenController extends Controller
     {
         if ($request->NewPassword == null) {
             $validateData = $request->validate([
-                'Email' => 'required',
-                'PhoneNumber' => 'numeric',
-                'Alamat' => 'required',
-                'ProfilePhotos' => 'image|mimes:jpg,png,jpeg'
-            ]);
-        } else {
-            $validateData = $request->validate([
+                'Nama' => 'min:3',
                 'Email' => 'required',
                 'PhoneNumber' => 'numeric',
                 'Alamat' => 'required',
                 'ProfilePhotos' => 'image|mimes:jpg,png,jpeg',
+                'Signature' => 'image|mimes:png'
+            ]);
+        } else {
+            $validateData = $request->validate([
+                'Nama' => 'min:3',
+                'Email' => 'required',
+                'PhoneNumber' => 'numeric',
+                'Alamat' => 'required',
+                'ProfilePhotos' => 'image|mimes:jpg,png,jpeg',
+                'Signature' => 'image|mimes:png',
                 'NewPassword' => 'required|min:8',
                 'ConfirmPassword' => 'same:NewPassword',
                 'OldPassword' => 'required'
@@ -279,14 +283,17 @@ class DosenController extends Controller
 
         $user = User::where('id', $id)->first();
 
-        //save identitas
+        //save kredensial user
         User::where('id', $id)->update([
+            'name' => $validateData['Nama'],
             'email' => $validateData['Email'],
             'phone_number' => $validateData['PhoneNumber']
         ]);
 
-        //save alamat
+        //save identitas user
         Dosen::where('user_id', $id)->update([
+            'nik' => $request->Nik,
+            'nidn' => $request->Nidn,
             'address' => $request->Alamat
         ]);
 
@@ -312,6 +319,28 @@ class DosenController extends Controller
             //simpan foto profil baru
             User::findOrFail($id)->update([
                 'pfp' => $path
+            ]);
+
+        }
+
+        $dosen = Dosen::where('user_id', $id)->first();
+
+        //cek upload ttd tidak
+        if ($request->hasFile('Signature')) {
+
+            $extFile = $validateData['Signature']->getClientOriginalExtension();
+            $namaFile = $user->id.'-'.$dosen->lecturer_code.".".$extFile;
+
+            //hapus ttd sebelumnya
+            if (File::exists('img/sig/'.$namaFile)) {
+                File::delete('img/sig/'.$namaFile);
+            }
+
+            $path = $validateData['Signature']->move('img/sig', $namaFile);
+    
+            //simpan ttd baru
+            Dosen::where('user_id', $id)->update([
+                'signature' => $path
             ]);
 
         }

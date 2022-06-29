@@ -18,8 +18,20 @@
                 <div class="row">
                     <div class="form-group col">
                         <i class="fa fa-id-card" aria-hidden="true"></i>
-                        <label for="Nim" class="form-label">NIDN</label>
-                        <input name="Nim" class="form-control mb-2" type="text" value="{{$dsn->nidn}}">
+                        <label for="Nik" class="form-label">NIK</label>
+                        <input name="Nik" class="form-control mb-2" type="text" value="{{$dsn->nik}}">
+                    </div>
+                    <div class="form-group col">
+                        <i class="fa fa-id-card" aria-hidden="true"></i>
+                        <label for="Nidn" class="form-label">NIDN</label>
+                        <input name="Nidn" class="form-control mb-2" type="text" value="{{$dsn->nidn}}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col">
+                        <i class="fa fa-id-badge" aria-hidden="true"></i>
+                        <label for="Nama" class="form-label">Nama</label>
+                        <input name="Nama" class="form-control mb-2" type="text" value="{{$dsn->user->name}}">
                     </div>
                     <div class="form-group col">
                         <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -30,12 +42,8 @@
                         @enderror
                     </div>
                 </div>
+                
                 <div class="row">
-                    <div class="form-group col">
-                        <i class="fa fa-id-badge" aria-hidden="true"></i>
-                        <label for="Nama" class="form-label">Nama</label>
-                        <input name="Nama" class="form-control mb-2" type="text" value="{{$dsn->user->name}}">
-                    </div>
                     <div class="form-group col">
                         <i class="fa fa-mobile" aria-hidden="true"></i>
                         <label for="PhoneNumber" class="form-label">Nomor HP</label>
@@ -44,9 +52,37 @@
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
+                    <div class="form-group col">
+                        <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                        <label for="Prodi" class="form-label">Program Studi</label>
+                        <input name="Prodi" class="form-control mb-2" type="text" value="{{$dsn->user->prodi}}">
+                    </div>
                 </div>
-                @if ($data->role == 'kelompok-keahlian' || $data->role == 'kk-gg')
-                    <div class="row">
+                
+                <div class="row">
+                    <div class="form-group col">
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                        <label for="Alamat" class="form-label">Alamat</label>
+                        <textarea name="Alamat" class="form-control @error('Alamat') is-invalid @enderror mb-2" rows="3">{{$dsn->address}}</textarea>
+                        @error('Alamat')
+                            <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group col">
+                        <label for="sig" class="form-label sig">
+                            <i class="fa fa-paint-brush" aria-hidden="true"></i>
+                            Tanda Tangan <br>
+                            <img src="{{$dsn->signature != null ? asset($dsn->signature) : 'img/default-sig.png'}}" alt="TTD" width="125px" class="mr-2">
+                            <input id="sig" name="Signature" class="form-control @error('Signature') is-invalid @enderror mb-2" type="file">
+                        </label>
+                        @error('Signature')
+                            <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    @if ($data->role == 'kelompok-keahlian' || $data->role == 'kk-gg')
                         <div class="form-group col">
                             <i class="fa fa-code-fork" aria-hidden="true"></i>
                             <label for="Bidang" class="form-label">Bidang Keahlian</label>
@@ -57,25 +93,8 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col">
-                            
-                        </div>
-                    </div>
-                @endif
-                <div class="row">
-                    <div class="form-group col">
-                        <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                        <label for="Prodi" class="form-label">Program Studi</label>
-                        <input name="Prodi" class="form-control mb-3" type="text" value="{{$dsn->user->prodi}}">
-                    </div>
-                    <div class="form-group col">
-                        <i class="fa fa-home" aria-hidden="true"></i>
-                        <label for="Alamat" class="form-label">Alamat</label>
-                        <textarea name="Alamat" class="form-control @error('Alamat') is-invalid @enderror mb-3" rows="3">{{$dsn->address}}</textarea>
-                        @error('Alamat')
-                            <span class="text-danger">{{$message}}</span>
-                        @enderror
-                    </div>
+                        <div class="col"></div>
+                    @endif
                 </div>
 
                 <a class="btn btn-warning" data-bs-toggle="collapse" href="#pwd-collapse-dosen">

@@ -168,21 +168,34 @@ class UserSeeder extends Seeder
 
         foreach ($user as $us) {
             // insert akun dosen
-            DB::table('users')->insert([
-                'name' => $us->nama,
-                'email' => $us->email,
-                'phone_number' => $us->tlp,
-                'prodi' => $us->prodi,
-                'pfp' => 'img/default-user.png',
-                'role' => $us->role,
-                'password' => Hash::make($us->nidn)
-            ]);
+            if ($us->nidn != null) {
+                DB::table('users')->insert([
+                    'name' => $us->nama,
+                    'email' => $us->email,
+                    'phone_number' => $us->tlp,
+                    'prodi' => $us->prodi,
+                    'pfp' => 'img/default-user.png',
+                    'role' => $us->role,
+                    'password' => Hash::make($us->nidn)
+                ]);
+            } else {
+                DB::table('users')->insert([
+                    'name' => $us->nama,
+                    'email' => $us->email,
+                    'phone_number' => $us->tlp,
+                    'prodi' => $us->prodi,
+                    'pfp' => 'img/default-user.png',
+                    'role' => $us->role,
+                    'password' => Hash::make($us->nik)
+                ]);
+            }
 
             $dosen = User::where('email', $us->email)->first();
 
             // insert detail dosen
             DB::table('dosens')->insert([
                 'user_id' => $dosen->id,
+                'nik' => $us->nik,
                 'nidn' => $us->nidn,
                 'lecturer_code' => $us->kode_dosen,
                 'address' => 'Institut Teknologi Telkom Purwokerto Jl. DI Panjaitan No.128, Karangreja, Purwokerto Kidul, Kec. Purwokerto Sel., Kabupaten Banyumas, Jawa Tengah 53147 (0281) 641629'
