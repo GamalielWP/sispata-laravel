@@ -455,7 +455,8 @@ class DosenController extends Controller
         $pdf = PDF::loadView('mahasiswa.berita-acara', compact('mhs', 'sempro', 'pembimbing1', 'pembimbing2', 'penguji', 'jadwal', 'score1', 'score2', 'score3'));
 
         Sempro::where('mhs_user_id', $id)->update([
-            'news_doc' => 'doc/user/'.$file
+            'news_doc' => 'doc/user/'.$file,
+            'track' => "SELESAI"
         ]);
 
         //hapus file sebelumnya

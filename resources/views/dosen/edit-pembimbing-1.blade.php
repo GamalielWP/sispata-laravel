@@ -144,7 +144,8 @@
                         </div>
                         
                     @endif
-                        
+                @else
+                    <div class="col"></div>
                 @endif
                 
             </div>

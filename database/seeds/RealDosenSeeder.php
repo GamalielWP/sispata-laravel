@@ -135,7 +135,7 @@ class RealDosenSeeder extends Seeder
             'email' => 'agi@ittelkom-pwt.ac.id',
             'tlp' => '000000000000',
             'prodi' => 'S1-Teknik Informatika',
-            'role' => 'pembimbing-penguji',
+            'role' => 'kelompok-keahlian',
         ]);
         DB::table('real_dosens')->insert([
             'nik' => null,
@@ -299,7 +299,7 @@ class RealDosenSeeder extends Seeder
             'email' => 'hiro@ittelkom-pwt.ac.id',
             'tlp' => '000000000000',
             'prodi' => 'S1-Teknik Informatika',
-            'role' => 'pembimbing-penguji',
+            'role' => 'gugus-tugas',
         ]);
         DB::table('real_dosens')->insert([
             'nik' => null,
@@ -411,7 +411,7 @@ class RealDosenSeeder extends Seeder
             'email' => 'novian@ittelkom-pwt.ac.id',
             'tlp' => '000000000000',
             'prodi' => 'S1-Teknik Informatika',
-            'role' => 'pembimbing-penguji',
+            'role' => 'kelompok-keahlian',
         ]);
 
         DB::table('real_dosens')->insert([
@@ -557,7 +557,7 @@ class RealDosenSeeder extends Seeder
             'email' => 'dwimustika@ittelkom-pwt.ac.id',
             'tlp' => '000000000000',
             'prodi' => 'S1-Sistem Informasi',
-            'role' => 'pembimbing-penguji',
+            'role' => 'gugus-tugas',
         ]);
         DB::table('real_dosens')->insert([
             'nik' => null,
@@ -577,7 +577,7 @@ class RealDosenSeeder extends Seeder
             'email' => 'citra@ittelkom-pwt.ac.id',
             'tlp' => '000000000000',
             'prodi' => 'S1-Sistem Informasi',
-            'role' => 'pembimbing-penguji',
+            'role' => 'kelompok-keahlian',
         ]);
 
         DB::table('real_dosens')->insert([
@@ -618,7 +618,7 @@ class RealDosenSeeder extends Seeder
             'email' => 'cepi@ittelkom-pwt.ac.id',
             'tlp' => '000000000000',
             'prodi' => 'S1-Sistem Informasi',
-            'role' => 'pembimbing-penguji',
+            'role' => 'gugus-tugas',
         ]);
 
         DB::table('real_dosens')->insert([
@@ -736,6 +736,47 @@ class RealDosenSeeder extends Seeder
 
 
         // SD
+        // DB::table('real_dosens')->insert([
+        //     'nik' => '',
+        //     'nidn' => '',
+        //     'kode_dosen' => '',
+        //     'nama' => '',
+        //     'email' => '',
+        //     'tlp' => '000000000000',
+        //     'prodi' => 'S1-Sains Data',
+        //     'role' => 'pembimbing-penguji',
+        // ]);
+        // DB::table('real_dosens')->insert([
+        //     'nik' => '',
+        //     'nidn' => '',
+        //     'kode_dosen' => '',
+        //     'nama' => '',
+        //     'email' => '',
+        //     'tlp' => '000000000000',
+        //     'prodi' => 'S1-Sains Data',
+        //     'role' => 'pembimbing-penguji',
+        // ]);
+        // DB::table('real_dosens')->insert([
+        //     'nik' => '',
+        //     'nidn' => '',
+        //     'kode_dosen' => '',
+        //     'nama' => '',
+        //     'email' => '',
+        //     'tlp' => '000000000000',
+        //     'prodi' => 'S1-Sains Data',
+        //     'role' => 'pembimbing-penguji',
+        // ]);
+        // DB::table('real_dosens')->insert([
+        //     'nik' => '',
+        //     'nidn' => '',
+        //     'kode_dosen' => '',
+        //     'nama' => '',
+        //     'email' => '',
+        //     'tlp' => '000000000000',
+        //     'prodi' => 'S1-Sains Data',
+        //     'role' => 'pembimbing-penguji',
+        // ]);
+
         // DB::table('real_dosens')->insert([
         //     'nik' => '',
         //     'nidn' => '',

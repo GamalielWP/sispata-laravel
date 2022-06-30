@@ -105,7 +105,7 @@
                 <div class="form-group col">
                     <i class="fa fa-calendar-o" aria-hidden="true"></i>
                     <label for="Schedule" class="form-label">Jadwal Seminar Proposal</label>
-                    <input name="Schedule" type="date" class="form-control mb-3" value="{{$sempro->schedule !=null ? $sempro->schedule : ''}}" {{$sempro->examiner_code == null ? 'disabled' : ''}}>
+                    <input name="Schedule" type="date" class="form-control mb-3" value="{{$sempro->schedule !=null ? $sempro->schedule : ''}}" {{$sempro->adviser1_code == null ? 'disabled' : ''}}>
                 </div>
                 <div class="col"></div>
             </div>

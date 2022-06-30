@@ -27,7 +27,7 @@ class GugusTugasController extends Controller
         $user = User::where('role', 'mahasiswa')->where('prodi', Auth::user()->prodi)->get();
 
         return Datatables::of($user)
-        ->editColumn('nim', function($user){
+        ->addColumn('nim', function($user){
             $mhs = Mahasiswa::where('user_id', $user->id)->first();
 
             $mhs->nim;
@@ -171,39 +171,32 @@ class GugusTugasController extends Controller
             'Email' => 'required',
             'PhoneNumber' => 'numeric'
         ]);
+        
+        Sempro::where('mhs_user_id', $id)->update([
+            'title' => $request->Judul,
+            'schedule' => $request->Schedule,
+            'scope_id' => $request->Bidang
+        ]);
 
-        $sempro = Sempro::where('mhs_user_id', $id)->first();
-
-        if ($sempro->track == "Sedang diproses PENGUJI") {
+        if ($request->Bidang != null) {
             Sempro::where('mhs_user_id', $id)->update([
-                'schedule' => $request->Schedule
+                'track' => "Sedang diproses KELOMPOK KEAHLIAN"
             ]);
         } else {
             Sempro::where('mhs_user_id', $id)->update([
-                'title' => $request->Judul,
-                'scope_id' => $request->Bidang
-            ]);
-
-            if ($request->Bidang != null) {
-                Sempro::where('mhs_user_id', $id)->update([
-                    'track' => "Sedang diproses KELOMPOK KEAHLIAN"
-                ]);
-            } else {
-                Sempro::where('mhs_user_id', $id)->update([
-                    'track' => "Sedang diproses GUGUS TUGAS"
-                ]);
-            }
-
-            Mahasiswa::where('user_id', $id)->update([
-                'nim' => $request->Nim
-            ]);
-
-            User::where('id', $id)->update([
-                'name' => $request->Nama,
-                'email' => $request->Email,
-                'phone_number' => $request->PhoneNumber
+                'track' => "Sedang diproses GUGUS TUGAS"
             ]);
         }
+
+        Mahasiswa::where('user_id', $id)->update([
+            'nim' => $request->Nim
+        ]);
+
+        User::where('id', $id)->update([
+            'name' => $request->Nama,
+            'email' => $request->Email,
+            'phone_number' => $request->PhoneNumber
+        ]);
 
         return redirect('/gugus-tugas-dashboard');
     }
