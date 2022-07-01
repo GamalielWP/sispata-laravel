@@ -142,21 +142,21 @@
             <tr>
                 <td>Penguji</td>
                 <td class="center">50</td>
-                <td class="center">{{ $nilai_3 = $score3->ide + $score3->solusi + $score3->analisa + $score3->penulisan + $score3->kemandirian_presentasi }}</td>
-                <td class="center">{{ $total_3 = ($nilai_3/100)*50 }}</td>
+                <td class="center">{{ $sempro->examiner_score }}</td>
+                <td class="center">{{ $total_3 = ($sempro->examiner_score/100)*50 }}</td>
             </tr>
             <tr>
                 <td>Pembimbing Utama</td>
                 <td class="center">{{ $sempro->adviser2_code != null && $sempro->adviser1_code != $sempro->adviser2_code ? "25" : "50" }}</td>
-                <td class="center">{{ $nilai_1 = $score1->ide + $score1->solusi + $score1->analisa + $score1->penulisan + $score1->kemandirian_presentasi }}</td>
-                <td class="center">{{ $sempro->adviser2_code != null && $sempro->adviser1_code != $sempro->adviser2_code ? $total_1 = ($nilai_1/100)*25 : $total_1 = ($nilai_1/100)*50 }}</td>
+                <td class="center">{{ $sempro->adviser1_score }}</td>
+                <td class="center">{{ $sempro->adviser2_code != null && $sempro->adviser1_code != $sempro->adviser2_code ? $total_1 = ($sempro->adviser1_score/100)*25 : $total_1 = ($sempro->adviser1_score/100)*50 }}</td>
             </tr>
             @if ($sempro->adviser2_code != null && $sempro->adviser1_code != $sempro->adviser2_code)
                 <tr>
                     <td>Pembimbing Pendamping</td>
                     <td class="center">25</td>
-                    <td class="center">{{ $nilai_2 = $score2->ide + $score2->solusi + $score2->analisa + $score2->penulisan + $score2->kemandirian_presentasi }}</td>
-                    <td class="center">{{ $total_2 =($nilai_2/100)*25 }}</td>
+                    <td class="center">{{ $sempro->adviser2_score }}</td>
+                    <td class="center">{{ $total_2 =($sempro->adviser2_score/100)*25 }}</td>
                 </tr>
             @endif
             <tr>

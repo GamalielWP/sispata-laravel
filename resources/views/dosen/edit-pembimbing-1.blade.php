@@ -129,6 +129,8 @@
                                     Cetak
                                 </a>
                             </div>
+                        @else
+                            <div class="col"></div>
                         @endif
                             
                     @else

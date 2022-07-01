@@ -29,19 +29,19 @@
                 <div class="col">
                   <img class="score-mini-icon mb-2" src="{{asset('img/icon/star.png')}}" alt="Nilai Pembimbing 1">
                   <h6><b>Nilai Pembimbing 1</b></h6>
-                  <span><b>{{$sempro->adviser1_score != null ? $nilai_1 = $score1->ide + $score1->solusi + $score1->analisa + $score1->penulisan + $score1->kemandirian_presentasi : 'Belum dinilai'}}</b></span>
+                  <span><b>{{$sempro->adviser1_score != null ? $sempro->adviser1_score : 'Belum dinilai'}}</b></span>
                 </div>
                 @if ($sempro->adviser2_code != null && $sempro->adviser1_code != $sempro->adviser2_code)
                   <div class="col">
                     <img class="score-mini-icon mb-2" src="{{asset('img/icon/star.png')}}" alt="Nilai Pembimbing 2">
                     <h6><b>Nilai Pembimbing 2</b></h6>
-                    <span><b>{{$sempro->adviser2_score != null ? $nilai_2 = $score2->ide + $score2->solusi + $score2->analisa + $score2->penulisan + $score2->kemandirian_presentasi : 'Belum dinilai'}}</b></span>
+                    <span><b>{{$sempro->adviser2_score != null ? $sempro->adviser2_score : 'Belum dinilai'}}</b></span>
                   </div>
                 @endif
                 <div class="col">
                   <img class="score-mini-icon mb-2" src="{{asset('img/icon/star.png')}}" alt="Nilai Penguji">
                   <h6><b>Nilai Penguji</b></h6>
-                  <span><b>{{$sempro->examiner_score != null ? $nilai_3 = $score3->ide + $score3->solusi + $score3->analisa + $score3->penulisan + $score3->kemandirian_presentasi : 'Belum dinilai'}}</b></span>
+                  <span><b>{{$sempro->examiner_score != null ? $sempro->examiner_score : 'Belum dinilai'}}</b></span>
                 </div>
                 <div class="col">
                   <img class="score-icon mb-2" src="{{asset('img/icon/score-star.png')}}" alt="Nilai Rata-rata">
@@ -50,9 +50,9 @@
                   @if ($sempro->adviser1_score != null && $sempro->examiner_score != null)
 
                     @if ($sempro->adviser2_score == null)
-                      <span><b>{{ ($nilai_1/100)*50 + ($nilai_3/100)*50 }}</b></span>
+                      <span><b>{{ ($sempro->adviser1_score/100)*50 + ($sempro->examiner_score/100)*50 }}</b></span>
                     @else
-                      <span><b>{{ ($nilai_1/100)*25 + ($nilai_2/100)*25 + ($nilai_3/100)*50 }}</b></span>
+                      <span><b>{{ ($sempro->adviser1_score/100)*25 + ($sempro->adviser2_score/100)*25 + ($sempro->examiner_score/100)*50 }}</b></span>
                     @endif
 
                   @else
