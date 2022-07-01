@@ -119,7 +119,8 @@ class GugusTugasController extends Controller
             'prodi' => $regis->prodi,
             'pfp' => $regis->pfp,
             'role' => $regis->role,
-            'password' => $regis->password
+            'password' => $regis->password,
+            'status' => null
         ]);
 
         $user = User::where('email', $regis->email)->first();
@@ -131,7 +132,7 @@ class GugusTugasController extends Controller
 
         Sempro::create([
             'mhs_user_id' => $user->id,
-            'tiitle' => null
+            'title' => null
         ]);
 
         Registrasi::destroy($id);
@@ -221,7 +222,7 @@ class GugusTugasController extends Controller
 
     public function yajraIndexDosen()
     {
-        $user = User::where('role', '!=', 'mahasiswa')->where('prodi', Auth::user()->prodi)->get();
+        $user = User::where('role', '!=', 'mahasiswa')->where('prodi', Auth::user()->prodi)->where('status', null)->get();
 
         return Datatables::of($user)
         ->addColumn('nidn', function($user){
@@ -263,7 +264,8 @@ class GugusTugasController extends Controller
     public function addDosen(Request $request)
     {
         $request->validate([
-            'nidn' => 'required|numeric|unique:dosens',
+            'nik' => 'required|numeric|unique:dosens',
+            'nidn' => '',
             'lecturer_code' => 'required|unique:dosens',
             'Nama' => 'required|min:3',
             'email' => 'required|unique:users',
@@ -271,20 +273,35 @@ class GugusTugasController extends Controller
             'Prodi' => 'required'
         ]);
 
-        User::create([
-            'name' => $request->Nama,
-            'email' => $request->email,
-            'phone_number' => $request->Phone,
-            'prodi' => $request->Prodi,
-            'pfp' => "img/default-user.png",
-            'role' => "pembimbing-penguji",
-            'password' => Hash::make($request->nidn)
-        ]);
+        if ($request->nidn != null) {
+            User::create([
+                'name' => $request->Nama,
+                'email' => $request->email,
+                'phone_number' => $request->Phone,
+                'prodi' => $request->Prodi,
+                'pfp' => "img/default-user.png",
+                'role' => "pembimbing-penguji",
+                'password' => Hash::make($request->nidn),
+                'status' => null
+            ]);
+        } else {
+            User::create([
+                'name' => $request->Nama,
+                'email' => $request->email,
+                'phone_number' => $request->Phone,
+                'prodi' => $request->Prodi,
+                'pfp' => "img/default-user.png",
+                'role' => "pembimbing-penguji",
+                'password' => Hash::make($request->nik),
+                'status' => null
+            ]);
+        }
 
         $user = User::where('email', $request->email)->first();
 
         Dosen::create([
             'user_id' => $user->id,
+            'nik' => $request->nik,
             'nidn' => $request->nidn,
             'lecturer_code' => $request->lecturer_code,
             'address' => "Institut Teknologi Telkom Purwokerto Jl. DI Panjaitan No.128, Karangreja, Purwokerto Kidul, Kec. Purwokerto Sel., Kabupaten Banyumas, Jawa Tengah 53147 (0281) 641629"
@@ -365,21 +382,12 @@ class GugusTugasController extends Controller
                 break;
         }
     }
-
+    
     public function deleteDosen($id)
-    {   $dosen = Dosen::where('user_id', $id)->first();
-
-        Sempro::where('adviser1_code', $dosen->lecturer_code)
-            ->orWhere('adviser2_code', $dosen->lecturer_code)
-            ->orWhere('examiner_code', $dosen->lecturer_code)
-            ->update([
-                'adviser1_code' => null,
-                'adviser2_code' => null,
-                'examiner_code' => null
-            ]);
-
-        Dosen::where('user_id', $id)->delete();
-        User::destroy($id);
+    {
+        User::findOrFail($id)->update([
+            'status' => "closed"
+        ]);
 
         return back();
     }

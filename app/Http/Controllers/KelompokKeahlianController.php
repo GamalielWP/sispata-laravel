@@ -87,8 +87,9 @@ class KelompokKeahlianController extends Controller
         $mhs = Mahasiswa::where('user_id', $id)->first();
         $sempro = Sempro::where('mhs_user_id', $id)->first();
         $dosen = Dosen::all();
+        $penguji = Dosen::where('lecturer_code', '!=', $sempro->adviser1_code)->where('lecturer_code', '!=', $sempro->adviser2_code)->get();
 
-        return view('kelompokKeahlian.edit', compact('data', 'mhs', 'sempro', 'dosen'));
+        return view('kelompokKeahlian.edit', compact('data', 'mhs', 'sempro', 'dosen', 'penguji'));
     }
 
     public function update(Request $request, $id)

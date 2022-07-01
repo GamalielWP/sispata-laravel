@@ -176,7 +176,8 @@ class UserSeeder extends Seeder
                     'prodi' => $us->prodi,
                     'pfp' => 'img/default-user.png',
                     'role' => $us->role,
-                    'password' => Hash::make($us->nidn)
+                    'password' => Hash::make($us->nidn),
+                    'status' => null
                 ]);
             } else {
                 DB::table('users')->insert([
@@ -186,7 +187,8 @@ class UserSeeder extends Seeder
                     'prodi' => $us->prodi,
                     'pfp' => 'img/default-user.png',
                     'role' => $us->role,
-                    'password' => Hash::make($us->nik)
+                    'password' => Hash::make($us->nik),
+                    'status' => null
                 ]);
             }
 

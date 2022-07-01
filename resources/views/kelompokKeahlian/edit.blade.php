@@ -65,8 +65,8 @@
                     <label for="Penguji" class="form-label">Penguji</label>
                     <select name="Penguji" class="form-select" aria-label="Penguji select">
                         <option value="{{null}}" {{$sempro->examiner_code == null ? 'selected' : ''}}>-- Belum ditentukan --</option>
-                        @foreach ($dosen as $dos)
-                            <option value="{{$dos->lecturer_code}}" {{$dos->lecturer_code == $sempro->examiner_code ? 'selected' : ''}}>{{$dos->lecturer_code}} - {{$dos->user->name}}</option>
+                        @foreach ($penguji as $pj)
+                            <option value="{{$pj->lecturer_code}}" {{$pj->lecturer_code == $sempro->examiner_code ? 'selected' : ''}}>{{$pj->lecturer_code}} - {{$pj->user->name}}</option>
                         @endforeach
                     </select>
                 </div>

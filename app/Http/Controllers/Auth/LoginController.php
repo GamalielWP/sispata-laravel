@@ -31,6 +31,11 @@ class LoginController extends Controller
 
     public function redirectTo()
     {
+        if (Auth::user()->status == 'closed') {
+            Auth::logout();
+            return '/';
+        }
+
         $role = Auth::user()->role;
 
         switch ($role) {
