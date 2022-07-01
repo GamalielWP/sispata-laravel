@@ -24,7 +24,7 @@ class GugusTugasController extends Controller
 
     public function yajraIndex()
     {
-        $user = User::where('role', 'mahasiswa')->where('prodi', Auth::user()->prodi)->get();
+        $user = User::where('role', 'mahasiswa')->where('prodi', Auth::user()->prodi)->where('status', null)->get();
 
         return Datatables::of($user)
         ->addColumn('nim', function($user){
@@ -388,6 +388,19 @@ class GugusTugasController extends Controller
         User::findOrFail($id)->update([
             'status' => "closed"
         ]);
+
+        return back();
+    }
+
+    public function deleteMahasiswa()
+    {
+        $sempro = Sempro::where('track', "SELESAI")->get();
+
+        foreach ($sempro as $sp) {
+            User::where('id', $sp->mhs_user_id)->update([
+                'status' => "closed"
+            ]);
+        }
 
         return back();
     }

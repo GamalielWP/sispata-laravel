@@ -44,6 +44,7 @@ Route::get('/gugus-tugas-delete-dosen/{id}', 'GugusTugasController@deleteDosen')
 Route::get('/gugus-tugas-data-table-dosen', 'GugusTugasController@yajraIndexDosen')->name('dataDosen');
 Route::get('/gugus-tugas-data-table-dasboard', 'GugusTugasController@yajraIndex')->name('dataGG');
 Route::get('/gugus-tugas-data-table-request', 'GugusTugasController@yajraIndexRequest')->name('dataGGRequest');
+Route::get('/gugus-tugas-data-table-clean', 'GugusTugasController@deleteMahasiswa');
 Route::get('/gugus-tugas-edit/{id}', 'GugusTugasController@edit');
 Route::patch('/gugus-tugas-update/{id}', 'GugusTugasController@update');
 

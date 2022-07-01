@@ -7,6 +7,7 @@
 @section('content')
     <div class="card border-radius">
         <div class="card-body">
+            <a href="/gugus-tugas-data-table-clean" class="fa fa-trash btn btn-danger border-radius mb-3"> Hapus data usang</a>
             <table class="table table-striped" id="data-tabel">
                 <thead>
                     <tr>
