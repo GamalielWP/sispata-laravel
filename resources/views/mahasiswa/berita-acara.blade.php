@@ -185,14 +185,14 @@
                 @endif
             </tr>
             <tr>
-                <td>
+                <td class="center">
                     <img src="{{$penguji->signature != null ? asset($penguji->signature) : 'img/default-sig.png'}}" alt="TTD" width="125px">
                 </td>
-                <td>
+                <td class="center">
                     <img src="{{$pembimbing1->signature != null ? asset($pembimbing1->signature) : 'img/default-sig.png'}}" alt="TTD" width="125px">
                 </td>
                 @if ($sempro->adviser2_code != null && $sempro->adviser1_code != $sempro->adviser2_code)
-                    <td>
+                    <td class="center">
                         <img src="{{$pembimbing2->signature != null ? asset($pembimbing2->signature) : 'img/default-sig.png'}}" alt="TTD" width="125px">
                     </td>
                 @endif
