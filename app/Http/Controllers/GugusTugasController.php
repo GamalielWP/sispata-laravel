@@ -265,7 +265,7 @@ class GugusTugasController extends Controller
     {
         $request->validate([
             'nik' => 'required|numeric|unique:dosens',
-            'nidn' => '',
+            'nidn' => 'numeric|unique:dosens',
             'lecturer_code' => 'required|unique:dosens',
             'Nama' => 'required|min:3',
             'email' => 'required|unique:users',

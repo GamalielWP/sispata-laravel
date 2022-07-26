@@ -32,6 +32,7 @@
                         </a>
                         <hr>
                         <form class="collapse
+                            @error('nik') show @enderror
                             @error('nidn') show @enderror
                             @error('Nama') show @enderror
                             @error('lecturer_code') show @enderror

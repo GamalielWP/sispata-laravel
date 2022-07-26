@@ -109,7 +109,7 @@
 <div class="row mb-4">
   @if ($sempro->examiner_code != null)
     <div class="col">
-      <div class="card">
+      <div class="card border-radius">
         <div class="card-body">
           <img src="{{asset($dosen3->user->pfp)}}" style="width: 10%; height: auto; float:left" alt="Foto Profil" class="mr-2 img-style">
           <h5 class="card-title">{{$dosen3->user->name}}</h5>

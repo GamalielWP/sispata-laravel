@@ -68,7 +68,11 @@
                     Ubah Password
                 </a>
                 <hr>
-                <div class="collapse" id="pwd-collapse-mahasiswa">
+                <div class="collapse
+                @error('NewPassword') show @enderror
+                @error('ConfirmPassword') show @enderror
+                @error('OldPassword') show @enderror"
+                id="pwd-collapse-mahasiswa">
                     <div class="form-group">
                         <i class="fa fa-key" aria-hidden="true"></i>
                         <label for="NewPassword" class="form-label">Password Baru</label>
